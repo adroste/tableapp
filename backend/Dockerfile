@@ -1,10 +1,17 @@
-FROM node:9
-
+FROM node:10
+#FROM node:16-alpine
 RUN mkdir /app
 WORKDIR /app
-COPY ["package*.json", "npm-shrinkwrap.json*", "yarn.lock", "./"]
+COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 ENV NODE_ENV production
-RUN yarn install --production=true
+# RUN npm ci --only=production
+# move node_modules up for easier mount of app code during development 
+# without overriding the node_modules in the container
+RUN npm install && mv node_modules ../
 COPY ./src ./src
 EXPOSE 4898
-CMD ["yarn", "start"]
+RUN chown -R node /app
+USER node
+COPY ./docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["npm", "start"]

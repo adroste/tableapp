@@ -9,6 +9,24 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}/src/index.js"
+        },
+        {
+            "name": "Docker Node.js Launch",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run: debug",
+            "platform": "node"
+        },
+        {
+            "name": "Docker: Attach to Node",
+            "type": "node",
+            "request": "attach",
+            "restart": true,
+            "port": 9229,
+            "address": "localhost",
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/app",
+            "protocol": "inspector"
         }
     ]
 }
