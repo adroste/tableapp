@@ -126,3 +126,12 @@ export const pathJoin = (base, ...parts) => {
     const partsTrimmed = parts.map(p => p.replace(trimSepLeftRight, ''));
     return [base.replace(trimSepRight, '')].concat(partsTrimmed).join('/');
 };
+
+/**
+ * Returns app version read from environment
+ * @returns {string} app version
+ */
+export const getAppVersion = () => {
+    const suffix = process.env.REACT_APP_VERSION_NAME_SUFFIX || "";
+    return process.env.REACT_APP_VERSION + suffix;
+};

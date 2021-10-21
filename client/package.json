@@ -24,15 +24,17 @@
     "socket.io": "^2.1.0",
     "styled-components": "^3.2.6"
   },
+  "devDependencies": {
+    "cross-env": "7.0.2"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "start-https": "HTTPS=true react-scripts start",
+    "start": "cross-env REACT_APP_VERSION_NAME_SUFFIX=\" (debug)\" react-scripts start",
+    "start-https": "cross-env REACT_APP_VERSION_NAME_SUFFIX=\" (debug)\" HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "homepage": "/",
-  "devDependencies": {},
   "browserslist": [
     ">0.2%",
     "not dead",
