@@ -1,13 +1,13 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import { createLogger } from 'redux-logger';
-import thunk from 'redux-thunk';
-import throttle from 'lodash/throttle';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { loadState, saveState } from './localStorage';
+
 import { apiMiddleware } from './api/redux/middleware';
+import { config } from './config';
+import { createLogger } from 'redux-logger';
 import { ipcMiddleware } from './ipc/middleware';
 import reducers from './reducers/index';
-import { loadState, saveState } from './localStorage';
-import { config } from './config';
-
+import throttle from 'lodash/throttle';
+import thunk from 'redux-thunk';
 
 /**
  * Store-function to dispatch an action.
@@ -68,7 +68,7 @@ export const configureStore = (api, ipc) => {
                 sessionToken: store.getState().user.sessionToken,
             },
         });
-    }, config.saveStateDebounceTime));
+    }, config.SAVE_STATE_DEBOUNCE_TIME));
 
     return store;
 };

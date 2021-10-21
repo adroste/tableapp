@@ -1,17 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import * as imagesActions from '../actions/images';
-import { Button, Modal, Image, Loader, Dimmer } from 'semantic-ui-react';
-import Dropzone from 'react-dropzone';
-import Jimp from 'jimp';
-import { config } from '../config';
-import { Buffer } from 'buffer';
-import { generateLocalImageId } from '../reducers/images';
 import * as utils from '../utils';
 
+import { Button, Dimmer, Image, Loader, Modal } from 'semantic-ui-react';
+
+import { Buffer } from 'buffer';
+import Dropzone from 'react-dropzone';
+import Jimp from 'jimp';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import { config } from '../config';
+import { connect } from 'react-redux';
+import { generateLocalImageId } from '../reducers/images';
+import styled from 'styled-components';
 
 const CenteredContent = styled.div`
     display: block;
@@ -111,11 +112,11 @@ class InputImageModal extends React.Component {
                 if (err) 
                     return handleError();
                 // limit max height/width to max res (e.g. 1200px) but keep aspect ratio
-                if (img.bitmap.width > config.inputImageMaxRes || img.bitmap.height > config.inputImageMaxRes) {
+                if (img.bitmap.width > config.INPUT_IMAGE_MAX_RES || img.bitmap.height > config.INPUT_IMAGE_MAX_RES) {
                     if (img.bitmap.width > img.bitmap.height)
-                        img.resize(config.inputImageMaxRes, Jimp.AUTO);
+                        img.resize(config.INPUT_IMAGE_MAX_RES, Jimp.AUTO);
                     else
-                        img.resize(Jimp.AUTO, config.inputImageMaxRes);
+                        img.resize(Jimp.AUTO, config.INPUT_IMAGE_MAX_RES);
                 }
                 img.getBase64(Jimp.MIME_PNG, (err, imageData) => {
                     if (this.unmounted)

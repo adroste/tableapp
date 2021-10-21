@@ -1,13 +1,13 @@
-import io from 'socket.io-client';
-import callbackTimeout from 'callback-timeout';
-import { ApiConnectionStateEnum } from './ApiConnectionStateEnum';
-import { getConnectionState } from '../reducers/api';
-import { getSessionToken } from '../reducers/user';
-import { setupListeners } from './redux/bindings';
 import * as apiActions from '../actions/api';
 import * as userActions from '../actions/user';
-import { config } from '../config';
 
+import { ApiConnectionStateEnum } from './ApiConnectionStateEnum';
+import callbackTimeout from 'callback-timeout';
+import { config } from '../config';
+import { getConnectionState } from '../reducers/api';
+import { getSessionToken } from '../reducers/user';
+import io from 'socket.io-client';
+import { setupListeners } from './redux/bindings';
 
 /**
  * Represents connection to (WebSocket-)API.
@@ -53,7 +53,7 @@ export class ApiConnection {
         setTimeout(() => {
             if (getConnectionState(this._getState().api) === ApiConnectionStateEnum.TEMPORARILY_DISCONNECTED)
                 this._dispatch(apiActions.changeConnectionState(ApiConnectionStateEnum.DISCONNECTED));                
-        }, config.api.disconnectTimeout);
+        }, config.API_DISCONNECT_TIMEOUT);
     }
 
 
@@ -94,7 +94,7 @@ export class ApiConnection {
                 }
 
                 return resolve(result);
-            }, config.api.requestTimeout, 'Api request timed out. Did not receive acknowledge callback.'));
+            }, config.API_REQUEST_TIMEOUT, 'Api request timed out. Did not receive acknowledge callback.'));
         });
     }
 

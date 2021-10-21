@@ -1,15 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Jimp from 'jimp';
-import { Buffer } from 'buffer';
-import { config } from '../config';
-import { bindActionCreators } from 'redux';
 import * as desktopAppActions from '../actions/desktopApp';
-import { connect } from 'react-redux';
-import { ScreenCapturer } from '../ScreenCapturer';
-import { isBroadcastActive, isMiniControlViewActive } from '../reducers/desktopApp';
-import { ScreenSelectModal } from '../components/ScreenSelectModal';
 
+import { isBroadcastActive, isMiniControlViewActive } from '../reducers/desktopApp';
+
+import { Buffer } from 'buffer';
+import Jimp from 'jimp';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { ScreenCapturer } from '../ScreenCapturer';
+import { ScreenSelectModal } from '../components/ScreenSelectModal';
+import { bindActionCreators } from 'redux';
+import { config } from '../config';
+import { connect } from 'react-redux';
 
 class ScreenBroadcastHelper extends React.Component {
     static get propTypes() {
@@ -78,7 +79,7 @@ class ScreenBroadcastHelper extends React.Component {
         if (!prevState.isBroadcasting && this.state.isBroadcasting) {
             this._captureAndBroadcast();
             this._screenCaptureIntervalId = setInterval(
-                this._captureAndBroadcast, config.desktopApp.broadcastImageInterval);
+                this._captureAndBroadcast, config.DESKTOP_APP_BROADCAST_IMAGE_INTERVAL);
         }
         else if (prevState.isBroadcasting && !this.state.isBroadcasting) {
             clearInterval(this._screenCaptureIntervalId);

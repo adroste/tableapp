@@ -1,11 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { config } from '../config';
 import * as userActions from '../actions/user';
+
 import { Button, Modal } from 'semantic-ui-react';
 
+import PropTypes from 'prop-types';
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import { config } from '../config';
+import { connect } from 'react-redux';
 
 class AcceptTosView extends React.Component {
     static get propTypes() {
@@ -38,7 +39,7 @@ class AcceptTosView extends React.Component {
                     Nutzungsbedingungen
                 </Modal.Header>
                 <Modal.Content>
-                    <div dangerouslySetInnerHTML={ {__html: config.htmlTermsOfService } } />
+                    <div dangerouslySetInnerHTML={ {__html: config.HTML_TERMS_OF_SERVICE } } />
                 </Modal.Content>
                 <Modal.Actions>
                     <Button

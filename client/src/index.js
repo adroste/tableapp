@@ -1,22 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import registerServiceWorker from './registerServiceWorker'; // TODO
-import { Provider } from 'react-redux';
-import { Router } from 'react-router-dom';
-import { configureStore } from './configureStore';
+
 import { ApiConnection } from './api/ApiConnection';
 import { App } from './containers/App';
-import { config } from './config';
-import { createSafeBrowserHistory } from './createSafeBrowserHistory';
-import { ScrollMemory } from './containers/ScrollMemory';
 import { IpcHandler } from './ipc/IpcHandler';
+import { Provider } from 'react-redux';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Router } from 'react-router-dom';
+import { ScrollMemory } from './containers/ScrollMemory';
+import { config } from './config';
+import { configureStore } from './configureStore';
+import { createSafeBrowserHistory } from './createSafeBrowserHistory';
+
+// import registerServiceWorker from './registerServiceWorker'; // TODO
 
 console.log(React.version);
 const api = new ApiConnection();
 const ipc = new IpcHandler();
 const store = configureStore(api, ipc);
-api.initialize(config.api.socketUrl, store.dispatch, store.getState);
+api.initialize(config.API_URL, store.dispatch, store.getState);
 ipc.initialize(store.dispatch);
 
 const safeBrowserHistory = createSafeBrowserHistory();

@@ -1,6 +1,5 @@
 import { config } from './config';
 
-
 export class ScreenCapturer {
     constructor() {
         if (!window.electron)
@@ -34,8 +33,8 @@ export class ScreenCapturer {
         const options = {
             types: ['screen'],
             thumbnailSize: {
-                width: config.desktopApp.screenshotMaxRes,
-                height: config.desktopApp.screenshotMaxRes,
+                width: config.DESKTOP_APP_SCREENSHOT_MAX_RES,
+                height: config.DESKTOP_APP_SCREENSHOT_MAX_RES,
             },
         };
 

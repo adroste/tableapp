@@ -1,8 +1,8 @@
-import React from 'react';
-import { config } from '../config';
-import { Link } from 'react-router-dom';
 import { Button, Container, Header } from 'semantic-ui-react';
 
+import { Link } from 'react-router-dom';
+import React from 'react';
+import { config } from '../config';
 
 export class LegalInfosPage extends React.PureComponent {
     render() {
@@ -21,12 +21,12 @@ export class LegalInfosPage extends React.PureComponent {
                     <Header as='h1'>
                         Impressum
                     </Header>
-                    <div dangerouslySetInnerHTML={ {__html: config.htmlContactInfos } } />
+                    <div dangerouslySetInnerHTML={ {__html: config.HTML_CONTACT_INFOS } } />
                     <br/>
                     <Header as='h1'>
                         Nutzungsbedingungen / Datenschutz
                     </Header>
-                    <div dangerouslySetInnerHTML={ {__html: config.htmlTermsOfService } } />
+                    <div dangerouslySetInnerHTML={ {__html: config.HTML_TERMS_OF_SERVICE } } />
                 </Container>
             </div>
         )
