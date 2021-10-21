@@ -1,7 +1,7 @@
 # table 
 
-* official repo: https://github.com/progmem64/tableapp
-* docs: https://progmem64.github.io/tableapp/
+* official repo: https://github.com/adroste/tableapp
+* docs: https://adroste.github.io/tableapp/
 
 ![Logo](./logo/logo-table.svg)
 
