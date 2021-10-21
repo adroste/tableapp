@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  mongo:
+    image: mongo:4.0
+    volumes:
+      - ./dev-mongo-data:/data/db
+
+  table-backend:
+    image: node:10
+    depends_on:
+      - mongo
+    volumes:
+      - ./backend:/app
+    environment:
+      NODE_ENV: development
+    working_dir: /app
+    ports:
+      - 4898:4898
+      - 9229:9229
+    command: bash -c "npm install && npm run dev"
+
+  table-client:
+    image: node:10
+    volumes:
+      - ./client:/app
+    environment:
+      NODE_ENV: development
+    working_dir: /app
+    ports:
+      - 3000:3000
+    command: bash -c "npm install && npm run start"
