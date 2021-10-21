@@ -1,10 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { config } from '../config';
-import { Button, Modal, Label, List } from 'semantic-ui-react';
-import QRCode from 'qrcode.react';
+import { Button, Label, List, Modal } from 'semantic-ui-react';
 
+import PropTypes from 'prop-types';
+import QRCode from 'qrcode.react';
+import React from 'react';
+import { config } from '../config';
+import { pathJoin } from '../utils';
+import styled from 'styled-components';
 
 const CenteredContent = styled.div`
     display: flex;
@@ -127,7 +128,7 @@ export class EventInfoModal extends React.Component {
     render() {
         const {canManage, eventId, hasJoined, isActive, isArchived, name} = this.props;
         const {qrCodeZoomed} = this.state;
-        const joinUrl = config.baseUrl + 'join/' + eventId;
+        const joinUrl = pathJoin(config.baseUrl, 'join', eventId);
 
         return (
             <Modal 

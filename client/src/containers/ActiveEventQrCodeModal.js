@@ -1,12 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { config } from '../config';
-import { Modal } from 'semantic-ui-react';
-import QRCode from 'qrcode.react';
 import { getActiveEventId, getActiveEventName } from '../reducers/events';
 
+import { Modal } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import QRCode from 'qrcode.react';
+import React from 'react';
+import { config } from '../config';
+import { connect } from 'react-redux';
+import { pathJoin } from '../utils';
+import styled from 'styled-components';
 
 const CenteredContent = styled.div`
     display: flex;
@@ -70,7 +71,7 @@ class ActiveEventQrCodeModal extends React.Component {
 
     render() {
         const {activeEventId, activeEventName, onClose, trigger} = this.props;
-        const joinUrl = config.baseUrl + activeEventId;
+        const joinUrl = pathJoin(config.baseUrl, activeEventId);
 
         return (
             <Modal 

@@ -1,6 +1,5 @@
 import Jimp from 'jimp';
 
-
 /**
  * Creates a thumbnail (as base64) from a full image (as base64).
  * @async
@@ -114,4 +113,16 @@ export function uniqueArray(array) {
     });
 } 
 
-
+/**
+ * Returns a valid concatenated path.
+ * Also works with URLs.
+ * @param {string} base first part
+ * @param  {...string} parts part n
+ * @returns {string} full path/url
+ */
+export const pathJoin = (base, ...parts) => {
+    const trimSepRight = /\/+$/g;
+    const trimSepLeftRight = /^\/+|\/+$/g;
+    const partsTrimmed = parts.map(p => p.replace(trimSepLeftRight, ''));
+    return [base.replace(trimSepRight, '')].concat(partsTrimmed).join('/');
+};
