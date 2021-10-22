@@ -30,7 +30,7 @@ const utils = require('../utils');
 async function _createAndSendMails(notifications) {
     if (!notifications.length) 
         return;
-    const ldap = new LDAPConnection(config.ldap.dn, config.ldap.password);
+    const ldap = new LDAPConnection(config.TABLE_LDAP_DN, config.TABLE_LDAP_PASSWORD);
 
     // const eventTitleCache = {};
     const eventTitleCacheQuery = async (eventId) => {
@@ -89,7 +89,7 @@ async function _createAndSendMails(notifications) {
 
 
 async function _createClientNotificationUserDict(notifications) {
-    const ldap = new LDAPConnection(config.ldap.dn, config.ldap.password);
+    const ldap = new LDAPConnection(config.TABLE_LDAP_DN, config.TABLE_LDAP_PASSWORD);
     try {
         const d = {};
         await ldap.open();

@@ -65,7 +65,7 @@ async function addImageForEvent(eventId, imageData) {
     }
 
     doc.imageIds.push(insertRes.insertedId);
-    if (doc.imageIds.length > config.eventScreenshots.saveLastCount) {
+    if (doc.imageIds.length > parseInt(config.TABLE_EVENT_SCREENSHOTS_SAVE_LAST_COUNT, 10)) {
         const del = doc.imageIds.splice(0, 1);
         const delRes = await db().collection('images').deleteOne({_id: del[0]});
         if (delRes.deletedCount < 1)
@@ -103,7 +103,7 @@ async function getScreenshotIdsForEvent(eventId) {
     if (esArr.length < 1)
         return [];
 
-    if (esArr[0].lastUpdate < Date.now() - 1000 * 60 * config.eventScreenshots.keepForMinutesAfterLastUpdate) {
+    if (esArr[0].lastUpdate < Date.now() - 1000 * 60 * parseInt(config.TABLE_EVENT_SCREENSHOTS_KEEP_FOR_MINUTES_AFTER_LAST_UPDATE, 10)) {
         const delRes = await db().collection('eventscreenshots')
             .deleteOne({ _id: eventId });
         if (delRes.deletedCount < 1)

@@ -24,9 +24,9 @@ let _instance = null;
  * @returns {Promise} indicates success
  */
 async function connect() {
-    return MongoClient.connect(config.db.url).then(client => {
+    return MongoClient.connect(config.TABLE_DB_URL).then(client => {
         console.info('mongodb connected');
-        _instance = client.db(config.db.name);
+        _instance = client.db(config.TABLE_DB_NAME);
         return Promise.resolve();
     });
 }

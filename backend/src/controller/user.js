@@ -38,7 +38,7 @@ var statusCodes = require('http-status-codes');
  * @returns {Promise<UserController~LoginData>} resolves to login data object
  */
 async function _createLoginData(dn, sessionToken) {
-    const ldap = new LDAPConnection(config.ldap.dn, config.ldap.password);
+    const ldap = new LDAPConnection(config.TABLE_LDAP_DN, config.TABLE_LDAP_PASSWORD);
     try { 
         await ldap.open();
         const id = Buffer.from(dn).toString('base64'); // !important to filter illegal characters ($, .)
@@ -247,7 +247,7 @@ exports.getActiveNotificationTypes = getActiveNotificationTypes;
  * @throws {Error} if user/password combination could not be used to bind to ldap
  */
 async function login(email, password) {
-    const ldap = new LDAPConnection(config.ldap.dn, config.ldap.password);
+    const ldap = new LDAPConnection(config.TABLE_LDAP_DN, config.TABLE_LDAP_PASSWORD);
     let loginLdap;
     try {
         if (!email || !password)

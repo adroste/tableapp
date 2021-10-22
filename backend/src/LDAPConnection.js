@@ -82,7 +82,7 @@ class LDAPConnection {
 
         return new Promise((resolve, reject) => {
             this._client = ldap.createClient({
-                url: config.ldap.url
+                url: config.TABLE_LDAP_URL
             });
 
             this._client.once('connect', () => {
@@ -169,7 +169,7 @@ class LDAPConnection {
      * @returns {Promise<object[]>} returns search results as array of result objects
      */
     search(filter, attributes, filterIsDn=false, limit = 10) {
-        let searchBase = config.ldap.base;
+        let searchBase = config.TABLE_LDAP_BASE;
         const options = {
             attributes,
             filter,
@@ -232,7 +232,7 @@ class LDAPConnection {
             return Promise.reject('email param must not be null');
 
         const filter = new ldap.filters.OrFilter({
-            filters: config.ldap.emailAttributes.map((attribute) => {
+            filters: config.TABLE_LDAP_EMAIL_ATTRIBUTES.split(',').map((attribute) => {
                 return new ldap.filters.EqualityFilter({
                     attribute,
                     value: email
@@ -261,16 +261,16 @@ class LDAPConnection {
         if (!dn)
             return Promise.reject('dn param must not be null');
 
-        const attributes=[config.ldap.nameAttribute];
-        if (config.ldap.titleAttribute)
-            attributes.push(config.ldap.titleAttribute);
+        const attributes=[config.TABLE_LDAP_NAME_ATTRIBUTE];
+        if (config.TABLE_LDAP_TITLE_ATTRIBUTE)
+            attributes.push(config.TABLE_LDAP_TITLE_ATTRIBUTE);
         
         return this.search(dn, attributes, true).then((entries) => {
             if (entries.length === 0)
                 return Promise.reject('dn not found');
-            let name = entries[0][config.ldap.nameAttribute];
-            if (config.ldap.titleAttribute && entries[0][config.ldap.titleAttribute])
-                name = entries[0][config.ldap.titleAttribute] + ' ' + name;
+            let name = entries[0][config.TABLE_LDAP_NAME_ATTRIBUTE];
+            if (config.TABLE_LDAP_TITLE_ATTRIBUTE && entries[0][config.TABLE_LDAP_TITLE_ATTRIBUTE])
+                name = entries[0][config.TABLE_LDAP_TITLE_ATTRIBUTE] + ' ' + name;
             return Promise.resolve(name);
         });
     }
@@ -288,7 +288,7 @@ class LDAPConnection {
         if (!dn)
             return Promise.reject('dn param must not be null');
 
-        const attributes=[config.ldap.emailAttributes[0]];
+        const attributes=[config.TABLE_LDAP_EMAIL_ATTRIBUTES[0]];
         
         return this.search(dn, attributes, true).then((entries) => {
             if (entries.length === 0)

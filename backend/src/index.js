@@ -1,5 +1,8 @@
 "use strict";
 
+// load environment from .env file
+require('dotenv').config();
+
 require('./console');
 const broker = require('./broker');
 const config = require('./config');
@@ -31,8 +34,8 @@ console.log(`Starting TABLE Backend - Version: ${utils.getAppVersion()}`);
 
     // init webserver after db connected & checked
     const httpsServer = require('https').createServer({
-        cert: fs.readFileSync(path.resolve(config.ssl.certPath)),
-        key: fs.readFileSync(path.resolve(config.ssl.keyPath)),
+        cert: fs.readFileSync(path.resolve(config.TABLE_SSL_CERT_PATH)),
+        key: fs.readFileSync(path.resolve(config.TABLE_SSL_KEY_PATH)),
     });
     const io = require('socket.io')(httpsServer);
 

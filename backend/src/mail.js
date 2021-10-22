@@ -14,7 +14,7 @@ const nodemailer = require('nodemailer');
  * @type {MailTransport}
  */
 const transporter = nodemailer.createTransport({
-    host: config.mail.host,
+    host: config.TABLE_MAIL_HOST,
     port: 25,
     pool: true,
     tls: { 
@@ -38,7 +38,7 @@ async function sendMail(to, subject, html) {
     // ignore return value
     try {
         await transporter.sendMail({
-            from: config.mail.from,
+            from: config.TABLE_MAIL_FROM,
             to,
             subject,
             html

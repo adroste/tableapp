@@ -248,7 +248,7 @@ exports.getRoleList = getRoleList;
  * @throws {Error} with message: 'eventId not found' with code NOT_FOUND if supplied eventId does not exist
  */
 async function getUserDict(eventId, withName = true, withPermissionLevelAndEmail = false, userIds = []) {
-    const ldap = new LDAPConnection(config.ldap.dn, config.ldap.password);
+    const ldap = new LDAPConnection(config.TABLE_LDAP_DN, config.TABLE_LDAP_PASSWORD);
     try {
         if (!eventId)
             throw utils.createError('eventId param must be set', statusCodes.BAD_REQUEST);

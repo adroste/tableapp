@@ -4,7 +4,7 @@ const config = require('./config');
 
 
 function commentOnEntry(name, sender, eventName, data, notificationId) {
-    const link = `${config.baseUrl}${data.eventId}/${data.entryId}?nId=${notificationId}#${data.commentId}`;
+    const link = `${config.TABLE_BASE_URL}${data.eventId}/${data.entryId}?nId=${notificationId}#${data.commentId}`;
     return {
         subject: `[table] Neuer Kommentar auf Eintrag - ${eventName}`,
         html: 
@@ -16,7 +16,7 @@ Klicke auf folgenden Link, um direkt zu dem Eintrag zu gelangen:
 <br/>
 <a href=\"${link}\">${link}</a>
 <br/><br/>
-Klicke <a href=\"${config.baseUrl}settings\">hier</a>, um die Benachrichtigungseinstellungen anzupassen.
+Klicke <a href=\"${config.TABLE_BASE_URL}settings\">hier</a>, um die Benachrichtigungseinstellungen anzupassen.
 <br/><br/>
 == table - talk about lecture ==
 `,
@@ -26,7 +26,7 @@ exports.commentOnEntry = commentOnEntry;
 
 
 function replyOnComment(name, sender, eventName, data, notificationId) {
-    const link = `${config.baseUrl}${data.eventId}/${data.entryId}?nId=${notificationId}#${data.commentId}`;
+    const link = `${config.TABLE_BASE_URL}${data.eventId}/${data.entryId}?nId=${notificationId}#${data.commentId}`;
     return {
         subject: `[table] Neue Antwort auf deinen Kommentar - ${eventName}`,
         html: 
@@ -38,7 +38,7 @@ Klicke auf folgenden Link, um direkt zu dem Eintrag zu gelangen:
 <br/>
 <a href=\"${link}\">${link}</a>
 <br/><br/>
-Klicke <a href=\"${config.baseUrl}settings\">hier</a>, um die Benachrichtigungseinstellungen anzupassen.
+Klicke <a href=\"${config.TABLE_BASE_URL}settings\">hier</a>, um die Benachrichtigungseinstellungen anzupassen.
 <br/><br/>
 == table - talk about lecture ==
 `,
@@ -48,7 +48,7 @@ exports.replyOnComment = replyOnComment;
 
 
 function newEntry(name, sender, eventName, data, notificationId) {
-    const link = `${config.baseUrl}${data.eventId}/${data.entryId}?nId=${notificationId}`;
+    const link = `${config.TABLE_BASE_URL}${data.eventId}/${data.entryId}?nId=${notificationId}`;
     return {
         subject: `[table] Neuer Eintrag - ${eventName}`,
         html: 
@@ -60,7 +60,7 @@ Klicke auf folgenden Link, um direkt zu dem Eintrag zu gelangen:
 <br/>
 <a href=\"${link}\">${link}</a>
 <br/><br/>
-Klicke <a href=\"${config.baseUrl}settings\">hier</a>, um die Benachrichtigungseinstellungen anzupassen.
+Klicke <a href=\"${config.TABLE_BASE_URL}settings\">hier</a>, um die Benachrichtigungseinstellungen anzupassen.
 <br/><br/>
 == table - talk about lecture ==
 `,

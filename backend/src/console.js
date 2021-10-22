@@ -28,7 +28,7 @@ console.log = function info() {
 
 require('console-stamp')(console, {
     pattern: 'dd/mm/yyyy HH:MM:ss.l',
-    level: config.loglevel,
+    level: config.TABLE_LOG_LEVEL,
     extend: {
         debug: 4,
     },

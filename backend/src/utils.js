@@ -40,11 +40,11 @@ module.exports.createError = createError;
 function createSessionToken(dn) {
     const options = {
         algorithm: 'HS512',
-        expiresIn: config.sessionToken.validFor,
+        expiresIn: config.TABLE_SESSION_TOKEN_VALID_FOR,
     };
     return jwt.sign({
         dn
-    }, config.sessionToken.privateKey, options);
+    }, config.TABLE_SESSION_TOKEN_PRIVATE_KEY, options);
 }
 module.exports.createSessionToken = createSessionToken;
 
@@ -150,7 +150,7 @@ function verifySessionToken(sessionToken) {
     const options = {
         algorithms: ['HS512'],
     };
-    return jwt.verify(sessionToken, config.sessionToken.privateKey, options);
+    return jwt.verify(sessionToken, config.TABLE_SESSION_TOKEN_PRIVATE_KEY, options);
 }
 module.exports.verifySessionToken = verifySessionToken;
 
