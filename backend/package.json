@@ -6,8 +6,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon --inspect=0.0.0.0:9229 src/index.js",
-    "start-production": "NODE_ENV=production node src/index.js",
+    "dev": "cross-env VERSION_NAME_SUFFIX=\" (debug)\" nodemon --inspect=0.0.0.0:9229 src/index.js",
+    "start-production": "cross-env NODE_ENV=production node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Alexander Droste",
@@ -24,6 +24,7 @@
     "socket.io": "^2.1.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "nodemon": "^2.0.13"
   }
 }

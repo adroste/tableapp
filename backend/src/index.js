@@ -10,6 +10,8 @@ const mail = require('./mail');
 const path = require('path');
 const utils = require('./utils');
 
+console.log(`Starting TABLE Backend - Version: ${utils.getAppVersion()}`);
+
 // top-level async function that never rejects
 (async () => {
 

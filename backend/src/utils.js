@@ -153,3 +153,13 @@ function verifySessionToken(sessionToken) {
     return jwt.verify(sessionToken, config.sessionToken.privateKey, options);
 }
 module.exports.verifySessionToken = verifySessionToken;
+
+/**
+ * Returns app version read from environment
+ * @returns {string} app version
+ */
+function getAppVersion() {
+    const suffix = process.env.VERSION_NAME_SUFFIX || "";
+    return process.env.npm_package_version + suffix;
+}
+module.exports.getAppVersion = getAppVersion;
