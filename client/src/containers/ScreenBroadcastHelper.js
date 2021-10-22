@@ -79,7 +79,7 @@ class ScreenBroadcastHelper extends React.Component {
         if (!prevState.isBroadcasting && this.state.isBroadcasting) {
             this._captureAndBroadcast();
             this._screenCaptureIntervalId = setInterval(
-                this._captureAndBroadcast, config.DESKTOP_APP_BROADCAST_IMAGE_INTERVAL);
+                this._captureAndBroadcast, parseInt(config.TABLE_DESKTOP_APP_BROADCAST_IMAGE_INTERVAL, 10));
         }
         else if (prevState.isBroadcasting && !this.state.isBroadcasting) {
             clearInterval(this._screenCaptureIntervalId);

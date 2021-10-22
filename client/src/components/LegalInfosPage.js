@@ -21,12 +21,12 @@ export class LegalInfosPage extends React.PureComponent {
                     <Header as='h1'>
                         Impressum
                     </Header>
-                    <div dangerouslySetInnerHTML={ {__html: config.HTML_CONTACT_INFOS } } />
+                    <div dangerouslySetInnerHTML={ {__html: config.TABLE_HTML_CONTACT_INFOS } } />
                     <br/>
                     <Header as='h1'>
                         Nutzungsbedingungen / Datenschutz
                     </Header>
-                    <div dangerouslySetInnerHTML={ {__html: config.HTML_TERMS_OF_SERVICE } } />
+                    <div dangerouslySetInnerHTML={ {__html: config.TABLE_HTML_TERMS_OF_SERVICE } } />
                 </Container>
             </div>
         )

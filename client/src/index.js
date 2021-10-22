@@ -18,7 +18,7 @@ console.log(React.version);
 const api = new ApiConnection();
 const ipc = new IpcHandler();
 const store = configureStore(api, ipc);
-api.initialize(config.API_URL, store.dispatch, store.getState);
+api.initialize(config.TABLE_API_URL, store.dispatch, store.getState);
 ipc.initialize(store.dispatch);
 
 const safeBrowserHistory = createSafeBrowserHistory();

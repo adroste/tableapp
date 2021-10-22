@@ -112,11 +112,11 @@ class InputImageModal extends React.Component {
                 if (err) 
                     return handleError();
                 // limit max height/width to max res (e.g. 1200px) but keep aspect ratio
-                if (img.bitmap.width > config.INPUT_IMAGE_MAX_RES || img.bitmap.height > config.INPUT_IMAGE_MAX_RES) {
+                if (img.bitmap.width > parseInt(config.TABLE_INPUT_IMAGE_MAX_RES, 10) || img.bitmap.height > parseInt(config.TABLE_INPUT_IMAGE_MAX_RES, 10)) {
                     if (img.bitmap.width > img.bitmap.height)
-                        img.resize(config.INPUT_IMAGE_MAX_RES, Jimp.AUTO);
+                        img.resize(parseInt(config.TABLE_INPUT_IMAGE_MAX_RES, 10), Jimp.AUTO);
                     else
-                        img.resize(Jimp.AUTO, config.INPUT_IMAGE_MAX_RES);
+                        img.resize(Jimp.AUTO, parseInt(config.TABLE_INPUT_IMAGE_MAX_RES, 10));
                 }
                 img.getBase64(Jimp.MIME_PNG, (err, imageData) => {
                     if (this.unmounted)

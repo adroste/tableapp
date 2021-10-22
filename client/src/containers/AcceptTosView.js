@@ -39,7 +39,7 @@ class AcceptTosView extends React.Component {
                     Nutzungsbedingungen
                 </Modal.Header>
                 <Modal.Content>
-                    <div dangerouslySetInnerHTML={ {__html: config.HTML_TERMS_OF_SERVICE } } />
+                    <div dangerouslySetInnerHTML={ {__html: config.TABLE_HTML_TERMS_OF_SERVICE } } />
                 </Modal.Content>
                 <Modal.Actions>
                     <Button

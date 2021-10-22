@@ -53,7 +53,7 @@ export class ApiConnection {
         setTimeout(() => {
             if (getConnectionState(this._getState().api) === ApiConnectionStateEnum.TEMPORARILY_DISCONNECTED)
                 this._dispatch(apiActions.changeConnectionState(ApiConnectionStateEnum.DISCONNECTED));                
-        }, config.API_DISCONNECT_TIMEOUT);
+        }, parseInt(config.TABLE_API_DISCONNECT_TIMEOUT, 10));
     }
 
 
@@ -94,7 +94,7 @@ export class ApiConnection {
                 }
 
                 return resolve(result);
-            }, config.API_REQUEST_TIMEOUT, 'Api request timed out. Did not receive acknowledge callback.'));
+            }, parseInt(config.TABLE_API_REQUEST_TIMEOUT, 10), 'Api request timed out. Did not receive acknowledge callback.'));
         });
     }
 

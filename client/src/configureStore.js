@@ -68,7 +68,7 @@ export const configureStore = (api, ipc) => {
                 sessionToken: store.getState().user.sessionToken,
             },
         });
-    }, config.SAVE_STATE_DEBOUNCE_TIME));
+    }, parseInt(config.TABLE_SAVE_STATE_DEBOUNCE_TIME, 10)));
 
     return store;
 };

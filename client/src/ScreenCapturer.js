@@ -33,8 +33,8 @@ export class ScreenCapturer {
         const options = {
             types: ['screen'],
             thumbnailSize: {
-                width: config.DESKTOP_APP_SCREENSHOT_MAX_RES,
-                height: config.DESKTOP_APP_SCREENSHOT_MAX_RES,
+                width: parseInt(config.TABLE_DESKTOP_APP_SCREENSHOT_MAX_RES, 10),
+                height: parseInt(config.TABLE_DESKTOP_APP_SCREENSHOT_MAX_RES, 10),
             },
         };
 

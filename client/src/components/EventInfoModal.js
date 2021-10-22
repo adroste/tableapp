@@ -128,7 +128,7 @@ export class EventInfoModal extends React.Component {
     render() {
         const {canManage, eventId, hasJoined, isActive, isArchived, name} = this.props;
         const {qrCodeZoomed} = this.state;
-        const joinUrl = pathJoin(config.BASE_URL, 'join', eventId);
+        const joinUrl = pathJoin(config.TABLE_BASE_URL, 'join', eventId);
 
         return (
             <Modal 
