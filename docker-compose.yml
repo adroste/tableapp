@@ -15,23 +15,54 @@ services:
     depends_on:
       - mongo
     environment:
-      VIRTUAL_HOST: table-api.example.com # your domain to backend
-      VIRTUAL_PORT: 4898 # default backend port
+      LETSENCRYPT_HOST: table-api.example.com # used by acme-companion: automatic cert generation
+      VIRTUAL_HOST: table-api.example.com # used by nginx-proxy: your domain to backend
+      VIRTUAL_PORT: 4898 # used by nginx-proxy: exposed backend port
+      TABLE_BASE_URL: https://table.example.com # url to client
+      TABLE_DB_URL: mongodb://mongo:27017 # url to mongo instance
+      TABLE_LDAP_URL: ldaps://ldap.example.com:636 # url to ldap server
+      TABLE_LDAP_DN: uid=example,ou=example,dc=example,dc=com # login to search account
+      TABLE_LDAP_PASSWORD: 12345678 # login to search account
+      TABLE_LDAP_BASE: ou=people,dc=example,dc=com
+      TABLE_MAIL_HOST: mailserver.example.com # mail-server
+      TABLE_MAIL_FROM: no-reply@table.example.com # email address for automatic mails / notifications
+      TABLE_SESSION_TOKEN_PRIVATE_KEY: secret-token-for-encryption # set this to a random value
 
   table-client:
     restart: always
     image: table-client:dev
     container_name: table-client
     environment:
-      VIRTUAL_HOST: table.example.com # your domain to frontend
-      VIRTUAL_PORT: 80 # default frontend port
+      LETSENCRYPT_HOST: table.example.com # used by acme-companion: automatic cert generation
+      VIRTUAL_HOST: table.example.com # used by nginx-proxy: your domain to frontend
+      VIRTUAL_PORT: 80 # used by nginx-proxy: exposed frontend port
+      TABLE_API_URL: https://table-api.example.com # full url to backend
+      TABLE_HTML_CONTACT_INFOS: |
+        <p><strong>My Name</strong><br />Address and Tel-Nr.</p>
+      TABLE_HTML_TERMS_OF_SERVICE: |
+        <h2>lorem ipsum<h2>
+        <p>lorem ipsum</p>
 
-  nginx-proxy:
+  nginx-proxy: # used as reverse proxy and automatic pickup of ssl certs from acme-companion
     restart: always
     image: nginxproxy/nginx-proxy:latest
     container_name: nginx-proxy
     volumes:
+      - ./tableapp-proxy/conf:/etc/nginx/conf.d
+      - ./tableapp-proxy/vhost:/etc/nginx/vhost.d
+      - ./tableapp-proxy/html:/usr/share/nginx/html
+      - ./tableapp-proxy/dhparam:/etc/nginx/dhparam
+      - ./tableapp-proxy/certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
     ports:
       - 80:80
       - 443:443
+
+  acme-companion: # used for automatic ssl cert generation
+    restart: always
+    image: nginxproxy/acme-companion:latest
+    container_name: nginx-proxy-acme
+    volumes:
+      - ./tableapp-proxy/certs:/etc/nginx/certs:rw
+      - ./tableapp-proxy/acme:/etc/acme.sh
+      - /var/run/docker.sock:/var/run/docker.sock:ro
