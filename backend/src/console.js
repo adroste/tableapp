@@ -27,23 +27,24 @@ console.log = function info() {
 
 
 require('console-stamp')(console, {
-    pattern: 'dd/mm/yyyy HH:MM:ss.l',
+    format: ':date(yyyy-mm-dd HH:MM:ss.l) :colorLabel',
     level: config.TABLE_LOG_LEVEL,
     extend: {
         debug: 4,
     },
     include: ["debug", "info", "warn", "error", "assert"],
-    colors: {
-        label: labelColorizer({
-            labelPrefix: "[",
-            labelSuffix: "]",
-            colorFuncs: {
+    tokens: {
+        colorLabel: ({ method }) => {
+            const colorFuncs = {
                 debug: chalk.blue,
                 info: chalk.green,
                 warn: chalk.yellow,
                 assert: chalk.magenta,
                 error: chalk.red,
-            },
-        }),
+            };
+
+            const label = `[${method.toUpperCase()}]`.padEnd(8);
+            return colorFuncs[method]?.(label) || label;
+        },
     },
 });
