@@ -28,11 +28,10 @@
     "cross-env": "7.0.2"
   },
   "scripts": {
-    "start": "cross-env REACT_APP_VERSION_NAME_SUFFIX=\" (debug)\" react-scripts start",
-    "start-https": "cross-env REACT_APP_VERSION_NAME_SUFFIX=\" (debug)\" HTTPS=true react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "cross-env REACT_APP_VERSION=$npm_package_version REACT_APP_VERSION_NAME_SUFFIX=\" (debug)\" react-scripts start",
+    "start-https": "cross-env REACT_APP_VERSION=$npm_package_version REACT_APP_VERSION_NAME_SUFFIX=\" (debug)\" HTTPS=true react-scripts start",
+    "build": "cross-env REACT_APP_VERSION=$npm_package_version react-scripts build",
+    "test": "react-scripts test"
   },
   "homepage": "/",
   "browserslist": [
