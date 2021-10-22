@@ -7,7 +7,7 @@ services:
       - ./dev-mongo-data:/data/db
 
   table-backend:
-    image: node:10
+    image: node:16
     depends_on:
       - mongo
     volumes:
