@@ -3,7 +3,6 @@ import { Button, Label, List, Modal } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import QRCode from 'qrcode.react';
 import React from 'react';
-import { config } from '../config';
 import { pathJoin } from '../utils';
 import styled from 'styled-components';
 
@@ -128,7 +127,7 @@ export class EventInfoModal extends React.Component {
     render() {
         const {canManage, eventId, hasJoined, isActive, isArchived, name} = this.props;
         const {qrCodeZoomed} = this.state;
-        const joinUrl = pathJoin(config.TABLE_BASE_URL, 'join', eventId);
+        const joinUrl = pathJoin(window.location.origin, 'join', eventId);
 
         return (
             <Modal 

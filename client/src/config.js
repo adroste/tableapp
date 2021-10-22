@@ -18,7 +18,7 @@ export const config = {
     TABLE_API_REQUEST_TIMEOUT: '30000',
     /**
      * URL to Websocket-API.
-     * Defaults to localhost:4898.
+     * Defaults to /api.
      * @type {string}
      */
     TABLE_API_URL: '/api',
@@ -38,12 +38,6 @@ export const config = {
      */
     TABLE_DESKTOP_APP_SCREENSHOT_MAX_RES: '1200', // 1200px width or height
 
-    /**
-     * Base-URL of client. Needs to end with a slash.
-     * Defaults to localhost:3000.
-     * @type {string}
-     */
-    TABLE_BASE_URL: '/',
     /**
      * HTML text for contact page.
      * Requires override.

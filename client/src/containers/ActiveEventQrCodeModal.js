@@ -4,7 +4,6 @@ import { Modal } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import QRCode from 'qrcode.react';
 import React from 'react';
-import { config } from '../config';
 import { connect } from 'react-redux';
 import { pathJoin } from '../utils';
 import styled from 'styled-components';
@@ -71,7 +70,7 @@ class ActiveEventQrCodeModal extends React.Component {
 
     render() {
         const {activeEventId, activeEventName, onClose, trigger} = this.props;
-        const joinUrl = pathJoin(config.TABLE_BASE_URL, activeEventId);
+        const joinUrl = pathJoin(window.location.origin, activeEventId);
 
         return (
             <Modal 
