@@ -15,7 +15,7 @@ const sessionLogController = require('./controller/sessionLog');
 const userController = require('./controller/user');
 const broker = require('./broker');
 const utils = require('./utils');
-var statusCodes = require('http-status-codes');
+const statusCodes = require('http-status-codes').StatusCodes;
 
 
 let curClientId = 0;

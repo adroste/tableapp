@@ -4,7 +4,7 @@ const CURRENT_DATASET_VERSION = 1;
 
 const db = require('../db').db;
 const utils = require('../utils');
-const statusCodes = require('http-status-codes');
+const statusCodes = require('http-status-codes').StatusCodes;
 const NotificationTypesEnum = require('../NotificationTypesEnum');
 
 

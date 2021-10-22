@@ -10,7 +10,7 @@ const mailtemplates = require('../mailtemplates');
 const NotificationTypesEnum = require('../NotificationTypesEnum');
 const ObjectID = require('mongodb').ObjectID;
 const PermissionLevelEnum = require('../PermissionLevelEnum');
-const statusCodes = require('http-status-codes');
+const statusCodes = require('http-status-codes').StatusCodes;
 const utils = require('../utils');
 
 

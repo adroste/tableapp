@@ -3,7 +3,7 @@
 const broker = require('../broker');
 const config = require('../config');
 const db = require('../db').db;
-const statusCodes = require('http-status-codes');
+const statusCodes = require('http-status-codes').StatusCodes;
 const utils = require('../utils');
 
 

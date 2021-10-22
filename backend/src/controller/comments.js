@@ -4,7 +4,7 @@ const broker = require('../broker');
 const db = require('../db').db;
 const entriesController = require('./entries');
 const notificationsController = require('./notifications');
-const statusCodes = require('http-status-codes');
+const statusCodes = require('http-status-codes').StatusCodes;
 const utils = require('../utils');
 
 

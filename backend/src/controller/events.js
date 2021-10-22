@@ -6,7 +6,7 @@ const db = require('../db').db;
 const LDAPConnection = require('../LDAPConnection');
 const ldapUtils = require('../ldapUtils');
 const PermissionLevelEnum = require('../PermissionLevelEnum');
-const statusCodes = require('http-status-codes');
+const statusCodes = require('http-status-codes').StatusCodes;
 const utils = require('../utils');
 
 

@@ -2,7 +2,7 @@
 
 const db = require('../db').db;
 const utils = require('../utils');
-var statusCodes = require('http-status-codes');
+const statusCodes = require('http-status-codes').StatusCodes;
 
 
 /**

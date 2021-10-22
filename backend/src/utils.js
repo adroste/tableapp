@@ -1,7 +1,7 @@
 "use strict";
 
 const config = require('./config');
-const statusCodes = require('http-status-codes');
+const statusCodes = require('http-status-codes').StatusCodes;
 const jwt = require('jsonwebtoken');
 const Jimp = require('jimp');
 

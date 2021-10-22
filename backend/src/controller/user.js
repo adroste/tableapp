@@ -5,7 +5,7 @@ const db = require('../db').db;
 const LDAPConnection = require('../LDAPConnection');
 const NotificationTypesEnum = require('../NotificationTypesEnum');
 const utils = require('../utils');
-var statusCodes = require('http-status-codes');
+const statusCodes = require('http-status-codes').StatusCodes;
 
 
 /**
