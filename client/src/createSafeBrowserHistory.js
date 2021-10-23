@@ -1,5 +1,4 @@
-import createBrowserHistory from 'history/createBrowserHistory';
-
+import { createBrowserHistory } from 'history';
 
 /**
  * Returns a patched browserHistory:
