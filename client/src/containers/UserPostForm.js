@@ -1,21 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import * as commentsActions from '../actions/comments';
 import * as entriesActions from '../actions/entries';
 import * as imagesActions from '../actions/images';
-import { getUserId } from '../reducers/user';
+
+import { Button, Card, Checkbox, Dimmer, Divider, Form, Header, Icon, Message, TextArea } from 'semantic-ui-react';
+
+import { Content } from '../components/Content';
+import { FormFieldAction } from '../components/FormFieldAction';
+import { InputImageModal } from './InputImageModal';
+import { NameLabel } from './NameLabel';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Thumbnails } from './Thumbnails';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { getComment } from '../reducers/comments';
 import { getEntry } from '../reducers/entries';
-import { Icon, Header, Button, Form, Divider, Card, Checkbox, TextArea, Dimmer, Message } from 'semantic-ui-react';
-import { Content } from '../components/Content';
-import { NameLabel } from './NameLabel';
-import { FormFieldAction } from '../components/FormFieldAction';
-import { Thumbnails } from './Thumbnails';
 import { getScreenshotIds } from '../reducers/eventScreenshots';
-import { InputImageModal } from './InputImageModal';
-
+import { getUserId } from '../reducers/user';
 
 /**
  * Displays a form for creating new entries and comments.
@@ -477,5 +478,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-const ConnectedUserPostForm = connect(mapStateToProps, mapDispatchToProps, null, { withRef: true })(UserPostForm);
+const ConnectedUserPostForm = connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true })(UserPostForm);
 export { ConnectedUserPostForm as UserPostForm };

@@ -1,23 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import debounce from 'lodash/debounce';
-import throttle from 'lodash/throttle';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as entriesActions from '../actions/entries';
-import { getIdList, getListType, hasMoreEntriesToLoad, isListSubscribed, EntryListTypeEnum, hasListOnlyBookmarked } from '../reducers/entries';
-import { Header, Dropdown, Message, Button, Responsive } from 'semantic-ui-react';
-import { AutoSizer, List, WindowScroller } from 'react-virtualized';
-import { EntryCardContainer } from './EntryCardContainer';
-import { FloatingActionButton } from '../components/FloatingActionButton';
-import { UserPostForm } from './UserPostForm';
-import { NavBar } from './NavBar';
-import { DynamicRow } from './DynamicRow';
 import 'react-virtualized/styles.css';
-import { isPresentationmodeActive } from '../reducers/desktopApp';
-import { ExtSurveyPrompt } from './ExtSurveyPrompt';
 
+import * as entriesActions from '../actions/entries';
+
+import { AutoSizer, List, WindowScroller } from 'react-virtualized';
+import { Button, Dropdown, Header, Message, Responsive } from 'semantic-ui-react';
+import { EntryListTypeEnum, getIdList, getListType, hasListOnlyBookmarked, hasMoreEntriesToLoad, isListSubscribed } from '../reducers/entries';
+
+import { DynamicRow } from './DynamicRow';
+import { EntryCardContainer } from './EntryCardContainer';
+import { ExtSurveyPrompt } from './ExtSurveyPrompt';
+import { FloatingActionButton } from '../components/FloatingActionButton';
+import { NavBar } from './NavBar';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { UserPostForm } from './UserPostForm';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import debounce from 'lodash/debounce';
+import { isPresentationmodeActive } from '../reducers/desktopApp';
+import styled from 'styled-components';
+import throttle from 'lodash/throttle';
 
 const HeaderActionButton = styled(Button).attrs({
     basic: true,
@@ -110,7 +112,7 @@ class EntriesView extends React.Component {
     _handleFloatingActionButtonClick = () => {
         if (!this._userPostFormRef.current)
             return;
-        this._userPostFormRef.current.getWrappedInstance().focusTextArea();
+        this._userPostFormRef.current.focusTextArea();
     };
 
 
