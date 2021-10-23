@@ -1,28 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import * as desktopAppActions from '../actions/desktopApp';
 import * as notificationsActions from '../actions/notifications';
-import * as qs from 'query-string';
-import { withRouter, Route, Switch, Redirect, Link } from 'react-router-dom';
-import { getConnectionState } from '../reducers/api';
-import { LoginStateEnum, getLoginState, hasAcceptedTos, getLastActiveEventId } from '../reducers/user';
-import { ApiConnectionStateEnum } from '../api/ApiConnectionStateEnum';
-import { UserLoginView } from './UserLoginView';
-import { ApiDisconnectedView } from '../components/ApiDisconnectedView';
-import { AllEventsView } from './AllEventsView';
-import { SwitchEventView } from './SwitchEventView';
-import { SettingsView } from './SettingsView';
-import { EventWrapper } from './EventWrapper';
-import { AcceptTosView } from './AcceptTosView';
-import { LegalInfosPage } from '../components/LegalInfosPage';
-import { TitleBar } from '../components/TitleBar';
-import { isDesktopApp, isMiniControlViewActive } from '../reducers/desktopApp';
-import { WebFrameScaler } from '../WebFrameScaler';
-import { ScreenBroadcastHelper } from './ScreenBroadcastHelper';
 
+import { Link, Redirect, Route, Switch, withRouter } from 'react-router-dom';
+import { LoginStateEnum, getLastActiveEventId, getLoginState, hasAcceptedTos } from '../reducers/user';
+import { isDesktopApp, isMiniControlViewActive } from '../reducers/desktopApp';
+
+import { AcceptTosView } from './AcceptTosView';
+import { AllEventsView } from './AllEventsView';
+import { ApiConnectionStateEnum } from '../api/ApiConnectionStateEnum';
+import { ApiDisconnectedView } from '../components/ApiDisconnectedView';
+import { EventWrapper } from './EventWrapper';
+import { LegalInfosPage } from '../components/LegalInfosPage';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { ScreenBroadcastHelper } from './ScreenBroadcastHelper';
+import { SettingsView } from './SettingsView';
+import { SwitchEventView } from './SwitchEventView';
+import { TitleBar } from '../components/TitleBar';
+import { UserLoginView } from './UserLoginView';
+import { WebFrameScaler } from '../WebFrameScaler';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { getConnectionState } from '../reducers/api';
+import styled from 'styled-components';
 
 const ContentWrapper = styled.div`
     position: relative;
@@ -93,11 +93,12 @@ class App extends React.Component {
 
     _lastNId = undefined;
     _readNotification = () => {
-        const o = qs.parse(this.props.location.search);
-        if (o.nId === undefined || this._lastNId === o.nId)
+        const params = new URLSearchParams(this.props.location.search);
+        const nId = params.get('nId');
+        if (nId === undefined || this._lastNId === nId)
             return;
-        this._lastNId = o.nId;
-        this.props.notificationsActions.readNotification(o.nId, false);
+        this._lastNId = nId;
+        this.props.notificationsActions.readNotification(nId, false);
     };
 
 

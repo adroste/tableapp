@@ -1,15 +1,15 @@
-import React from 'react';
+import * as userActions from '../actions/user';
+
+import { Button, Card, Modal } from 'semantic-ui-react';
+
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Card, Button, Modal } from 'semantic-ui-react';
-import * as userActions from '../actions/user';
-import { getUserId } from '../reducers/user';
 import { getActiveEventId } from '../reducers/events';
+import { getUserId } from '../reducers/user';
+import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
-import * as qs from 'query-string';
-
 
 const surveyId = 'post-ws1920-a';
 const surveyDeadline = new Date('2020-02-16');
@@ -41,8 +41,9 @@ class ExtSurveyPrompt extends React.Component {
 
 
     _handleDone = (e) => {
-        const o = qs.parse(this.props.location.search);
-        if (o.extSurveyIdDone === undefined || this.props.extSurveys.includes(surveyId) || o.extSurveyIdDone !== surveyId)
+        const params = new URLSearchParams(this.props.location.search);
+        const extSurveyIdDone = params.get('extSurveyIdDone');
+        if (extSurveyIdDone === undefined || this.props.extSurveys.includes(surveyId) || extSurveyIdDone !== surveyId)
             return;
         this.props.userActions.addExtSurveyIdDone(surveyId);
     };
