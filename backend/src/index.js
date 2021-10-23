@@ -33,18 +33,17 @@ console.log(`Starting TABLE Backend - Version: ${utils.getAppVersion()}`);
     await dbVersionMigrationController.checkAndUpdateVersion();
 
     // init webserver after db connected & checked
-    const httpsServer = require('https').createServer({
-        cert: fs.readFileSync(path.resolve(config.TABLE_SSL_CERT_PATH)),
-        key: fs.readFileSync(path.resolve(config.TABLE_SSL_KEY_PATH)),
+    const io = require('socket.io')(4898, {
+        cors: {
+            origin: true, // reflects origin
+            methods: ['GET'],
+            withCredentials: true,
+        },
     });
-    const io = require('socket.io')(httpsServer);
+    console.info('http server listening on port 4898');
 
     // setup connection handler of (client-)broker
     io.on('connection', (socket) => broker.handleConnection(socket));
-
-    httpsServer.listen(4898, () => {
-        console.info('http server listening on port 4898');
-    });
 
 })().catch(e => {
     // catch all top level errors
