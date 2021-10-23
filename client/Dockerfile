@@ -1,5 +1,5 @@
 # build environment
-FROM node:10-alpine as build
+FROM node:16 as build
 RUN mkdir /app
 WORKDIR /app
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
