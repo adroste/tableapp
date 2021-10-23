@@ -1,14 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import * as desktopAppActions from '../actions/desktopApp';
+
 import { Button, Icon, Label } from 'semantic-ui-react';
+
+import { LastScreenshotThumbnail } from './LastScreenshotThumbnail';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { getEntryDict } from '../reducers/entries';
 import { isBroadcastActive } from '../reducers/desktopApp';
-import { LastScreenshotThumbnail } from './LastScreenshotThumbnail';
-
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
     position: fixed;
@@ -43,11 +44,11 @@ class MiniControlView extends React.Component {
         return {};
     };
 
-    static get contextTypes() {
-        return {
-            router: PropTypes.object.isRequired
-        };
-    }
+    // static get contextTypes() {
+    //     return {
+    //         router: PropTypes.object.isRequired
+    //     };
+    // }
 
 
     constructor(props) {

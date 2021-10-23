@@ -1,13 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Header, Segment, Button, List } from 'semantic-ui-react';
 import * as eventsActions from '../actions/events';
-import { getActiveEventName, getActiveEventId } from '../reducers/events';
-import { NavBar } from './NavBar';
 
+import { Button, Header, List, Segment } from 'semantic-ui-react';
+import { getActiveEventId, getActiveEventName } from '../reducers/events';
+
+import { NavBar } from './NavBar';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 const ButtonGroupMargin = styled.div`
     & {
@@ -29,11 +30,11 @@ class JoinEventView extends React.Component {
         return {};
     };
 
-    static get contextTypes() {
-        return {
-            router: PropTypes.object.isRequired
-        };
-    }
+    // static get contextTypes() {
+    //     return {
+    //         router: PropTypes.object.isRequired
+    //     };
+    // }
 
 
     _handleJoinClick = (e) => {

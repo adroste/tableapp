@@ -1,8 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { UserPostForm } from '../containers/UserPostForm';
 import { NavBar } from '../containers/NavBar';
-
+import PropTypes from 'prop-types';
+import React from 'react';
+import { UserPostForm } from '../containers/UserPostForm';
 
 export class UserPostView extends React.Component {
     /**
@@ -11,12 +10,15 @@ export class UserPostView extends React.Component {
      */
     static get propTypes() {
         return {
+            // from withRouter HOC
             match: PropTypes.shape({
                     params: PropTypes.shape({
                         commentId: PropTypes.string,
                         entryId: PropTypes.string,
                     }).isRequired,
                 }).isRequired,
+            location: PropTypes.object.isRequired,
+            history: PropTypes.object.isRequired,
         };
     };
 
@@ -26,15 +28,8 @@ export class UserPostView extends React.Component {
     };
 
 
-    static get contextTypes() {
-        return {
-            router: PropTypes.object.isRequired
-        };
-    }
-
-
     _handleSubmit = () => {
-        this.context.router.history.goBack();
+        this.props.history.goBack();
     };
 
 

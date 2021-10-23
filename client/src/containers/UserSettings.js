@@ -1,14 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Link } from 'react-router-dom';
-import { Header, Segment, Table, Checkbox } from 'semantic-ui-react';
 import * as userActions from '../actions/user';
-import { getActiveNotificationTypes } from '../reducers/user';
-import { NotificationTypesEnum } from '../NotificationTypesEnum';
 
+import { Checkbox, Header, Segment, Table } from 'semantic-ui-react';
+
+import { Link } from 'react-router-dom';
+import { NotificationTypesEnum } from '../NotificationTypesEnum';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { getActiveNotificationTypes } from '../reducers/user';
+import styled from 'styled-components';
 
 class UserSettings extends React.Component {
     static get propTypes() {
@@ -18,12 +19,6 @@ class UserSettings extends React.Component {
     static get defaultProps() {
         return {};
     };
-
-    static get contextTypes() {
-        return {
-            router: PropTypes.object.isRequired
-        };
-    }
 
 
     constructor(props) {

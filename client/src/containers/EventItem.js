@@ -1,12 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getActiveEventId, getEventName } from '../reducers/events';
 import * as eventsActions from '../actions/events';
-import { LinkSegment } from '../components/LinkSegment';
-import { InnerSegmentWithIcon } from '../components/InnerSegmentWithIcon';
 
+import { getActiveEventId, getEventName } from '../reducers/events';
+
+import { InnerSegmentWithIcon } from '../components/InnerSegmentWithIcon';
+import { LinkSegment } from '../components/LinkSegment';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 class EventItem extends React.Component {
     /**
@@ -24,11 +25,11 @@ class EventItem extends React.Component {
     //     return { };
     // };
 
-    static get contextTypes() {
-        return {
-            router: PropTypes.object.isRequired
-        };
-    }
+    // static get contextTypes() {
+    //     return {
+    //         router: PropTypes.object.isRequired
+    //     };
+    // }
 
 
     render() {

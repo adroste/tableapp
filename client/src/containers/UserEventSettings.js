@@ -1,18 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Link } from 'react-router-dom';
-import { Header, Segment, Button } from 'semantic-ui-react';
 import * as eventsActions from '../actions/events';
-import { getActiveEventName, getActiveEventId, getActiveEventUserPermissionLevel } from '../reducers/events';
-import { getUserRoleId } from '../reducers/eventInfo';
-import { getUserId } from '../reducers/user';
-import { RoleLabel } from './RoleLabel';
-import { PermissionLevelEnum } from '../PermissionLevelEnum';
-import { Confirm } from '../components/Confirm';
 
+import { Button, Header, Segment } from 'semantic-ui-react';
+import { Link, withRouter } from 'react-router-dom';
+import { getActiveEventId, getActiveEventName, getActiveEventUserPermissionLevel } from '../reducers/events';
+
+import { Confirm } from '../components/Confirm';
+import { PermissionLevelEnum } from '../PermissionLevelEnum';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { RoleLabel } from './RoleLabel';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { getUserId } from '../reducers/user';
+import { getUserRoleId } from '../reducers/eventInfo';
+import styled from 'styled-components';
 
 const ButtonGroupMargin = styled.div`
     & {
@@ -33,18 +34,17 @@ const HorizontalList = styled.div`
 
 class UserEventSettings extends React.Component {
     static get propTypes() {
-        return {};
+        return {
+            // from withRouter HOC
+            match: PropTypes.object.isRequired,
+            location: PropTypes.object.isRequired,
+            history: PropTypes.object.isRequired,
+        };
     };
 
     static get defaultProps() {
         return {};
     };
-
-    static get contextTypes() {
-        return {
-            router: PropTypes.object.isRequired
-        };
-    }
 
 
     constructor(props) {
@@ -58,8 +58,8 @@ class UserEventSettings extends React.Component {
 
     _handleLeaveConfirmAcceptClick = (e) => {
         this.props.eventsActions.leaveEvent(this.props.activeEventId);
-        this.context.router.history.push('/');
-        this.context.router.history.push('/settings');
+        this.props.history.push('/');
+        this.props.history.push('/settings');
     };
 
 
@@ -148,5 +148,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-const ConnectedUserEventSettings = connect(mapStateToProps, mapDispatchToProps)(UserEventSettings);
+const ConnectedUserEventSettings = withRouter(connect(mapStateToProps, mapDispatchToProps)(UserEventSettings));
 export { ConnectedUserEventSettings as UserEventSettings };

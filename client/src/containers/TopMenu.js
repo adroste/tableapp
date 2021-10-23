@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { Menu, Ref, Button } from 'semantic-ui-react';
+import { Button, Menu, Ref } from 'semantic-ui-react';
 
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 const MenuItem = styled(Menu.Item)`
     text-align: center;
@@ -63,13 +63,6 @@ class TopMenu extends React.Component {
     };
 
 
-    static get contextTypes() {
-        return {
-            router: PropTypes.object.isRequired
-        };
-    }
-
-
     constructor(props) {
         super(props);
 
@@ -116,7 +109,6 @@ class TopMenu extends React.Component {
                         <MenuItem>
                             <MenuButton 
                                 icon="bars"
-                                // onClick={this.context.router.history.goBack}
                                 onClick={onMenuClick}
                             />                            
                         </MenuItem>

@@ -1,15 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import * as desktopAppActions from '../actions/desktopApp';
-import { withRouter, NavLink } from 'react-router-dom';
-import { Button, Icon, Menu, Responsive } from 'semantic-ui-react';
-import { getActiveEventId, getActiveEventName, getActiveEventUserPermissionLevel } from '../reducers/events'; 
-import { isDesktopApp, isWindowAlwaysOnTop, isBroadcastActive } from '../reducers/desktopApp';
-import { PermissionLevelEnum } from '../PermissionLevelEnum';
 
+import { Button, Icon, Menu, Responsive } from 'semantic-ui-react';
+import { NavLink, withRouter } from 'react-router-dom';
+import { getActiveEventId, getActiveEventName, getActiveEventUserPermissionLevel } from '../reducers/events';
+import { isBroadcastActive, isDesktopApp, isWindowAlwaysOnTop } from '../reducers/desktopApp';
+
+import { PermissionLevelEnum } from '../PermissionLevelEnum';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 const FixedTop = styled.div`
     position: fixed;
@@ -91,6 +92,7 @@ class NavBar extends React.Component {
     };
 
 
+    // FIXME context not available, use withRouter instead
     static get contextTypes() {
         return {
             router: PropTypes.object.isRequired
@@ -119,6 +121,7 @@ class NavBar extends React.Component {
 
 
     _handleGoBack = () => {
+        // FIXME context not available, use withRouter instead
         this.context.router.history.goBack();
     };
 

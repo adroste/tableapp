@@ -1,16 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Route, Switch, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import * as commentsActions from '../actions/comments';
 import * as entriesActions from '../actions/entries';
-import { CommentsView } from './CommentsView';
-import { NotFoundView } from '../components/NotFoundView';
-import { getEntry } from '../reducers/entries';
-import { Dimmer, Loader } from 'semantic-ui-react';
-import { CommentsWrapper } from './CommentsWrapper';
 
+import { Dimmer, Loader } from 'semantic-ui-react';
+import { Route, Switch, withRouter } from 'react-router-dom';
+
+import { CommentsView } from './CommentsView';
+import { CommentsWrapper } from './CommentsWrapper';
+import { NotFoundView } from '../components/NotFoundView';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { getEntry } from '../reducers/entries';
 
 /**
  * Main routing view, if active event is selected.
@@ -25,18 +26,16 @@ import { CommentsWrapper } from './CommentsWrapper';
 class EntryWrapper extends React.Component {
     static get propTypes() {
         return {
+            // from withRouter HOC
+            match: PropTypes.object.isRequired,
+            location: PropTypes.object.isRequired,
+            history: PropTypes.object.isRequired,
         };
     };
 
     static get defaultProps() {
         return {};
     };
-
-    // static get contextTypes() {
-    //     return {
-    //         router: PropTypes.object.isRequired
-    //     };
-    // }
 
 
     componentDidMount() {

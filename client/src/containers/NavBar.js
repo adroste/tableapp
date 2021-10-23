@@ -1,19 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import * as desktopAppActions from '../actions/desktopApp';
-import { withRouter, NavLink } from 'react-router-dom';
+
 import { Button, Icon, Menu, Modal, Rail, Responsive, Sticky } from 'semantic-ui-react';
-import { getActiveEventId, getActiveEventName, getActiveEventUserPermissionLevel } from '../reducers/events'; 
-import { isDesktopApp, isWindowAlwaysOnTop, isBroadcastActive, isPresentationmodeActive } from '../reducers/desktopApp';
-import { PermissionLevelEnum } from '../PermissionLevelEnum';
+import { NavLink, withRouter } from 'react-router-dom';
+import { getActiveEventId, getActiveEventName, getActiveEventUserPermissionLevel } from '../reducers/events';
+import { isBroadcastActive, isDesktopApp, isPresentationmodeActive, isWindowAlwaysOnTop } from '../reducers/desktopApp';
+
 import { ActiveEventQrCodeModal } from './ActiveEventQrCodeModal';
 import { MainNavActionSheet } from './MainNavActionSheet';
 import { NotificationsMenuItem } from './NotificationsMenuItem';
+import { PermissionLevelEnum } from '../PermissionLevelEnum';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { ZoomModal } from './ZoomModal';
-
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 const FixedTop = styled.div`
     position: fixed;
@@ -106,6 +107,10 @@ class NavBar extends React.Component {
         return {
             activeEventName: PropTypes.string,
             offsetLeft: PropTypes.number,
+            // from withRouter HOC
+            match: PropTypes.object.isRequired,
+            location: PropTypes.object.isRequired,
+            history: PropTypes.object.isRequired,
         };
     };
 
@@ -114,13 +119,6 @@ class NavBar extends React.Component {
             offsetLeft: 0
         };
     };
-
-
-    static get contextTypes() {
-        return {
-            router: PropTypes.object.isRequired
-        };
-    }
 
 
     constructor(props) {
@@ -161,7 +159,7 @@ class NavBar extends React.Component {
 
 
     _handleGoBack = () => {
-        this.context.router.history.goBack();
+        this.props.history.goBack();
     };
 
 
