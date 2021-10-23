@@ -1,13 +1,13 @@
-import React from 'react';
+import * as userActions from '../actions/user';
+
+import { ActionSheet } from '../components/ActionSheet';
+import { ActiveEventQrCodeModal } from './ActiveEventQrCodeModal';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import * as userActions from '../actions/user';
-import { ActiveEventQrCodeModal } from './ActiveEventQrCodeModal';
-import { ActionSheet } from '../components/ActionSheet';
 import { getActiveEventId } from '../reducers/events';
-
+import { withRouter } from 'react-router-dom';
 
 class MainNavActionSheet extends React.Component {
     static get propTypes() {
@@ -32,26 +32,32 @@ class MainNavActionSheet extends React.Component {
             isActiveEventQrCodeModalOpen: false,
         };
 
-        this.actions = [
-            { 
-                name: 'Veranstaltung wechseln',
-                icon: 'exchange',
-                onClick: this._handleSwitchEventClick,
-            },
-            {
-                name: 'QR-Code der Veranstaltung',
-                icon: 'qrcode',
-                onClick: this._handleShowQRCodeClick,
-            },
+        this.actions = [];
+        if (props.activeEventId) {
+            this.actions.push(
+                {
+                    name: 'Veranstaltung wechseln',
+                    icon: 'exchange',
+                    onClick: this._handleSwitchEventClick,
+                },
+                {
+                    name: 'QR-Code der Veranstaltung',
+                    icon: 'qrcode',
+                    onClick: this._handleShowQRCodeClick,
+                }
+            );
+        }
+
+        this.actions.push(
             // {
             //     name: 'Veranstaltung verwalten',
             //     icon: 'configure',
-                
+
             // },
             // {
             //     name: 'Veranstaltung verlassen',
             //     icon: 'close',
-                
+
             // },
             // {
             //     isSeparator: true,
@@ -66,7 +72,7 @@ class MainNavActionSheet extends React.Component {
                 icon: 'sign out',
                 onClick: this._handleSignOutClick,
             },
-        ];
+        );
     }
 
 
@@ -114,7 +120,7 @@ class MainNavActionSheet extends React.Component {
                     isOpen={isOpen}
                     onClose={onClose}
                 />
-                {isActiveEventQrCodeModalOpen && 
+                {isActiveEventQrCodeModalOpen &&
                     <ActiveEventQrCodeModal
                         onClose={this._handleCloseQRCodeClick}
                     />
