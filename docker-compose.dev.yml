@@ -3,11 +3,13 @@ version: "3"
 services:
   mongo:
     image: mongo:4.4
+    container_name: mongo
     volumes:
       - ./dev-mongo-data:/data/db
 
   table-backend:
     image: node:16
+    container_name: table-backend
     depends_on:
       - mongo
     volumes:
@@ -22,6 +24,7 @@ services:
 
   table-client:
     image: node:10
+    container_name: table-client
     volumes:
       - ./client:/app
     environment:
