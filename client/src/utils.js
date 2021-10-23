@@ -8,19 +8,9 @@ import Jimp from 'jimp';
  * @returns {Promise<string>} Resolves to base64 thumbnail
  */
 export async function createThumbnailFromBase64Image(base64Image) {
-    async function imageToBase64(img) {
-        return new Promise((resolve, reject) => {
-            img.getBase64(Jimp.MIME_PNG, (err, data) => {
-                if (err)
-                    reject(err);
-                resolve(data);
-            });
-        });
-    }
-
     const img = await Jimp.read(Buffer.from(base64Image.replace(/^data:image\/png;base64,/, ""), 'base64'));
     img.cover(80, 80);
-    return await imageToBase64(img);
+    return await img.getBase64Async(Jimp.MIME_PNG);
 }
 
 
