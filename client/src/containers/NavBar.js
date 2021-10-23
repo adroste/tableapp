@@ -77,20 +77,20 @@ const BroadcastScreenButton = styled(Button).attrs({
 `;
 
 
-const MenuHeight = styled.div.attrs({
-    style: props => ({
+const MenuHeight = styled.div.attrs(props => ({
+    style: {
         marginBottom: (props['data-height'] - 1) + 'px'
-    })
-})`
+    }
+}))`
     height: 1px;
 `;
 
 
-const CustomRail = styled(Rail).attrs({
-    style: props => ({
+const CustomRail = styled(Rail).attrs(props => ({
+    style: {
         top: (props['data-menu-height']) + 'px' 
-    })
-})`
+    }
+}))`
     &&&& {
         width: 80px;
         ${props => props.position === 'left' && 'text-align: right;'}
@@ -235,7 +235,7 @@ class NavBar extends React.Component {
         return (
             <div>
                 <FixedTop 
-                    innerRef={menuRef => menuRef && (this.menuRef = menuRef) }
+                    ref={menuRef => menuRef && (this.menuRef = menuRef) }
                     data-withtitlebar={isDesktopApp}
                 >
                     {isPresentationmodeActive ? ( 

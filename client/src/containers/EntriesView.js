@@ -295,7 +295,7 @@ class EntriesView extends React.Component {
                                     <CustomList
                                         autoHeight
                                         height={height}
-                                        innerRef={ref => this._listRef = ref}
+                                        ref={ref => this._listRef = ref}
                                         isScrolling={isScrolling}
                                         noRowsRenderer={this._noRowsRenderer}
                                         onRowsRendered={this._handleRowsRendered}

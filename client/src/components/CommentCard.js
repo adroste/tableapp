@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { Comment, Button, Dimmer, Loader, Image } from 'semantic-ui-react';
-import { UpDownVote } from '../components/UpDownVote';
-import { Content } from '../components/Content';
-import { Thumbnails } from '../containers/Thumbnails';
+import { Button, Comment, Dimmer, Image, Loader } from 'semantic-ui-react';
 
+import { Content } from '../components/Content';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Thumbnails } from '../containers/Thumbnails';
+import { UpDownVote } from '../components/UpDownVote';
+import styled from 'styled-components';
 
 const CustomComment = styled(Comment)`
     &&&&& {

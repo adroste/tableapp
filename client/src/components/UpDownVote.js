@@ -1,8 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { Button } from 'semantic-ui-react'
-
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
 
 // "&&&&..." is a required hack to bump specificity 
 // in order to override semantic-uis !important rules, dev will not fix this (e.g. gh-#1591)
@@ -29,7 +28,7 @@ const ButtonVote = styled(Button).attrs({
 `;
 
 
-const Count = ButtonVote.extend.attrs({
+const Count = styled(ButtonVote).attrs({
     as: "span",
     disabled: true,
 })`

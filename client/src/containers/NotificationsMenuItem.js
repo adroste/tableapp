@@ -1,12 +1,12 @@
+import { Icon, Menu, Popup } from 'semantic-ui-react';
+
+import { NotificationList } from './NotificationList';
+import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { Icon, Menu, Popup } from 'semantic-ui-react';
 import { hasUnreadNotifications } from '../reducers/notifications';
-import { NotificationList } from './NotificationList';
-
+import styled from 'styled-components';
 
 const CustomPopup = styled(Popup)`
     position: fixed !important;
@@ -80,7 +80,7 @@ class NotificationsMenuItem extends React.Component {
 
         return (
             <CustomPopup
-                innerRef={r => this.popupRef = r}
+                ref={r => this.popupRef = r}
                 trigger={
                     <Menu.Item
                         active={isOpen}

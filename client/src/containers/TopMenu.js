@@ -24,20 +24,20 @@ const MenuButton = styled(Button).attrs({
 `
 
 
-const MenuHeight = styled.div.attrs({
-    style: props => ({
+const MenuHeight = styled.div.attrs(props => ({
+    style: {
         height: props.height + 'px'
-    })
-})`
+    }
+}))`
     margin-bottom: 1em;
 `;
 
 
-const OffsetLeftPusher = styled.span.attrs({
-    style: props => ({
+const OffsetLeftPusher = styled.span.attrs(props => ({
+    style: {
         width: props.offset
-    }),
-})`
+    },
+}))`
     transition: width .5s ease;
 `;
 

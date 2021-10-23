@@ -64,11 +64,11 @@ const BroadcastScreenButton = styled(Button).attrs({
 `;
 
 
-const MenuHeight = styled.div.attrs({
-    style: props => ({
+const MenuHeight = styled.div.attrs(props => ({
+    style: {
         marginBottom: (props['data-height'] + 13) + 'px' // +13px additional margin (=> height=1 => 14px margin)
-    })
-})`
+    }
+}))`
     height: 1px;
 `;
 
@@ -161,7 +161,7 @@ class NavBar extends React.Component {
         return (
             <div>
                 <FixedTop 
-                    innerRef={menuRef => menuRef && (this.menuRef = menuRef) }
+                    ref={menuRef => menuRef && (this.menuRef = menuRef) }
                     data-desktop={isDesktop}
                 >
                     <CustomMenu

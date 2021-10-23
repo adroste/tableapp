@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { Checkbox, Input } from 'semantic-ui-react';
 
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
 
 const CustomCheckbox = styled(Checkbox)`
     width: 1.85714em;
@@ -80,7 +80,7 @@ export class CheckboxWithInput extends React.PureComponent {
                     onChange={this._handleCheckedChange}
                 />
                 <SmallInput
-                    innerRef={this._inputRef}
+                    ref={this._inputRef}
                     maxLength={120}
                     onChange={this._handleInputChange}
                     placeholder={placeholder}
