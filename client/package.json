@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "buffer": "^5.2.1",
+    "buffer": "^6.0.3",
     "callback-timeout": "^4.0.0",
     "jimp": "0.2.27",
     "lodash": "^4.17.10",
