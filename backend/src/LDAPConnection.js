@@ -288,7 +288,7 @@ class LDAPConnection {
         if (!dn)
             return Promise.reject('dn param must not be null');
 
-        const attributes=[config.TABLE_LDAP_EMAIL_ATTRIBUTES[0]];
+        const attributes=[config.TABLE_LDAP_EMAIL_ATTRIBUTES.split(',')[0]];
         
         return this.search(dn, attributes, true).then((entries) => {
             if (entries.length === 0)
