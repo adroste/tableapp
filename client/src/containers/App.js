@@ -21,6 +21,7 @@ import { UserLoginView } from './UserLoginView';
 import { WebFrameScaler } from '../WebFrameScaler';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { getAppVersion } from '../utils';
 import { getConnectionState } from '../reducers/api';
 import styled from 'styled-components';
 
@@ -35,6 +36,11 @@ const ContentWrapper = styled.div`
 const CenteredP = styled.p`
     margin-top: 2em;
     text-align: center;
+`;
+
+
+const AppVersion = styled.p`
+    color: #ccc;
 `;
 
 
@@ -161,6 +167,7 @@ class App extends React.Component {
                         <Link to='/legalinfos'>
                             Impressum / Datenschutz / Nutzungsbedingungen
                         </Link>
+                        <AppVersion>{getAppVersion()}</AppVersion>
                     </CenteredP>
                 }
                 {isDesktopApp && 
