@@ -3,7 +3,7 @@ import 'react-virtualized/styles.css';
 import * as entriesActions from '../actions/entries';
 
 import { AutoSizer, List, WindowScroller } from 'react-virtualized';
-import { Button, Dropdown, Header, Message, Responsive } from 'semantic-ui-react';
+import { Button, Dropdown, Header, Message } from 'semantic-ui-react';
 import { EntryListTypeEnum, getIdList, getListType, hasListOnlyBookmarked, hasMoreEntriesToLoad, isListSubscribed } from '../reducers/entries';
 
 import { DynamicRow } from './DynamicRow';
@@ -13,6 +13,7 @@ import { FloatingActionButton } from '../components/FloatingActionButton';
 import { NavBar } from './NavBar';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Responsive } from '../components/Responsive';
 import { UserPostForm } from './UserPostForm';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

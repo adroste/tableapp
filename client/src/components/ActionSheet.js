@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { Button, Modal, List, TransitionablePortal, Divider } from 'semantic-ui-react';
+import { Button, Divider, List, Modal, TransitionablePortal } from 'semantic-ui-react';
 
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
 
 const ListIconPaddingFix = styled(List.Icon)`
     &&&&& {
@@ -37,18 +37,17 @@ export class ActionSheet extends React.PureComponent {
         const { actions, isCentered, isOpen, onClose } = this.props;
 
         return (
-            <TransitionablePortal
-                transition={{ animation: 'fade up', duration: 300 }}
-                open={isOpen}
-                onClose={onClose} // TODO
-            >
+            // <TransitionablePortal
+            //     transition={{ animation: 'fade up', duration: 300 }}
+            //     open={isOpen}
+            //     onClose={onClose} // TODO
+            // >
                 <Modal
-                    open={true}
+                    open={isOpen}
                     size="mini"
                     centered={isCentered}
                     onClose={onClose}
                 >
-                    {/* <Modal.Header>Aktion wählen</Modal.Header> */}
                     <Modal.Content>
                         {actions.length > 0 ? (
                             <List 
@@ -86,9 +85,9 @@ export class ActionSheet extends React.PureComponent {
                             fluid
                             onClick={onClose}
                         />
-                    </Modal.Content>
-                </Modal>
-            </TransitionablePortal>
+                    </Modal.Content> 
+             {/* </TransitionablePortal> */}
+                </Modal> 
         );
     }
 }

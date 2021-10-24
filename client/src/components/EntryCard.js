@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { Card, Label, Icon, Loader, Dimmer, Image, Button, Responsive } from 'semantic-ui-react';
-import { UpDownVote } from '../components/UpDownVote';
-import { SortedUserRolesByPriority } from '../containers/SortedUserRolesByPriority';
-import { Content } from '../components/Content';
-import { Thumbnails } from '../containers/Thumbnails';
+import { Button, Card, Dimmer, Icon, Image, Label, Loader } from 'semantic-ui-react';
 
+import { Content } from '../components/Content';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { SortedUserRolesByPriority } from '../containers/SortedUserRolesByPriority';
+import { Thumbnails } from '../containers/Thumbnails';
+import { UpDownVote } from '../components/UpDownVote';
+import styled from 'styled-components';
 
 const CustomCard = styled(Card)`
     &&& {
@@ -146,7 +146,7 @@ export class EntryCard extends React.PureComponent {
                                     color="blue"
                                     basic
                                 >
-                                In Veranstaltung <Responsive as="span" maxWidth={460}><br/></Responsive>beantwortet
+                                    In Veranstaltung beantwortet
                                 </Label>
                             }
                     </CardMetaFlexAligned>

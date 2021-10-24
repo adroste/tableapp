@@ -9,10 +9,12 @@ import { hasUnreadNotifications } from '../reducers/notifications';
 import styled from 'styled-components';
 
 const CustomPopup = styled(Popup)`
-    position: fixed !important;
+    // position: fixed !important;
 
-    &&& {
+    &&&&& {
         padding: 0;
+        margin-right: 3px;
+        max-width: 314px;
     }
 
     & > * {
@@ -59,13 +61,13 @@ class NotificationsMenuItem extends React.Component {
     _handlePopupOpen = () => {
         this.setState({ isOpen: true });
         // fixme todo fix to be removed with 0.87.0 semantic-ui
-        setTimeout(() => {
-            if (this.popupRef) {
-                const n = ReactDOM.findDOMNode(this.popupRef);
-                const top = Number(n.style.top.substring(0, n.style.top.length - 2));
-                n.style.top = (top - window.scrollY) + 'px';
-            }
-        }, 100);
+        // setTimeout(() => {
+        //     if (this.popupRef) {
+        //         const n = ReactDOM.findDOMNode(this.popupRef);
+        //         const top = Number(n.style.top.substring(0, n.style.top.length - 2));
+        //         n.style.top = (top - window.scrollY) + 'px';
+        //     }
+        // }, 100);
     };
 
 
@@ -99,6 +101,10 @@ class NotificationsMenuItem extends React.Component {
                 onClick={this._handlePopupClose}
                 onOpen={this._handlePopupOpen}
                 onClose={this._handlePopupClose}
+                position="bottom right"
+                pinned
+                positionFixed
+                eventsEnabled={false}
                 wide
             >
                 <div>

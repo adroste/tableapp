@@ -1,6 +1,6 @@
 import * as desktopAppActions from '../actions/desktopApp';
 
-import { Button, Icon, Menu, Modal, Rail, Responsive, Sticky } from 'semantic-ui-react';
+import { Button, Icon, Menu, Modal, Rail, Sticky } from 'semantic-ui-react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { getActiveEventId, getActiveEventName, getActiveEventUserPermissionLevel } from '../reducers/events';
 import { isBroadcastActive, isDesktopApp, isPresentationmodeActive, isWindowAlwaysOnTop } from '../reducers/desktopApp';
@@ -11,6 +11,7 @@ import { NotificationsMenuItem } from './NotificationsMenuItem';
 import { PermissionLevelEnum } from '../PermissionLevelEnum';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Responsive } from '../components/Responsive';
 import { ZoomModal } from './ZoomModal';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

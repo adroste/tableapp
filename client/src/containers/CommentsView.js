@@ -1,19 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import * as commentsActions from '../actions/comments';
 import * as entriesActions from '../actions/entries';
-import { isInitialLoadPending, getCommentsView } from '../reducers/comments';
-import { Link } from 'react-router-dom';
-import { EntryCardContainer } from './EntryCardContainer';
-import { Comment, Header, Message, Dropdown, Button, Responsive } from 'semantic-ui-react';
-import { CommentCardContainer } from './CommentCardContainer';
-import { FloatingActionButton } from '../components/FloatingActionButton';
-import { NavBar } from './NavBar';
-import { SegmentLoader } from '../components/SegmentLoader';
 
+import { Button, Comment, Dropdown, Header, Message } from 'semantic-ui-react';
+import { getCommentsView, isInitialLoadPending } from '../reducers/comments';
+
+import { CommentCardContainer } from './CommentCardContainer';
+import { EntryCardContainer } from './EntryCardContainer';
+import { FloatingActionButton } from '../components/FloatingActionButton';
+import { Link } from 'react-router-dom';
+import { NavBar } from './NavBar';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Responsive } from '../components/Responsive';
+import { SegmentLoader } from '../components/SegmentLoader';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 const CustomCommentGroup = styled(Comment.Group)`
     // .ui.comments &&& {

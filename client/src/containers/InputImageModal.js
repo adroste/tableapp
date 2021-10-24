@@ -29,6 +29,8 @@ const DropzoneWrapper = styled.div`
     margin: 1.5rem;
     justify-content: center;
     height: 200px;
+    cursor: pointer;
+    border: 2px dashed grey;
 
     & > div {
         width: 100% !important;
@@ -86,7 +88,7 @@ class InputImageModal extends React.Component {
     _handleDropAccepted = (files) => {
         const handleError = () => {
             console.log('could not process image');
-            this.setState({ 
+            this.setState({
                 imageData: null,
                 loading: false,
             });
@@ -95,7 +97,7 @@ class InputImageModal extends React.Component {
         if (files.length < 1)
             return handleError();
 
-        this.setState({ 
+        this.setState({
             loading: true,
         });
 
@@ -109,7 +111,7 @@ class InputImageModal extends React.Component {
             Jimp.read(buffer, (err, img) => {
                 if (this.unmounted)
                     return;
-                if (err) 
+                if (err)
                     return handleError();
                 // limit max height/width to max res (e.g. 1200px) but keep aspect ratio
                 if (img.bitmap.width > parseInt(config.TABLE_INPUT_IMAGE_MAX_RES, 10) || img.bitmap.height > parseInt(config.TABLE_INPUT_IMAGE_MAX_RES, 10)) {
@@ -121,9 +123,9 @@ class InputImageModal extends React.Component {
                 img.getBase64(Jimp.MIME_PNG, (err, imageData) => {
                     if (this.unmounted)
                         return;
-                    if (err) 
+                    if (err)
                         return handleError();
-                    this.setState({ 
+                    this.setState({
                         imageData,
                         loading: false,
                     });
@@ -151,14 +153,14 @@ class InputImageModal extends React.Component {
             this.props.onSelect(localId);
         }).catch(() => console.log('could not add image'));
     };
-    
+
 
     render() {
-        const {imageData, loading} = this.state;
+        const { imageData, loading } = this.state;
         const acceptedMimeTypes = "image/bmp, image/jpeg, image/png";
 
         return (
-            <Modal 
+            <Modal
                 open
                 closeIcon
                 closeOnDocumentClick={false}
@@ -169,11 +171,11 @@ class InputImageModal extends React.Component {
                     <CenteredContent>
                         {loading ? (
                             <div>
-                                <br/>
-                                <br/>
-                                <br/>
+                                <br />
+                                <br />
+                                <br />
                                 <Dimmer active inverted>
-                                    <Loader active inline='centered'/>
+                                    <Loader active inline='centered' />
                                 </Dimmer>
                             </div>
                         ) : (
@@ -188,33 +190,38 @@ class InputImageModal extends React.Component {
                                         multiple={false}
                                         onDropAccepted={this._handleDropAccepted}
                                     >
-                                        <p> Anklicken oder Datei per Drag &amp; Drop hereinziehen. </p>
-                                        <p> Unterstützte Dateiformate: bmp, jpg, png </p>
+                                        {({ getRootProps, getInputProps }) => (
+                                            <div {...getRootProps()}>
+                                                <input {...getInputProps()} />
+                                                <p> Anklicken oder Datei per Drag &amp; Drop hereinziehen. </p>
+                                                <p> Unterstützte Dateiformate: bmp, jpg, png </p>
+                                            </div>
+                                        )}
                                     </Dropzone>
                                 </DropzoneWrapper>
                             )
                         )}
                     </CenteredContent>
                 </Modal.Content>
-                    <Modal.Actions>
+                <Modal.Actions>
+                    <Button
+                        content="Schließen"
+                        onClick={this._handleCloseClick}
+                    />
+                    {imageData &&
                         <Button
-                            content="Schließen"
-                            onClick={this._handleCloseClick}
+                            content="Zurücksetzen"
+                            onClick={this._handleResetClick}
                         />
-                        {imageData &&
-                            <Button
-                                content="Zurücksetzen"
-                                onClick={this._handleResetClick}
-                            />
-                        }
-                        {imageData &&
-                            <Button
-                                content="Hinzufügen"
-                                primary
-                                onClick={this._handleSelectClick}
-                            />
-                        }
-                    </Modal.Actions>
+                    }
+                    {imageData &&
+                        <Button
+                            content="Hinzufügen"
+                            primary
+                            onClick={this._handleSelectClick}
+                        />
+                    }
+                </Modal.Actions>
             </Modal>
         );
     }

@@ -28,25 +28,19 @@ const ButtonVote = styled(Button).attrs({
 `;
 
 
-const Count = styled(ButtonVote).attrs({
-    as: "span",
-    disabled: true,
-})`
+const Count = styled.span`
     position: relative;
     width: 20px;
-
-    &&&&&&&& {
-        padding: 0;
-        opacity: 1 !important;
-    }
+    padding: 0;
     
     &:before {
         content: attr(data-number);
         position: absolute;
+        font-size: 1rem;
         height: 100%;
-        display:flex;
-        justify-content:center;
-        align-items:center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         transform: translateX(-50%) translateX(10px);;
     }
 `;
@@ -101,7 +95,7 @@ export class UpDownVote extends React.Component {
                 />
                 <Count
                     data-number={score}
-                    color={vote > 0 ? "blue" : (vote < 0 ? "red" : null)}
+                    style={{color: vote > 0 ? "#2185d0" : (vote < 0 ? "#db2828" : null)}}
                 />
                 <ButtonVote 
                     icon="arrow down" 

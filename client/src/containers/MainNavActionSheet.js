@@ -112,7 +112,7 @@ class MainNavActionSheet extends React.Component {
     render() {
         const { isOpen, onClose } = this.props;
         const { isActiveEventQrCodeModalOpen } = this.state;
-
+    
         return (
             <div>
                 <ActionSheet
