@@ -1,4 +1,4 @@
-.PHONY: dev stop-dev shell-backend shell-client build-backend build-client 
+.PHONY: dev stop-dev shell-backend shell-client shell-mongo build-backend build-client publish-backend publish-client
 
 CMD?=bash
 
@@ -14,8 +14,17 @@ shell-backend:
 shell-client:
 	docker-compose -f docker-compose.dev.yml run table-client $(CMD)
 
+shell-mongo:
+	docker-compose -f docker-compose.dev.yml run mongo $(CMD)
+
 build-backend:
 	docker build -t adroste/tableapp-backend ./backend
 
 build-client:
 	docker build -t adroste/tableapp-client ./client
+
+publish-backend:
+	docker push adroste/tableapp-backend
+
+publish-client:
+	docker push adroste/tableapp-client
