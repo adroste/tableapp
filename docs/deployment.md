@@ -19,9 +19,14 @@ It sets up:
 * automatic ssl certificate renewal
 
 Usage:
-1. Copy the [docker-compose.yml](https://github.com/adroste/tableapp/blob/master/docker-compose.yml) to a writable local folder.
+1. Copy the [docker-compose.yml](https://github.com/adroste/tableapp/blob/master/docker-compose.yml) to a writable local folder on your server/machine.
 2. Open the file and edit all the necessary configuration values (e.g. your domain). See: [Configuration](configuration.md). 
 3. Execute `docker-compose up -d`.
+
+### nginx-proxy
+
+The docker-compose uses nginx-proxy and acme-companion for easy SSL and automatic letsencrypt certificates.
+Under environment for table-backend and table-client you must set the `VIRTUAL_HOST` as well as `VIRTUAL_PORT` variables. The `VIRTUAL_PORT` are 4898 (backend) and 80 (client). The `VIRTUAL_HOST` must be your domain, e.g. `api.example.com` and `app.example.com`. Letsencrypt will create certificates for these domains.
 
 ### How-To run frontend and backend on same domain but different subpaths
 

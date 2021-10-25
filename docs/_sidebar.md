@@ -1,9 +1,9 @@
 * [Start](/)
 * [Project Organization](project-organization.md)
-* [Configuration](configuration.md)
-* [Development](development.md)
 * [Deployment](deployment.md)
+* [Configuration](configuration.md)
 * [Database Design](database-design.md)
+* [Development](development.md)
 * [Known Bugs](known-bugs.md)
 
 ---

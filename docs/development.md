@@ -18,10 +18,6 @@ Install the following tools:
 
 The Makefile also offers options to run the shell in the backend and client container or to build the containers.
 
-In order to run a project you need to install the dependencies (node_modules). This can be done by *`cd`-ing* into the project directory (`client`, `backend` or `client_desktop`). Each directory must include a file called `package.json`.
-
-To install the `node_modules` execute: `yarn install` (inside the project-directory).
-
 
 ## Desktop-Client
 
