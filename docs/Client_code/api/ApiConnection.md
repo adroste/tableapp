@@ -11,7 +11,7 @@ You must call `initialize()` method after construction.
         * [.initialize(url, dispatch, getState)](#apiconnection43initialize)
         * [._transitionToDisconnectedState()](#apiconnection4395transitiontodisconnectedstate) ℗
         * [._changeIsConnected(isConnected)](#apiconnection4395changeisconnected) ℗
-        * [.request(event, [data])](#apiconnection43request) ⇒ <code>Promise.&lt;\*&gt;</code>
+        * [.request(event, [data])](#apiconnection43request) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;\*&gt;</code>
         * [.on(event, cb)](#apiconnection43on)
         * [._handleConnect()](#apiconnection4395handleconnect) ℗
         * [._handleConnectError(reason)](#apiconnection4395handleconnecterror) ℗
@@ -34,7 +34,7 @@ Initializes ApiConnection instance. Must be called after instance creation.
 
 <a id="apiconnection4395transitiontodisconnectedstate"></a>
 
-### apiConnection._transitionToDisconnectedState() ℗
+### apiConnection.\_transitionToDisconnectedState() ℗
 Dispatches changeConnectionState actions to transition from TEMPORARILY_DISCONNECTED
 to DISCONNECTED after API_DISCONNECT_TIMEOUT.
 
@@ -42,7 +42,7 @@ to DISCONNECTED after API_DISCONNECT_TIMEOUT.
 **Access**: private  
 <a id="apiconnection4395changeisconnected"></a>
 
-### apiConnection._changeIsConnected(isConnected) ℗
+### apiConnection.\_changeIsConnected(isConnected) ℗
 Define connection state.
 Handles connectionState transition by dispatching corresponding actions (redux).
 
@@ -55,11 +55,11 @@ Handles connectionState transition by dispatching corresponding actions (redux).
 
 <a id="apiconnection43request"></a>
 
-### apiConnection.request(event, [data]) ⇒ <code>Promise.&lt;\*&gt;</code>
+### apiConnection.request(event, [data]) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;\*&gt;</code>
 Performs an api-request with the specified data-object.
 
 **Kind**: instance method of [<code>ApiConnection</code>](#apiconnection)  
-**Returns**: <code>Promise.&lt;\*&gt;</code> - resolves to response-data  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;\*&gt;</code> - resolves to response-data  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -80,14 +80,14 @@ Registers a callback for a specific api-event.
 
 <a id="apiconnection4395handleconnect"></a>
 
-### apiConnection._handleConnect() ℗
+### apiConnection.\_handleConnect() ℗
 Eventhandler for connected event.
 
 **Kind**: instance method of [<code>ApiConnection</code>](#apiconnection)  
 **Access**: private  
 <a id="apiconnection4395handleconnecterror"></a>
 
-### apiConnection._handleConnectError(reason) ℗
+### apiConnection.\_handleConnectError(reason) ℗
 Eventhandler for connect error event.
 
 **Kind**: instance method of [<code>ApiConnection</code>](#apiconnection)  
@@ -99,7 +99,7 @@ Eventhandler for connect error event.
 
 <a id="apiconnection4395handledisconnect"></a>
 
-### apiConnection._handleDisconnect(reason) ℗
+### apiConnection.\_handleDisconnect(reason) ℗
 Eventhandler for socket disconnect event.
 
 **Kind**: instance method of [<code>ApiConnection</code>](#apiconnection)  

@@ -25,6 +25,18 @@ user-reducer
 | state | [<code>UserState</code>](#userstate) | 
 | action | <code>object</code> | 
 
+<a id="getlastactiveeventid"></a>
+
+## getLastActiveEventId(state) ⇒ <code>string</code> &#124; <code>null</code>
+Selector to select last active eventId (on auth) from user-state.
+
+**Kind**: global function  
+**Returns**: <code>string</code> &#124; <code>null</code> - last active eventId (on auth)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| state | [<code>UserState</code>](#userstate) | user-state |
+
 <a id="getloginstate"></a>
 
 ## getLoginState(state) ⇒ <code>LoginStateEnum</code>
@@ -32,6 +44,18 @@ Selector to select current login state from user-state.
 
 **Kind**: global function  
 **Returns**: [<code>LoginStateEnum</code>](#loginstateenum) - current login state  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| state | [<code>UserState</code>](#userstate) | user-state |
+
+<a id="getactivenotificationtypes"></a>
+
+## getActiveNotificationTypes(state) ⇒ <code>object</code>
+Selector to select active notification types from user-state.
+
+**Kind**: global function  
+**Returns**: <code>object</code> - object containing activated notification types (emailNotifications, inAppNotifications)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -96,9 +120,11 @@ Default values are the initial state.
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| [hasAcceptedTos] | <code>boolean</code> | <code>false</code> | indicates if logged in user has accepted terms of service |
+| [acceptedTos] | <code>boolean</code> | <code>false</code> | indicates if logged in user has accepted terms of service |
 | [id] | <code>string</code> &#124; <code>null</code> | <code>null</code> | logged in users id |
+| [lastActiveEventId] | <code>string</code> &#124; <code>null</code> |  | id of last active event (on auth), null if no event was reported last active |
 | [loginState] | [<code>LoginStateEnum</code>](#loginstateenum) | <code>LoginStateEnum.LOGGED_OUT</code> | indicates login-state |
 | [name] | <code>string</code> &#124; <code>null</code> | <code>null</code> | logged in users name |
+| [notifications] | <code>object</code> | <code>{emailNotifications: [], inAppNotifications: []}</code> | object containing activated notification types (emailNotifications, inAppNotifications) |
 | [sessionToken] | <code>string</code> &#124; <code>null</code> | <code>null</code> | on login received sessionToken |
 

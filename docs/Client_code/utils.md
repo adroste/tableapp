@@ -1,10 +1,31 @@
+<a id="pathjoin"></a>
+
+## pathJoin ⇒ <code>string</code>
+Returns a valid concatenated path.
+Also works with URLs.
+
+**Kind**: global constant  
+**Returns**: <code>string</code> - full path/url  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| base | <code>string</code> | first part |
+| ...parts | <code>string</code> | part n |
+
+<a id="getappversion"></a>
+
+## getAppVersion ⇒ <code>string</code>
+Returns app version read from environment
+
+**Kind**: global constant  
+**Returns**: <code>string</code> - app version  
 <a id="createthumbnailfrombase64image"></a>
 
-## createThumbnailFromBase64Image(base64Image) ⇒ <code>Promise.&lt;string&gt;</code>
+## createThumbnailFromBase64Image(base64Image) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;string&gt;</code>
 Creates a thumbnail (as base64) from a full image (as base64).
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;string&gt;</code> - Resolves to base64 thumbnail  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;string&gt;</code> - Resolves to base64 thumbnail  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -63,16 +84,16 @@ Removes nulled properties from an object.
 
 <a id="uniquearray"></a>
 
-## uniqueArray(array) ⇒ <code>Array.&lt;\*&gt;</code>
+## uniqueArray(array) ⇒ <code>[ &#x27;Array&#x27; ].&lt;\*&gt;</code>
 Returns a new unique version of the supplied array.
 
 **Kind**: global function  
-**Returns**: <code>Array.&lt;\*&gt;</code> - returns new unique array  
+**Returns**: <code>[ &#x27;Array&#x27; ].&lt;\*&gt;</code> - returns new unique array  
 **See**: https://stackoverflow.com/a/43046408  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| array | <code>Array.&lt;\*&gt;</code> | array to create unique version from |
+| array | <code>[ &#x27;Array&#x27; ].&lt;\*&gt;</code> | array to create unique version from |
 
 <a id="filterobjectpredicate"></a>
 

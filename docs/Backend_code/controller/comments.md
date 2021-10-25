@@ -8,8 +8,8 @@ Controller for comments.
     * _static_
         * [.changeUserVote(eventId, entryId, commentId, userId, vote)](#module95commentscontroller46changeuservote) ⇒ <code>Promise</code>
         * [.deleteComment(eventId, entryId, commentId)](#module95commentscontroller46deletecomment) ⇒ <code>Promise</code>
-        * [.getComments(eventId, entryId, userId, [commentIds])](#module95commentscontroller46getcomments) ⇒ <code>Promise.&lt;CommentsController~CommentDict&gt;</code>
-        * [.postComment(eventId, entryId, parentId, userId, isAnonymous, content, imageDataArr)](#module95commentscontroller46postcomment) ⇒ <code>Promise</code> &#124; <code>Promise.&lt;ObjectID&gt;</code>
+        * [.getComments(eventId, entryId, userId, [commentIds])](#module95commentscontroller46getcomments) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;CommentsController~CommentDict&gt;</code>
+        * [.postComment(eventId, entryId, parentId, userId, isAnonymous, content, imageDataArr)](#module95commentscontroller46postcomment) ⇒ <code>Promise</code> &#124; <code>[ &#x27;Promise&#x27; ].&lt;ObjectID&gt;</code>
     * _inner_
         * [~_onCommentUpdated(eventId, entryId, commentId, affectsEntryMetadata)](#module95commentscontroller464695oncommentupdated) ℗
         * [~Comment](#module95commentscontroller4646comment) : <code>object</code>
@@ -55,29 +55,29 @@ Mark a comment as deleted.
 
 <a id="module95commentscontroller46getcomments"></a>
 
-### commentsController.getComments(eventId, entryId, userId, [commentIds]) ⇒ <code>Promise.&lt;CommentsController~CommentDict&gt;</code>
+### commentsController.getComments(eventId, entryId, userId, [commentIds]) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;CommentsController~CommentDict&gt;</code>
 Query comments.
 
 If a comment is deleted (isDeleted == true), its authorId & content props
 will be returned as 'null' and imageIds will be '[]'.
 
 **Kind**: static method of [<code>commentsController</code>](#module95commentscontroller)  
-**Returns**: <code>Promise.&lt;CommentsController~CommentDict&gt;</code> - resolves to dictionary of comments (for specified user)  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;CommentsController~CommentDict&gt;</code> - resolves to dictionary of comments (for specified user)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | eventId | <code>ObjectID</code> |  | id of event |
 | entryId | <code>ObjectID</code> |  | id of entry |
 | userId | <code>string</code> |  | id of user |
-| [commentIds] | <code>Array.&lt;ObjectID&gt;</code> | <code>[]</code> | array of ObjectIDs to query. Empty array [] means all. Defaults to [] |
+| [commentIds] | <code>[ &#x27;Array&#x27; ].&lt;ObjectID&gt;</code> | <code>[]</code> | array of ObjectIDs to query. Empty array [] means all. Defaults to [] |
 
 <a id="module95commentscontroller46postcomment"></a>
 
-### commentsController.postComment(eventId, entryId, parentId, userId, isAnonymous, content, imageDataArr) ⇒ <code>Promise</code> &#124; <code>Promise.&lt;ObjectID&gt;</code>
+### commentsController.postComment(eventId, entryId, parentId, userId, isAnonymous, content, imageDataArr) ⇒ <code>Promise</code> &#124; <code>[ &#x27;Promise&#x27; ].&lt;ObjectID&gt;</code>
 Insert new comment into db.
 
 **Kind**: static method of [<code>commentsController</code>](#module95commentscontroller)  
-**Returns**: <code>Promise</code> - indicates success<code>Promise.&lt;ObjectID&gt;</code> - resolves to ObjectID of inserted Comment  
+**Returns**: <code>Promise</code> - indicates success<code>[ &#x27;Promise&#x27; ].&lt;ObjectID&gt;</code> - resolves to ObjectID of inserted Comment  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -87,11 +87,11 @@ Insert new comment into db.
 | userId | <code>string</code> | id of user |
 | isAnonymous | <code>boolean</code> | true if posting is anonymous, otherwise false |
 | content | <code>string</code> | content of comment |
-| imageDataArr | <code>Array.&lt;string&gt;</code> | array of attached images (base64 encoded) |
+| imageDataArr | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | array of attached images (base64 encoded) |
 
 <a id="module95commentscontroller464695oncommentupdated"></a>
 
-### commentsController~_onCommentUpdated(eventId, entryId, commentId, affectsEntryMetadata) ℗
+### commentsController~\_onCommentUpdated(eventId, entryId, commentId, affectsEntryMetadata) ℗
 Internal method that calls triggers update handlers.
 
 **Kind**: inner method of [<code>commentsController</code>](#module95commentscontroller)  
@@ -117,7 +117,7 @@ Containing non-general comment infos for a single user.
 | --- | --- | --- |
 | authorId | <code>string</code> &#124; <code>null</code> | user-id of author, null if comment was posted anonymously |
 | content | <code>string</code> | text-content of comment |
-| imageIds | <code>Array.&lt;string&gt;</code> | list of (image-)ids of attached images |
+| imageIds | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | list of (image-)ids of attached images |
 | isDeleted | <code>boolean</code> | indicates if comment is deleted |
 | isOwn | <code>boolean</code> | indicates if user owns comment |
 | parentId | <code>string</code> &#124; <code>null</code> | (comment-)id of parent comment (id of comment this comment is subordinate), null if comment is a top-level comment |

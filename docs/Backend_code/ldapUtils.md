@@ -1,11 +1,11 @@
 <a id="getnamefromuseridwithcache"></a>
 
-## getNameFromUserIdWithCache(ldap, userId) ⇒ <code>Promise.&lt;string&gt;</code>
+## getNameFromUserIdWithCache(ldap, userId) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;string&gt;</code>
 Searches for an users name by id, caches usernames. 
 LDAPConnection needs to be open (connected & bound).
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;string&gt;</code> - resolves to the users name  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;string&gt;</code> - resolves to the users name  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -14,12 +14,12 @@ LDAPConnection needs to be open (connected & bound).
 
 <a id="getemailfromuseridwithcache"></a>
 
-## getEmailFromUserIdWithCache(ldap, userId) ⇒ <code>Promise.&lt;string&gt;</code>
+## getEmailFromUserIdWithCache(ldap, userId) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;string&gt;</code>
 Searches for an users email by id, caches email addresses. 
 LDAPConnection needs to be open (connected & bound).
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;string&gt;</code> - resolves to the users email  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;string&gt;</code> - resolves to the users email  
 
 | Param | Type | Description |
 | --- | --- | --- |

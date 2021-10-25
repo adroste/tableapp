@@ -1,4 +1,5 @@
 * [‹ Go Back](/)
+* [NotificationTypesEnum](Client_code/NotificationTypesEnum)
 * [PermissionLevelEnum](Client_code/PermissionLevelEnum)
 * [colors](Client_code/colors)
 * [config](Client_code/config)
@@ -7,6 +8,7 @@
 * [localStorage](Client_code/localStorage)
 * [utils](Client_code/utils)
 * actions
+  * [admin](Client_code/actions/admin)
   * [api](Client_code/actions/api)
   * [comments](Client_code/actions/comments)
   * [desktopApp](Client_code/actions/desktopApp)
@@ -15,8 +17,10 @@
   * [eventScreenshots](Client_code/actions/eventScreenshots)
   * [events](Client_code/actions/events)
   * [images](Client_code/actions/images)
+  * [notifications](Client_code/actions/notifications)
   * [user](Client_code/actions/user)
 * actiontypes
+  * [admin](Client_code/actiontypes/admin)
   * [api](Client_code/actiontypes/api)
   * [comments](Client_code/actiontypes/comments)
   * [desktopApp](Client_code/actiontypes/desktopApp)
@@ -25,6 +29,7 @@
   * [eventScreenshots](Client_code/actiontypes/eventScreenshots)
   * [events](Client_code/actiontypes/events)
   * [images](Client_code/actiontypes/images)
+  * [notifications](Client_code/actiontypes/notifications)
   * [user](Client_code/actiontypes/user)
   * [viewOptions](Client_code/actiontypes/viewOptions)
 * api
@@ -38,6 +43,7 @@
   * [bindings](Client_code/ipc/bindings)
   * [middleware](Client_code/ipc/middleware)
 * reducers
+  * [admin](Client_code/reducers/admin)
   * [api](Client_code/reducers/api)
   * [comments](Client_code/reducers/comments)
   * [desktopApp](Client_code/reducers/desktopApp)
@@ -47,4 +53,5 @@
   * [events](Client_code/reducers/events)
   * [images](Client_code/reducers/images)
   * [index](Client_code/reducers/index)
+  * [notifications](Client_code/reducers/notifications)
   * [user](Client_code/reducers/user)

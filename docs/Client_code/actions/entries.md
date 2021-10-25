@@ -71,7 +71,7 @@ Creates an action for marking/logging an entry as read by user.
 
 <a id="postentry"></a>
 
-## postEntry(isAnonymous, content, imageIds, extraQuestion) ⇒ <code>object</code>
+## postEntry(isAnonymous, content, imageIds) ⇒ <code>object</code>
 Creates action for posting a new entry.
 
 **Kind**: global function  
@@ -81,8 +81,7 @@ Creates action for posting a new entry.
 | --- | --- | --- |
 | isAnonymous | <code>boolean</code> | true if posting is anonymous, otherwise false |
 | content | <code>string</code> | content of comment |
-| imageIds | <code>Array.&lt;string&gt;</code> | array of images (by id) to attach |
-| extraQuestion | <code>Array.&lt;string&gt;</code> | array of question to append (prompts) |
+| imageIds | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | array of images (by id) to attach |
 
 <a id="subscribeentries"></a>
 
@@ -94,7 +93,7 @@ Creates action for subscribing to entries.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| entryIds | <code>Array.&lt;string&gt;</code> | array of entryIds to subscribe to |
+| entryIds | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | array of entryIds to subscribe to |
 
 <a id="subscribeentrylist"></a>
 
@@ -119,7 +118,7 @@ Creates action for unsubscribing from entries.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| entryIds | <code>Array.&lt;string&gt;</code> | array of entryIds to unsubscribe from |
+| entryIds | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | array of entryIds to unsubscribe from |
 
 <a id="unsubscribeentrylist"></a>
 

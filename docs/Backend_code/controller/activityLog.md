@@ -1,7 +1,7 @@
 <a id="module95activitylogcontroller"></a>
 
 ## activityLogController
-Controller for analytics.
+Controller for user activity analytics.
 
 <a id="module95activitylogcontroller46logactivity"></a>
 

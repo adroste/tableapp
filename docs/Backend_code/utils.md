@@ -25,11 +25,11 @@ Creates a sessionToken.
 
 <a id="createthumbnailfrombase64image"></a>
 
-## createThumbnailFromBase64Image(base64Image) ⇒ <code>Promise.&lt;string&gt;</code>
+## createThumbnailFromBase64Image(base64Image) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;string&gt;</code>
 Creates a thumbnail (as base64) from a full image (as base64).
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;string&gt;</code> - Resolves to base64 thumbnail  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;string&gt;</code> - Resolves to base64 thumbnail  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -94,6 +94,13 @@ Verifies and decodes sessionToken.
 | --- | --- | --- |
 | sessionToken | <code>string</code> | signed jwt |
 
+<a id="getappversion"></a>
+
+## getAppVersion() ⇒ <code>string</code>
+Returns app version read from environment
+
+**Kind**: global function  
+**Returns**: <code>string</code> - app version  
 <a id="sessiontokenpayload"></a>
 
 ## SessionTokenPayload : <code>object</code>

@@ -6,7 +6,7 @@ Controller for images.
 
 * [imagesController](#module95imagescontroller)
     * _static_
-        * [.getImages(imageIds, [onlyThumbnails])](#module95imagescontroller46getimages) ⇒ <code>Promise.&lt;imagesController~GetImagesResult&gt;</code>
+        * [.getImages(imageIds, [onlyThumbnails])](#module95imagescontroller46getimages) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;imagesController~GetImagesResult&gt;</code>
     * _inner_
         * [~ImageDict](#module95imagescontroller4646imagedict) : <code>object</code>
         * [~ThumbnailDict](#module95imagescontroller4646thumbnaildict) : <code>object</code>
@@ -14,15 +14,15 @@ Controller for images.
 
 <a id="module95imagescontroller46getimages"></a>
 
-### imagesController.getImages(imageIds, [onlyThumbnails]) ⇒ <code>Promise.&lt;imagesController~GetImagesResult&gt;</code>
+### imagesController.getImages(imageIds, [onlyThumbnails]) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;imagesController~GetImagesResult&gt;</code>
 Retrieve image- and/or thumbnail-data from specified images by their ids.
 
 **Kind**: static method of [<code>imagesController</code>](#module95imagescontroller)  
-**Returns**: <code>Promise.&lt;imagesController~GetImagesResult&gt;</code> - resolves to an object containing an imageDict and thumbnailDict property, if onlyThumbnails is set imageDict will be an empty object  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;imagesController~GetImagesResult&gt;</code> - resolves to an object containing an imageDict and thumbnailDict property, if onlyThumbnails is set imageDict will be an empty object  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| imageIds | <code>Array.&lt;ObjectID&gt;</code> |  | array of ids of images to retrieve |
+| imageIds | <code>[ &#x27;Array&#x27; ].&lt;ObjectID&gt;</code> |  | array of ids of images to retrieve |
 | [onlyThumbnails] | <code>boolean</code> | <code>false</code> | indicates if only the thumbnails should be queried |
 
 <a id="module95imagescontroller4646imagedict"></a>

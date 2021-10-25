@@ -5,6 +5,19 @@ Creates action for accepting terms of service.
 
 **Kind**: global function  
 **Returns**: <code>object</code> - action  
+<a id="changeactivenotificationtypes"></a>
+
+## changeActiveNotificationTypes(emailNotifications, inAppNotifications) ⇒ <code>object</code>
+Creates action for changing the active notifications types for authenticated user.
+
+**Kind**: global function  
+**Returns**: <code>object</code> - action  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| emailNotifications | <code>[ &#x27;Array&#x27; ].&lt;NotificationTypesEnum&gt;</code> | array of activated email notification types |
+| inAppNotifications | <code>[ &#x27;Array&#x27; ].&lt;NotificationTypesEnum&gt;</code> | array of activated in-app notification types |
+
 <a id="continuesession"></a>
 
 ## continueSession(sessionToken) ⇒ <code>object</code>
@@ -17,6 +30,13 @@ Creates action for continuing a session.
 | --- | --- | --- |
 | sessionToken | <code>string</code> | sessionToken |
 
+<a id="getactivenotificationtypes"></a>
+
+## getActiveNotificationTypes() ⇒ <code>object</code>
+Creates action for retrieving the active notifications types for authenticated user.
+
+**Kind**: global function  
+**Returns**: <code>object</code> - action  
 <a id="login"></a>
 
 ## login(email, password) ⇒ <code>object</code>

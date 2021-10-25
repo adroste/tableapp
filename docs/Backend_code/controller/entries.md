@@ -10,11 +10,11 @@ Controller for entries.
         * [.changeUserFollow(eventId, entryId, userId, follow)](#module95entriescontroller46changeuserfollow) ⇒ <code>Promise</code>
         * [.changeUserVote(eventId, entryId, userId, vote)](#module95entriescontroller46changeuservote) ⇒ <code>Promise</code>
         * [.deleteEntry(eventId, entryId)](#module95entriescontroller46deleteentry) ⇒ <code>Promise</code>
-        * [.getEntryInfo(eventId, entryId)](#module95entriescontroller46getentryinfo) ⇒ <code>Promise.&lt;EntriesController~EntryInfo&gt;</code>
-        * [.getEntriesInfoRange(eventId, sort, filter, includeScore, limit)](#module95entriescontroller46getentriesinforange) ⇒ <code>Promise.&lt;Array.&lt;EntriesController~EntryInfo&gt;&gt;</code>
-        * [.getEntries(eventId, userId, entryIds)](#module95entriescontroller46getentries) ⇒ <code>Promise.&lt;EntriesController~EntryDict&gt;</code>
-        * [.hasUserBookmarkSetForEntry(eventId, entryId, userId)](#module95entriescontroller46hasuserbookmarksetforentry) ⇒ <code>Promise.&lt;boolean&gt;</code>
-        * [.postEntry(eventId, userId, isAnonymous, content, imageDataArr, extraQuestions)](#module95entriescontroller46postentry) ⇒ <code>Promise.&lt;ObjectID&gt;</code>
+        * [.getEntryInfo(eventId, entryId)](#module95entriescontroller46getentryinfo) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;EntriesController~EntryInfo&gt;</code>
+        * [.getEntriesInfoRange(eventId, sort, filter, includeScore, limit)](#module95entriescontroller46getentriesinforange) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;Array.&lt;EntriesController~EntryInfo&gt;&gt;</code>
+        * [.getEntries(eventId, userId, entryIds)](#module95entriescontroller46getentries) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;EntriesController~EntryDict&gt;</code>
+        * [.hasUserBookmarkSetForEntry(eventId, entryId, userId)](#module95entriescontroller46hasuserbookmarksetforentry) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;boolean&gt;</code>
+        * [.postEntry(eventId, userId, isAnonymous, content, imageDataArr)](#module95entriescontroller46postentry) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;ObjectID&gt;</code>
     * _inner_
         * [~_onEntryUpdated(eventId, entryId)](#module95entriescontroller464695onentryupdated) ℗
         * [~Entry](#module95entriescontroller4646entry) : <code>object</code>
@@ -97,11 +97,11 @@ Mark an entry as deleted.
 
 <a id="module95entriescontroller46getentryinfo"></a>
 
-### entriesController.getEntryInfo(eventId, entryId) ⇒ <code>Promise.&lt;EntriesController~EntryInfo&gt;</code>
+### entriesController.getEntryInfo(eventId, entryId) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;EntriesController~EntryInfo&gt;</code>
 Retrieves entry info containing _id, isDeleted, score & timestamp
 
 **Kind**: static method of [<code>entriesController</code>](#module95entriescontroller)  
-**Returns**: <code>Promise.&lt;EntriesController~EntryInfo&gt;</code> - resolve to object containing entries _id, isDeleted, score & timestamp  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;EntriesController~EntryInfo&gt;</code> - resolve to object containing entries _id, isDeleted, score & timestamp  
 **Throws**:
 
 - <code>Error</code> with message: 'entryId not found' with code NOT_FOUND if supplied entryId (for eventId) does not exist
@@ -114,11 +114,11 @@ Retrieves entry info containing _id, isDeleted, score & timestamp
 
 <a id="module95entriescontroller46getentriesinforange"></a>
 
-### entriesController.getEntriesInfoRange(eventId, sort, filter, includeScore, limit) ⇒ <code>Promise.&lt;Array.&lt;EntriesController~EntryInfo&gt;&gt;</code>
+### entriesController.getEntriesInfoRange(eventId, sort, filter, includeScore, limit) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;Array.&lt;EntriesController~EntryInfo&gt;&gt;</code>
 Retrieves infos for entries in specified range (filter & sort).
 
 **Kind**: static method of [<code>entriesController</code>](#module95entriescontroller)  
-**Returns**: <code>Promise.&lt;Array.&lt;EntriesController~EntryInfo&gt;&gt;</code> - resolves to object array containing entries: _id, timestamp & score (optional)  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;Array.&lt;EntriesController~EntryInfo&gt;&gt;</code> - resolves to object array containing entries: _id, timestamp & score (optional)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -130,28 +130,28 @@ Retrieves infos for entries in specified range (filter & sort).
 
 <a id="module95entriescontroller46getentries"></a>
 
-### entriesController.getEntries(eventId, userId, entryIds) ⇒ <code>Promise.&lt;EntriesController~EntryDict&gt;</code>
+### entriesController.getEntries(eventId, userId, entryIds) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;EntriesController~EntryDict&gt;</code>
 Query entries.
 
 If an entry is deleted (isDeleted == true), its authorId & content props
 will be returned as 'null' and imageIds will be '[]'.
 
 **Kind**: static method of [<code>entriesController</code>](#module95entriescontroller)  
-**Returns**: <code>Promise.&lt;EntriesController~EntryDict&gt;</code> - resolves to dictionary of entries (for specified user)  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;EntriesController~EntryDict&gt;</code> - resolves to dictionary of entries (for specified user)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | eventId | <code>ObjectID</code> | id of event |
 | userId | <code>string</code> | id of user |
-| entryIds | <code>Array.&lt;ObjectID&gt;</code> | array of entry-ids to query |
+| entryIds | <code>[ &#x27;Array&#x27; ].&lt;ObjectID&gt;</code> | array of entry-ids to query |
 
 <a id="module95entriescontroller46hasuserbookmarksetforentry"></a>
 
-### entriesController.hasUserBookmarkSetForEntry(eventId, entryId, userId) ⇒ <code>Promise.&lt;boolean&gt;</code>
+### entriesController.hasUserBookmarkSetForEntry(eventId, entryId, userId) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;boolean&gt;</code>
 Returns whether a user has set a bookmark on a specific entry.
 
 **Kind**: static method of [<code>entriesController</code>](#module95entriescontroller)  
-**Returns**: <code>Promise.&lt;boolean&gt;</code> - true if user bookmark is set  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;boolean&gt;</code> - true if user bookmark is set  
 **Throws**:
 
 - <code>Error</code> with message: 'entryId not found' with code NOT_FOUND if supplied entryId (for eventId) does not exist
@@ -165,11 +165,11 @@ Returns whether a user has set a bookmark on a specific entry.
 
 <a id="module95entriescontroller46postentry"></a>
 
-### entriesController.postEntry(eventId, userId, isAnonymous, content, imageDataArr, extraQuestions) ⇒ <code>Promise.&lt;ObjectID&gt;</code>
+### entriesController.postEntry(eventId, userId, isAnonymous, content, imageDataArr) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;ObjectID&gt;</code>
 Insert new entry into db.
 
 **Kind**: static method of [<code>entriesController</code>](#module95entriescontroller)  
-**Returns**: <code>Promise.&lt;ObjectID&gt;</code> - resolves to ObjectID of inserted entry  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;ObjectID&gt;</code> - resolves to ObjectID of inserted entry  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -177,12 +177,11 @@ Insert new entry into db.
 | userId | <code>string</code> | id of user |
 | isAnonymous | <code>boolean</code> | true if posting is anonymous, otherwise false |
 | content | <code>string</code> | content of entry |
-| imageDataArr | <code>Array.&lt;string&gt;</code> | array of attached images (base64 encoded) |
-| extraQuestions | <code>Array.&lt;string&gt;</code> | array of extra questions to attach (prompts) |
+| imageDataArr | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | array of attached images (base64 encoded) |
 
 <a id="module95entriescontroller464695onentryupdated"></a>
 
-### entriesController~_onEntryUpdated(eventId, entryId) ℗
+### entriesController~\_onEntryUpdated(eventId, entryId) ℗
 Internal method that trigger update handlers.
 
 **Kind**: inner method of [<code>entriesController</code>](#module95entriescontroller)  
@@ -205,10 +204,10 @@ Containing non-general entry infos for a single user.
 | Name | Type | Description |
 | --- | --- | --- |
 | authorId | <code>string</code> &#124; <code>null</code> | user-id of author, null if entry was posted anonymously |
-| commentAttendingUserIds | <code>Array.&lt;string&gt;</code> | list of user-ids that attend discussion (comment-section) |
+| commentAttendingUserIds | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | list of user-ids that attend discussion (comment-section) |
 | commentCount | <code>number</code> | count of comments |
 | content | <code>string</code> &#124; <code>null</code> | text-content of entry |
-| imageIds | <code>Array.&lt;string&gt;</code> | list of (image-)ids of attached images |
+| imageIds | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | list of (image-)ids of attached images |
 | isBookmarked | <code>boolean</code> | indicates if user bookmarked entry |
 | isDeleted | <code>boolean</code> | indicates if entry is deleted |
 | isFollowing | <code>boolean</code> | indicates if user is following entry-updates |
@@ -225,7 +224,7 @@ Dictionary of entries.
 
 dict[key] = value:
 * key := id of entry
-* value := [Entry](Entry)
+* value := [Entry](Entry) | null => null if non-existent
 
 **Kind**: inner typedef of [<code>entriesController</code>](#module95entriescontroller)  
 <a id="module95entriescontroller4646entryinfo"></a>

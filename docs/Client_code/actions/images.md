@@ -23,7 +23,7 @@ Creates action for loading a remote images.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| imageIds | <code>Array.&lt;string&gt;</code> | array of imageIds to load |
+| imageIds | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | array of imageIds to load |
 | onlyThumbnails | <code>boolean</code> | indicates if only the thumbnails should be queried |
 
 <a id="removeimages"></a>
@@ -36,5 +36,5 @@ Creates action for removing images from local store.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| imageIds | <code>Array.&lt;string&gt;</code> | array of imageIds to remove |
+| imageIds | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | array of imageIds to remove |
 

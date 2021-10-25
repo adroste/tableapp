@@ -12,11 +12,11 @@ eventScreenshots-reducer
 
 <a id="getscreenshotids"></a>
 
-## getScreenshotIds(state) ⇒ <code>Array.&lt;string&gt;</code>
+## getScreenshotIds(state) ⇒ <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code>
 Selector to retrieve ids of screenshots from eventScreenshots-state.
 
 **Kind**: global function  
-**Returns**: <code>Array.&lt;string&gt;</code> - list of (image-)ids of screenshots (from event)  
+**Returns**: <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> - list of (image-)ids of screenshots (from event)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -33,5 +33,5 @@ Default values are the initial state.
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| [ids] | <code>Array.&lt;string&gt;</code> | <code>[]</code> | list of (image-)ids of screenshots |
+| [ids] | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | <code>[]</code> | list of (image-)ids of screenshots |
 

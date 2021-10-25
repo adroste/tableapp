@@ -13,16 +13,16 @@ Manages subscriptions for entry-lists.
         * [._eventId](#entrylistsubscription4395eventid) : <code>ObjectID</code> ℗
         * [._userId](#entrylistsubscription4395userid) : <code>string</code> ℗
         * [._onlyBookmarked](#entrylistsubscription4395onlybookmarked) : <code>boolean</code> ℗
-        * [._list](#entrylistsubscription4395list) : <code>Array.&lt;EntriesController~EntryInfo&gt;</code> ℗
+        * [._list](#entrylistsubscription4395list) : <code>[ &#x27;Array&#x27; ].&lt;EntriesController~EntryInfo&gt;</code> ℗
         * [._filter](#entrylistsubscription4395filter) : <code>SearchFilter</code> ℗
         * [._includeScore](#entrylistsubscription4395includescore) : <code>boolean</code> ℗
         * [._sort](#entrylistsubscription4395sort) : <code>object</code> ℗
         * [._sortList()](#entrylistsubscription4395sortlist) ℗
         * [._createLessFilter(list, testKey, compareKeyAcc, initialVal)](#entrylistsubscription4395createlessfilter) ⇒ [<code>SearchFilter</code>](#entrylistsubscription4646searchfilter) ℗
-        * [.getIdList()](#entrylistsubscription43getidlist) ⇒ <code>Array.&lt;ObjectID&gt;</code>
-        * [.getMoreEntries(limit)](#entrylistsubscription43getmoreentries) ⇒ [<code>Promise.&lt;GetMoreEntriesResult&gt;</code>](#entrylistsubscription4646getmoreentriesresult)
+        * [.getIdList()](#entrylistsubscription43getidlist) ⇒ <code>[ &#x27;Array&#x27; ].&lt;ObjectID&gt;</code>
+        * [.getMoreEntries(limit)](#entrylistsubscription43getmoreentries) ⇒ [<code>[ &#x27;Promise&#x27; ].&lt;GetMoreEntriesResult&gt;</code>](#entrylistsubscription4646getmoreentriesresult)
         * [.isIdInList(entryId)](#entrylistsubscription43isidinlist) ⇒ <code>boolean</code>
-        * [.updateEntry(entryInfo)](#entrylistsubscription43updateentry) ⇒ <code>Promise.&lt;boolean&gt;</code>
+        * [.updateEntry(entryInfo)](#entrylistsubscription43updateentry) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;boolean&gt;</code>
     * _inner_
         * [~SearchFilter](#entrylistsubscription4646searchfilter) : <code>object</code>
         * [~GetMoreEntriesResult](#entrylistsubscription4646getmoreentriesresult) : <code>object</code>
@@ -43,42 +43,42 @@ Creates an EntryListSubscription instance.
 
 <a id="entrylistsubscription4395entriescontroller"></a>
 
-### entryListSubscription._entriesController : <code>EntriesController</code> ℗
+### entryListSubscription.\_entriesController : <code>EntriesController</code> ℗
 Instance of EntriesController that is beeing used.
 
 **Kind**: instance property of [<code>EntryListSubscription</code>](#entrylistsubscription)  
 **Access**: private  
 <a id="entrylistsubscription4395type"></a>
 
-### entryListSubscription._type : <code>EntryListTypeEnum</code> ℗
+### entryListSubscription.\_type : <code>EntryListTypeEnum</code> ℗
 Type of list subscription.
 
 **Kind**: instance property of [<code>EntryListSubscription</code>](#entrylistsubscription)  
 **Access**: private  
 <a id="entrylistsubscription4395eventid"></a>
 
-### entryListSubscription._eventId : <code>ObjectID</code> ℗
+### entryListSubscription.\_eventId : <code>ObjectID</code> ℗
 Id of event.
 
 **Kind**: instance property of [<code>EntryListSubscription</code>](#entrylistsubscription)  
 **Access**: private  
 <a id="entrylistsubscription4395userid"></a>
 
-### entryListSubscription._userId : <code>string</code> ℗
+### entryListSubscription.\_userId : <code>string</code> ℗
 Id of user.
 
 **Kind**: instance property of [<code>EntryListSubscription</code>](#entrylistsubscription)  
 **Access**: private  
 <a id="entrylistsubscription4395onlybookmarked"></a>
 
-### entryListSubscription._onlyBookmarked : <code>boolean</code> ℗
+### entryListSubscription.\_onlyBookmarked : <code>boolean</code> ℗
 Indicates if only bookmarked entries should be included in subscription.
 
 **Kind**: instance property of [<code>EntryListSubscription</code>](#entrylistsubscription)  
 **Access**: private  
 <a id="entrylistsubscription4395list"></a>
 
-### entryListSubscription._list : <code>Array.&lt;EntriesController~EntryInfo&gt;</code> ℗
+### entryListSubscription.\_list : <code>[ &#x27;Array&#x27; ].&lt;EntriesController~EntryInfo&gt;</code> ℗
 Internal list of entry infos.
 Entry infos are objects with neccessary properties (e.g. timestamp)
 to perform certain operations regarding list subscriptions.
@@ -87,14 +87,14 @@ to perform certain operations regarding list subscriptions.
 **Access**: private  
 <a id="entrylistsubscription4395filter"></a>
 
-### entryListSubscription._filter : <code>SearchFilter</code> ℗
+### entryListSubscription.\_filter : <code>SearchFilter</code> ℗
 Internal search filter.
 
 **Kind**: instance property of [<code>EntryListSubscription</code>](#entrylistsubscription)  
 **Access**: private  
 <a id="entrylistsubscription4395includescore"></a>
 
-### entryListSubscription._includeScore : <code>boolean</code> ℗
+### entryListSubscription.\_includeScore : <code>boolean</code> ℗
 Indicates if search results from internal search (entry) requests 
 should contain a score property.
 
@@ -102,7 +102,7 @@ should contain a score property.
 **Access**: private  
 <a id="entrylistsubscription4395sort"></a>
 
-### entryListSubscription._sort : <code>object</code> ℗
+### entryListSubscription.\_sort : <code>object</code> ℗
 Object that describes sorting behaviour of entries.
 
 E.g. `{ score: -1, timestamp: -1 }` will sort for score (descending)
@@ -112,14 +112,14 @@ first and timestamp (descending) after.
 **Access**: private  
 <a id="entrylistsubscription4395sortlist"></a>
 
-### entryListSubscription._sortList() ℗
+### entryListSubscription.\_sortList() ℗
 (Re-)sorts internal entry infos list based on list type.
 
 **Kind**: instance method of [<code>EntryListSubscription</code>](#entrylistsubscription)  
 **Access**: private  
 <a id="entrylistsubscription4395createlessfilter"></a>
 
-### entryListSubscription._createLessFilter(list, testKey, compareKeyAcc, initialVal) ⇒ <code>SearchFilter</code> ℗
+### entryListSubscription.\_createLessFilter(list, testKey, compareKeyAcc, initialVal) ⇒ <code>SearchFilter</code> ℗
 Creates a less filter based on testKey and compareKeyAcc.
 
 **Kind**: instance method of [<code>EntryListSubscription</code>](#entrylistsubscription)  
@@ -128,26 +128,26 @@ Creates a less filter based on testKey and compareKeyAcc.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| list | <code>Array.&lt;object&gt;</code> | array of objects to create less filter for |
+| list | <code>[ &#x27;Array&#x27; ].&lt;object&gt;</code> | array of objects to create less filter for |
 | testKey | <code>string</code> | key to test for in objects |
 | compareKeyAcc | <code>string</code> | key to minimize and to compare against (must also be a key in initialVal) |
 | initialVal | <code>object</code> | initial filter to start with |
 
 <a id="entrylistsubscription43getidlist"></a>
 
-### entryListSubscription.getIdList() ⇒ <code>Array.&lt;ObjectID&gt;</code>
+### entryListSubscription.getIdList() ⇒ <code>[ &#x27;Array&#x27; ].&lt;ObjectID&gt;</code>
 Returns list of entry-ids that are subscribed according to list type
 and filter. Order of ids is based on configured sorting.
 
 **Kind**: instance method of [<code>EntryListSubscription</code>](#entrylistsubscription)  
-**Returns**: <code>Array.&lt;ObjectID&gt;</code> - array of entry-ids  
+**Returns**: <code>[ &#x27;Array&#x27; ].&lt;ObjectID&gt;</code> - array of entry-ids  
 <a id="entrylistsubscription43getmoreentries"></a>
 
-### entryListSubscription.getMoreEntries(limit) ⇒ <code>Promise.&lt;GetMoreEntriesResult&gt;</code>
+### entryListSubscription.getMoreEntries(limit) ⇒ [<code> &#x27;Promise&#x27; ].&lt;GetMoreEntriesResult&gt;</code>
 Retrieve next x (:= limit) entries according to the internal search filter.
 
 **Kind**: instance method of [<code>EntryListSubscription</code>](#entrylistsubscription)  
-**Returns**: [<code>Promise.&lt;GetMoreEntriesResult&gt;</code>](#entrylistsubscription4646getmoreentriesresult) - resolves to an object containing addedEntryIds and hasMoreEntriesToLoad  
+**Returns**: [<code>[ &#x27;Promise&#x27; ].&lt;GetMoreEntriesResult&gt;</code>](#entrylistsubscription4646getmoreentriesresult) - resolves to an object containing addedEntryIds and hasMoreEntriesToLoad  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -167,11 +167,11 @@ Checks if entry with specified id is subscribed by this instance.
 
 <a id="entrylistsubscription43updateentry"></a>
 
-### entryListSubscription.updateEntry(entryInfo) ⇒ <code>Promise.&lt;boolean&gt;</code>
+### entryListSubscription.updateEntry(entryInfo) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;boolean&gt;</code>
 Update a single entry by supplied entryInfo.
 
 **Kind**: instance method of [<code>EntryListSubscription</code>](#entrylistsubscription)  
-**Returns**: <code>Promise.&lt;boolean&gt;</code> - true indicates update merged, false update ignored/not relevant for this subscription  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;boolean&gt;</code> - true indicates update merged, false update ignored/not relevant for this subscription  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -189,7 +189,7 @@ Represents a search filter.
 | --- | --- | --- |
 | bookmarkForUser | <code>string</code> &#124; <code>undefined</code> | id of user, only include entries if bookmarked by this user |
 | excludeDeletedEntries | <code>boolean</code> | indicates whether deleted entries should be ignored |
-| excludedEntryIds | <code>Array.&lt;ObjectID&gt;</code> | entries to exclude |
+| excludedEntryIds | <code>[ &#x27;Array&#x27; ].&lt;ObjectID&gt;</code> | entries to exclude |
 | maxScore | <code>number</code> | maximum score to include |
 | maxTimestamp | <code>number</code> | maximum (entry-)timestamp to include |
 | minTimestamp | <code>number</code> | minimum (entry-)timestamp to include |
@@ -204,6 +204,6 @@ Result of getMoreEntries call.
 
 | Name | Type | Description |
 | --- | --- | --- |
-| addedEntryIds | <code>Array.&lt;ObjectID&gt;</code> | array of entry-ids that were found |
+| addedEntryIds | <code>[ &#x27;Array&#x27; ].&lt;ObjectID&gt;</code> | array of entry-ids that were found |
 | hasMoreEntriesToLoad | <code>boolean</code> | indicates if more entries can be received by calling the function again |
 

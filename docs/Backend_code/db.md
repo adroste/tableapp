@@ -27,7 +27,7 @@ Returns current db-instance.
 **Returns**: <code>Db</code> - MongodbClient db instance  
 <a id="module95db464695instance"></a>
 
-### db~_instance : <code>Db</code>
+### db~\_instance : <code>Db</code>
 Mongo database instance.
 
 **Kind**: inner property of [<code>db</code>](#module95db)  

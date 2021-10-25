@@ -1,96 +1,96 @@
 <a id="change95vote95request"></a>
 
-## CHANGE_VOTE_REQUEST
+## CHANGE\_VOTE\_REQUEST
 comments actiontype: change a users vote
 
 **Kind**: global constant  
 <a id="change95vote95success"></a>
 
-## CHANGE_VOTE_SUCCESS
+## CHANGE\_VOTE\_SUCCESS
 comments actiontype: change a users vote
 
 **Kind**: global constant  
 <a id="change95vote95failure"></a>
 
-## CHANGE_VOTE_FAILURE
+## CHANGE\_VOTE\_FAILURE
 comments actiontype: change a users vote
 
 **Kind**: global constant  
 <a id="delete95comment95request"></a>
 
-## DELETE_COMMENT_REQUEST
+## DELETE\_COMMENT\_REQUEST
 comments actiontype: delete a comment
 
 **Kind**: global constant  
 <a id="delete95comment95success"></a>
 
-## DELETE_COMMENT_SUCCESS
+## DELETE\_COMMENT\_SUCCESS
 comments actiontype: delete a comment
 
 **Kind**: global constant  
 <a id="delete95comment95failure"></a>
 
-## DELETE_COMMENT_FAILURE
+## DELETE\_COMMENT\_FAILURE
 comments actiontype: delete a comment
 
 **Kind**: global constant  
 <a id="post95comment95request"></a>
 
-## POST_COMMENT_REQUEST
+## POST\_COMMENT\_REQUEST
 comments actiontype: post a comment
 
 **Kind**: global constant  
 <a id="post95comment95success"></a>
 
-## POST_COMMENT_SUCCESS
+## POST\_COMMENT\_SUCCESS
 comments actiontype: post a comment
 
 **Kind**: global constant  
 <a id="post95comment95failure"></a>
 
-## POST_COMMENT_FAILURE
+## POST\_COMMENT\_FAILURE
 comments actiontype: post a comment
 
 **Kind**: global constant  
 <a id="subscribe95comments95for95entry95request"></a>
 
-## SUBSCRIBE_COMMENTS_FOR_ENTRY_REQUEST
+## SUBSCRIBE\_COMMENTS\_FOR\_ENTRY\_REQUEST
 comments actiontype: subscribe to comments
 
 **Kind**: global constant  
 <a id="subscribe95comments95for95entry95success"></a>
 
-## SUBSCRIBE_COMMENTS_FOR_ENTRY_SUCCESS
+## SUBSCRIBE\_COMMENTS\_FOR\_ENTRY\_SUCCESS
 comments actiontype: subscribe to comments
 
 **Kind**: global constant  
 <a id="subscribe95comments95for95entry95failure"></a>
 
-## SUBSCRIBE_COMMENTS_FOR_ENTRY_FAILURE
+## SUBSCRIBE\_COMMENTS\_FOR\_ENTRY\_FAILURE
 comments actiontype: subscribe to comments
 
 **Kind**: global constant  
 <a id="unsubscribe95comments95for95entry95request"></a>
 
-## UNSUBSCRIBE_COMMENTS_FOR_ENTRY_REQUEST
+## UNSUBSCRIBE\_COMMENTS\_FOR\_ENTRY\_REQUEST
 comments actiontype: unsubscribe from comments
 
 **Kind**: global constant  
 <a id="unsubscribe95comments95for95entry95success"></a>
 
-## UNSUBSCRIBE_COMMENTS_FOR_ENTRY_SUCCESS
+## UNSUBSCRIBE\_COMMENTS\_FOR\_ENTRY\_SUCCESS
 comments actiontype: unsubscribe from comments
 
 **Kind**: global constant  
 <a id="unsubscribe95comments95for95entry95failure"></a>
 
-## UNSUBSCRIBE_COMMENTS_FOR_ENTRY_FAILURE
+## UNSUBSCRIBE\_COMMENTS\_FOR\_ENTRY\_FAILURE
 comments actiontype: unsubscribe from comments
 
 **Kind**: global constant  
 <a id="update95comment95dict"></a>
 
-## UPDATE_COMMENT_DICT
+## UPDATE\_COMMENT\_DICT
 comments actiontype: update of comment-data
 
 **Kind**: global constant  

@@ -37,11 +37,11 @@ Selector to retrieve events role list from eventInfo-state.
 
 <a id="getrolepriority"></a>
 
-## getRolePriority(state) ⇒ <code>Array.&lt;string&gt;</code>
+## getRolePriority(state) ⇒ <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code>
 Selector to retrieve priority of roles as ordered list from eventInfo-state.
 
 **Kind**: global function  
-**Returns**: <code>Array.&lt;string&gt;</code> - list of role-ids ordered by priority  
+**Returns**: <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> - list of role-ids ordered by priority  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -101,7 +101,7 @@ A role object.
 
 <a id="rolelist"></a>
 
-## RoleList : <code>Array.&lt;Role&gt;</code>
+## RoleList : [<code> &#x27;Array&#x27; ].&lt;Role&gt;</code>
 List of roles (see [Role](#role)) ordered by priority.
 
 **Kind**: global typedef  
@@ -141,7 +141,6 @@ Default values are the initial state.
 
 | Name | Type | Default |
 | --- | --- | --- |
-| [promptGroup] | <code>number</code> | <code>0</code> | 
 | [roleList] | [<code>RoleList</code>](#rolelist) | <code>[]</code> | 
 | [userDict] | [<code>UserDict</code>](#userdict) | <code>{}</code> | 
 

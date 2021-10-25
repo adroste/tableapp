@@ -4,6 +4,7 @@
 root-reducer
 
 combines the following reducers into a single one:
+* admin
 * api
 * comments
 * desktopApp

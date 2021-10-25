@@ -7,12 +7,13 @@ Controller for user-data.
 * [userController](#module95usercontroller)
     * _static_
         * [.acceptTos(userId)](#module95usercontroller46accepttos) ⇒ <code>Promise</code>
-        * [.continueSession(sessionToken)](#module95usercontroller46continuesession) ⇒ <code>Promise.&lt;UserController~LoginData&gt;</code>
-        * [.login(email, password)](#module95usercontroller46login) ⇒ <code>Promise.&lt;UserController~LoginData&gt;</code>
+        * [.changeActiveNotificationTypes(userId, emailNotifications, inAppNotifications)](#module95usercontroller46changeactivenotificationtypes) ⇒ <code>Promise</code>
+        * [.continueSession(sessionToken)](#module95usercontroller46continuesession) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;UserController~LoginData&gt;</code>
+        * [.getActiveNotificationTypes(userId)](#module95usercontroller46getactivenotificationtypes) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;object&gt;</code>
+        * [.login(email, password)](#module95usercontroller46login) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;UserController~LoginData&gt;</code>
         * [.saveLastActiveEventId(userId, eventId)](#module95usercontroller46savelastactiveeventid) ⇒ <code>Promise</code>
-        * [.saveSessionInfos(userId, fromTimestamp, toTimestamp, sessionToken, [ip], [userAgent])](#module95usercontroller46savesessioninfos) ⇒ <code>Promise</code>
     * _inner_
-        * [~_createLoginData(dn, sessionToken)](#module95usercontroller464695createlogindata) ⇒ <code>Promise.&lt;UserController~LoginData&gt;</code> ℗
+        * [~_createLoginData(dn, sessionToken)](#module95usercontroller464695createlogindata) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;UserController~LoginData&gt;</code> ℗
         * [~LoginData](#module95usercontroller4646logindata) : <code>object</code>
 
 <a id="module95usercontroller46accepttos"></a>
@@ -27,13 +28,27 @@ Sets hasAcceptedTos to true for a user.
 | --- | --- | --- |
 | userId | <code>string</code> | id of user |
 
+<a id="module95usercontroller46changeactivenotificationtypes"></a>
+
+### userController.changeActiveNotificationTypes(userId, emailNotifications, inAppNotifications) ⇒ <code>Promise</code>
+Changes the activated email/in-app notifications for a user.
+
+**Kind**: static method of [<code>userController</code>](#module95usercontroller)  
+**Returns**: <code>Promise</code> - indicates success  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| userId | <code>string</code> | id of user |
+| emailNotifications | <code>[ &#x27;Array&#x27; ].&lt;NotificationTypesEnum&gt;</code> | array of activated email notification types |
+| inAppNotifications | <code>[ &#x27;Array&#x27; ].&lt;NotificationTypesEnum&gt;</code> | array of activated in-app notification types |
+
 <a id="module95usercontroller46continuesession"></a>
 
-### userController.continueSession(sessionToken) ⇒ <code>Promise.&lt;UserController~LoginData&gt;</code>
+### userController.continueSession(sessionToken) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;UserController~LoginData&gt;</code>
 Continue session with supplied sessionToken.
 
 **Kind**: static method of [<code>userController</code>](#module95usercontroller)  
-**Returns**: <code>Promise.&lt;UserController~LoginData&gt;</code> - resolve to login data object (id, name, sessionToken)  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;UserController~LoginData&gt;</code> - resolve to login data object (id, name, sessionToken)  
 **Throws**:
 
 - <code>Error</code> if supplied sessionToken is not valid/expired
@@ -43,15 +58,27 @@ Continue session with supplied sessionToken.
 | --- | --- | --- |
 | sessionToken | <code>string</code> | valid sessionToken |
 
+<a id="module95usercontroller46getactivenotificationtypes"></a>
+
+### userController.getActiveNotificationTypes(userId) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;object&gt;</code>
+Retrieves activated notification types for user.
+
+**Kind**: static method of [<code>userController</code>](#module95usercontroller)  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;object&gt;</code> - resolves to object containing emailNotifications and inAppNotifications  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| userId | <code>string</code> | id of user |
+
 <a id="module95usercontroller46login"></a>
 
-### userController.login(email, password) ⇒ <code>Promise.&lt;UserController~LoginData&gt;</code>
+### userController.login(email, password) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;UserController~LoginData&gt;</code>
 Login user by email and password.
 
 HINT: if app is not in production mode, using 'debug' as password always grants access
 
 **Kind**: static method of [<code>userController</code>](#module95usercontroller)  
-**Returns**: <code>Promise.&lt;UserController~LoginData&gt;</code> - resolves to login data object (id, name, sessionToken)  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;UserController~LoginData&gt;</code> - resolves to login data object (id, name, sessionToken)  
 **Throws**:
 
 - <code>Error</code> with message: 'email not found' and code NOT_FOUND if supplied email could not be found
@@ -76,36 +103,19 @@ Sets lastActiveEventId for a user.
 | userId | <code>string</code> | id of user |
 | eventId | <code>ObjectID</code> | id of event to set as lastActiveEventId |
 
-<a id="module95usercontroller46savesessioninfos"></a>
-
-### userController.saveSessionInfos(userId, fromTimestamp, toTimestamp, sessionToken, [ip], [userAgent]) ⇒ <code>Promise</code>
-Saves sessionInfo for a user. Used for tracking and analysis.
-
-**Kind**: static method of [<code>userController</code>](#module95usercontroller)  
-**Returns**: <code>Promise</code> - indicates success  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| userId | <code>string</code> | id of user |
-| fromTimestamp | <code>number</code> | login/auth timestamp |
-| toTimestamp | <code>number</code> | logout/disconnect timestamp |
-| sessionToken | <code>string</code> | used sessionToken |
-| [ip] | <code>string</code> | ip-address |
-| [userAgent] | <code>string</code> | userAgent of users browser |
-
 <a id="module95usercontroller464695createlogindata"></a>
 
-### userController~_createLoginData(dn, sessionToken) ⇒ <code>Promise.&lt;UserController~LoginData&gt;</code> ℗
+### userController~\_createLoginData(dn, sessionToken) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;UserController~LoginData&gt;</code> ℗
 Creates login data object.
 
 **Kind**: inner method of [<code>userController</code>](#module95usercontroller)  
-**Returns**: <code>Promise.&lt;UserController~LoginData&gt;</code> - resolves to login data object  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;UserController~LoginData&gt;</code> - resolves to login data object  
 **Access**: private  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | dn | <code>string</code> | DN of user |
-| sessionToken | <code>Promise.&lt;string&gt;</code> | resolves to sessionToken (jwt) |
+| sessionToken | <code>[ &#x27;Promise&#x27; ].&lt;string&gt;</code> | resolves to sessionToken (jwt) |
 
 <a id="module95usercontroller4646logindata"></a>
 
@@ -117,9 +127,10 @@ Login data object.
 
 | Name | Type | Description |
 | --- | --- | --- |
-| activeEventId | <code>ObjectID</code> &#124; <code>null</code> | id of active (or last active) event, null if no event is active |
+| extSurveys | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | // extra-code for surveys |
 | hasAcceptedTos | <code>boolean</code> | indicates if user accepted the terms of service |
 | id | <code>string</code> | id of user |
+| lastActiveEventId | <code>ObjectID</code> &#124; <code>null</code> | id of last active event, null if no event is active |
 | name | <code>string</code> | name of user |
 | sessionToken | <code>string</code> | sessionToken (jwt) |
 

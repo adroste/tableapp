@@ -46,5 +46,5 @@ Default values are the initial state.
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | [connectionState] | <code>ApiConnectionStateEnum</code> | <code>ApiConnectionStateEnum.DISCONNECTED</code> | indicates connection state to api (backend) |
-| [lockedActionKeys] | <code>Array.&lt;string&gt;</code> | <code>[]</code> | keys of api-actions that are currently pending / awaiting an answer that should not be executed twice |
+| [lockedActionKeys] | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | <code>[]</code> | keys of api-actions that are currently pending / awaiting an answer that should not be executed twice |
 

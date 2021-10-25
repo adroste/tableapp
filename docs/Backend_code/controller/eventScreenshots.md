@@ -7,7 +7,7 @@ Controller for user-data.
 * [eventScreenshotscontroller](#module95eventscreenshotscontroller)
     * _static_
         * [.addImageForEvent(eventId, imageData)](#module95eventscreenshotscontroller46addimageforevent) ⇒ <code>Promise</code>
-        * [.getScreenshotIdsForEvent(eventId)](#module95eventscreenshotscontroller46getscreenshotidsforevent) ⇒ <code>Promise.&lt;Array.&lt;ObjectID&gt;&gt;</code>
+        * [.getScreenshotIdsForEvent(eventId)](#module95eventscreenshotscontroller46getscreenshotidsforevent) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;Array.&lt;ObjectID&gt;&gt;</code>
     * _inner_
         * [~_onEventScreenshotsUpdated(eventId)](#module95eventscreenshotscontroller464695oneventscreenshotsupdated) ℗
 
@@ -27,11 +27,11 @@ Thumbnails are generated automagically.
 
 <a id="module95eventscreenshotscontroller46getscreenshotidsforevent"></a>
 
-### eventScreenshotscontroller.getScreenshotIdsForEvent(eventId) ⇒ <code>Promise.&lt;Array.&lt;ObjectID&gt;&gt;</code>
+### eventScreenshotscontroller.getScreenshotIdsForEvent(eventId) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;Array.&lt;ObjectID&gt;&gt;</code>
 Retrieve (image-)ids of screenshots for a specified event.
 
 **Kind**: static method of [<code>eventScreenshotscontroller</code>](#module95eventscreenshotscontroller)  
-**Returns**: <code>Promise.&lt;Array.&lt;ObjectID&gt;&gt;</code> - resolves to array of image-ids  
+**Returns**: <code>[ &#x27;Promise&#x27; ].&lt;Array.&lt;ObjectID&gt;&gt;</code> - resolves to array of image-ids  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -39,7 +39,7 @@ Retrieve (image-)ids of screenshots for a specified event.
 
 <a id="module95eventscreenshotscontroller464695oneventscreenshotsupdated"></a>
 
-### eventScreenshotscontroller~_onEventScreenshotsUpdated(eventId) ℗
+### eventScreenshotscontroller~\_onEventScreenshotsUpdated(eventId) ℗
 Internal method that triggers update handlers.
 
 **Kind**: inner method of [<code>eventScreenshotscontroller</code>](#module95eventscreenshotscontroller)  

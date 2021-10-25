@@ -11,10 +11,12 @@ and distributes updates among connected clients.
         * [.unregisterClient(client)](#module95clientbroker46unregisterclient)
         * [.handleCommentUpdated(eventId, entryId, commentId, affectsEntryMetadata)](#module95clientbroker46handlecommentupdated) ⇒ <code>Promise</code>
         * [.handleEntryUpdated(eventId, entryId)](#module95clientbroker46handleentryupdated) ⇒ <code>Promise</code>
+        * [.handleEventUpdated(eventId)](#module95clientbroker46handleeventupdated) ⇒ <code>Promise</code>
+        * [.handleEventRoleListUpdated(eventId)](#module95clientbroker46handleeventrolelistupdated) ⇒ <code>Promise</code>
         * [.handleEventUsersUpdated(eventId, userIds)](#module95clientbroker46handleeventusersupdated) ⇒ <code>Promise</code>
         * [.handleEventScreenshotsUpdated(eventId)](#module95clientbroker46handleeventscreenshotsupdated) ⇒ <code>Promise</code>
     * _inner_
-        * [~_clients](#module95clientbroker464695clients) : <code>Array.&lt;Client&gt;</code> ℗
+        * [~_clients](#module95clientbroker464695clients) : <code>[ &#x27;Array&#x27; ].&lt;Client&gt;</code> ℗
 
 <a id="module95clientbroker46handleconnection"></a>
 
@@ -67,6 +69,30 @@ Eventhandler for updated entry data.
 | eventId | <code>ObjectID</code> | id of event of updated entry |
 | entryId | <code>ObjectID</code> | id of entry which has been updated |
 
+<a id="module95clientbroker46handleeventupdated"></a>
+
+### clientBroker.handleEventUpdated(eventId) ⇒ <code>Promise</code>
+Eventhandler for updated event-data.
+
+**Kind**: static method of [<code>clientBroker</code>](#module95clientbroker)  
+**Returns**: <code>Promise</code> - indicates success  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| eventId | <code>ObjectID</code> | id of event which users have been updated |
+
+<a id="module95clientbroker46handleeventrolelistupdated"></a>
+
+### clientBroker.handleEventRoleListUpdated(eventId) ⇒ <code>Promise</code>
+Eventhandler for updated role list (of event).
+
+**Kind**: static method of [<code>clientBroker</code>](#module95clientbroker)  
+**Returns**: <code>Promise</code> - indicates success  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| eventId | <code>ObjectID</code> | id of event which users have been updated |
+
 <a id="module95clientbroker46handleeventusersupdated"></a>
 
 ### clientBroker.handleEventUsersUpdated(eventId, userIds) ⇒ <code>Promise</code>
@@ -78,7 +104,7 @@ Eventhandler for updated user data (of event).
 | Param | Type | Description |
 | --- | --- | --- |
 | eventId | <code>ObjectID</code> | id of event which users have been updated |
-| userIds | <code>Array.&lt;string&gt;</code> | array of updated/affected userIds |
+| userIds | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | array of updated/affected userIds |
 
 <a id="module95clientbroker46handleeventscreenshotsupdated"></a>
 
@@ -94,7 +120,7 @@ Eventhandler for updated screenshot data (of event).
 
 <a id="module95clientbroker464695clients"></a>
 
-### clientBroker~_clients : <code>Array.&lt;Client&gt;</code> ℗
+### clientBroker~\_clients : <code>[ &#x27;Array&#x27; ].&lt;Client&gt;</code> ℗
 Array of managed/connected client instances.
 
 **Kind**: inner property of [<code>clientBroker</code>](#module95clientbroker)  

@@ -1,15 +1,3 @@
-<a id="updatepromptgroup"></a>
-
-## updatePromptGroup(group) ⇒ <code>object</code>
-Creates action for updating the prompt-group of the active event.
-
-**Kind**: global function  
-**Returns**: <code>object</code> - action  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| group | <code>number</code> | prompt-group |
-
 <a id="updaterolelist"></a>
 
 ## updateRoleList(roleList) ⇒ <code>object</code>

@@ -1,6 +1,6 @@
 <a id="set95sorting"></a>
 
-## SET_SORTING
+## SET\_SORTING
 **Kind**: global constant  
 **Todo**
 

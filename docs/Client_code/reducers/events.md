@@ -34,6 +34,18 @@ Selector to get state whether event switch is pending from events-state.
 | --- | --- | --- |
 | state | [<code>EventsState</code>](#eventsstate) | events-state |
 
+<a id="getswitchactiveeventerror"></a>
+
+## getSwitchActiveEventError(state) ⇒ <code>Error</code> &#124; <code>string</code> &#124; <code>null</code>
+Selector to get last error of swtich-active-event action from events-state.
+
+**Kind**: global function  
+**Returns**: <code>Error</code> &#124; <code>string</code> &#124; <code>null</code> - last error  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| state | [<code>EventsState</code>](#eventsstate) | events-state |
+
 <a id="getactiveeventid"></a>
 
 ## getActiveEventId(state) ⇒ <code>string</code> &#124; <code>null</code>
@@ -81,6 +93,19 @@ Selector to retrieve dictionary of events where user has at least joined from ev
 | Param | Type | Description |
 | --- | --- | --- |
 | state | [<code>EventsState</code>](#eventsstate) | events-state |
+
+<a id="geteventname"></a>
+
+## getEventName(state, eventId) ⇒ <code>string</code> &#124; <code>null</code>
+Selector to retrieve a name/title of a specific event from events-state.
+
+**Kind**: global function  
+**Returns**: <code>string</code> &#124; <code>null</code> - name/title of event  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| state | [<code>EventsState</code>](#eventsstate) | events-state |
+| eventId | <code>string</code> | id of event |
 
 <a id="getevent"></a>
 

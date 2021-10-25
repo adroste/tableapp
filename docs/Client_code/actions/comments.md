@@ -39,7 +39,7 @@ Creates action for posting a new comment.
 | parentId | <code>string</code> &#124; <code>null</code> | id of parent-comment. '0' or null for toplevel |
 | isAnonymous | <code>boolean</code> | true if posting is anonymous, otherwise false |
 | content | <code>string</code> | content of comment |
-| imageIds | <code>Array.&lt;string&gt;</code> | array of images (by id) to attach |
+| imageIds | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | array of images (by id) to attach |
 
 <a id="subscribecommentsforentry"></a>
 

@@ -26,11 +26,11 @@ entries-reducer
 
 <a id="getentry"></a>
 
-## getEntry(state, entryId) ⇒ <code>Entry</code> &#124; <code>null</code>
+## getEntry(state, entryId) ⇒ <code>Entry</code> &#124; <code>null</code> &#124; <code>undefined</code>
 Selector to select an entry by its id from entries-state.
 
 **Kind**: global function  
-**Returns**: [<code>Entry</code>](#entry) &#124; <code>null</code> - entry with specified id  
+**Returns**: [<code>Entry</code>](#entry) &#124; <code>null</code> &#124; <code>undefined</code> - entry with specified id, undefined if not queried, null if non-existent  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -51,11 +51,11 @@ Selector to retrieve whole entry dictionary from entries-state.
 
 <a id="getidlist"></a>
 
-## getIdList(state) ⇒ <code>Array.&lt;string&gt;</code>
+## getIdList(state) ⇒ <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code>
 Selector to select list of entry-ids from entries-state.
 
 **Kind**: global function  
-**Returns**: <code>Array.&lt;string&gt;</code> - list of entry-ids ordered/filtered according to subscribed list type  
+**Returns**: <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> - list of entry-ids ordered/filtered according to subscribed list type  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -120,10 +120,10 @@ An entry object.
 | Name | Type | Description |
 | --- | --- | --- |
 | authorId | <code>string</code> &#124; <code>null</code> | user-id of author, null if entry was posted anonymously |
-| commentAttendingUserIds | <code>Array.&lt;string&gt;</code> | list of user-ids that attend discussion (comment-section) |
+| commentAttendingUserIds | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | list of user-ids that attend discussion (comment-section) |
 | commentCount | <code>number</code> | count of comments |
 | content | <code>string</code> &#124; <code>null</code> | text-content of entry |
-| imageIds | <code>Array.&lt;string&gt;</code> | list of (image-)ids of attached images |
+| imageIds | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | list of (image-)ids of attached images |
 | isBookmarked | <code>boolean</code> | indicates if user bookmarked entry |
 | isDeleted | <code>boolean</code> | indicates if entry is deleted |
 | isFollowing | <code>boolean</code> | indicates if user is following entry-updates |
@@ -140,7 +140,7 @@ Dictionary of entries.
 
 dict[key] = value:
 * key := id of entry
-* value := [Entry](#entry)
+* value := [Entry](#entry) | null => null if non-existent
 
 **Kind**: global typedef  
 <a id="entriesstate"></a>
@@ -154,8 +154,8 @@ Default values are the initial state.
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| [entryDict] | [<code>EntryDict</code>](#entrydict) | <code>{}</code> | dictionary of entries |
-| [idList] | <code>Array.&lt;string&gt;</code> | <code>[]</code> | list of entry-ids ordered/filtered according to subscribed list type |
+| [entryDict] | [<code>EntryDict</code>](#entrydict) | <code>{}</code> | dictionary of entries (HINT: not queried id: undefined, non-existent id: null) |
+| [idList] | <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code> | <code>[]</code> | list of entry-ids ordered/filtered according to subscribed list type |
 | [listOnlyBookmarked] | <code>boolean</code> | <code>false</code> | indicates if only bookmarked entries should be listed (filter for idList) |
 | [listSubcribed] | <code>boolean</code> | <code>false</code> | indicates if list subscription is active |
 | [listType] | [<code>EntryListTypeEnum</code>](#entrylisttypeenum) | <code>EntryListTypeEnum.RECENT</code> | subscribed/configured list type |
