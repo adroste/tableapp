@@ -7,6 +7,7 @@ import { config } from '../config';
 import { getConnectionState } from '../reducers/api';
 import { getSessionToken } from '../reducers/user';
 import io from 'socket.io-client';
+import { pathJoin } from '../utils';
 import { setupListeners } from './redux/bindings';
 
 /**
@@ -26,7 +27,20 @@ export class ApiConnection {
         this._url = url;
         this._dispatch = dispatch;
         this._getState = getState;
-        this._socket = io(url);
+
+        const urlRegex = /^(https|http):\/\/(.+?)($|\/.*)$/;
+        const match = urlRegex.exec(url);
+        if (!match)
+            throw new Error("invalid url supplied to ApiConnection: " + url.toString());
+
+        const secure = match[1] === 'https';
+        const ip = match[1] + "://" + match[2];
+        const path = match[3] || '/api/'; //pathJoin(match[3] || '/', 'socket.io/');
+
+        this._socket = io(ip, {
+            path,
+            secure,
+        });
         // following line causes dispatch of ApiConnectionState: TEMPORARILY_DISCONNECTED
         // followed by ApiConnectionState: DISCONNECTED (after API_DISCONNECT_TIMEOUT)
         // in order to provide first (initial) connect attempt with a timeout

@@ -34,6 +34,7 @@ console.log(`Starting TABLE Backend - Version: ${utils.getAppVersion()}`);
 
     // init webserver after db connected & checked
     const io = require('socket.io')(4898, {
+        path: '/api/',
         cors: {
             origin: true, // reflects origin
             methods: ['GET'],
