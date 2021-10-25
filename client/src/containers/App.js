@@ -102,7 +102,7 @@ class App extends React.Component {
     _readNotification = () => {
         const params = new URLSearchParams(this.props.location.search);
         const nId = params.get('nId');
-        if (nId === undefined || this._lastNId === nId)
+        if (!nId || this._lastNId === nId)
             return;
         this._lastNId = nId;
         this.props.notificationsActions.readNotification(nId, false);
