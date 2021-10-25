@@ -2,6 +2,7 @@
 * [Project Organization](project-organization.md)
 * [Deployment](deployment.md)
 * [Configuration](configuration.md)
+* [Backup / Clean](backup-clean.md)
 * [Database Design](database-design.md)
 * [Development](development.md)
 * [Known Bugs](known-bugs.md)
