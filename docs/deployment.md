@@ -23,7 +23,13 @@ Usage:
 2. Open the file and edit all the necessary configuration values (e.g. your domain). See: [Configuration](configuration.md). 
 3. Execute `docker-compose up -d`.
 
-Stopping: `docker-compose down`
+#### Stop the stack
+
+You can stop everything with: `docker-compose down`.
+
+#### Update
+
+To update the images you must stop everything with `docker-compose down`, then `docker-compose pull` and restart everything again with `docker-compose up -d`.
 
 ### nginx-proxy
 
