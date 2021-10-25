@@ -1,13 +1,15 @@
-import React from 'react';
-import debounce from 'lodash/debounce';
-import { connect } from 'react-redux';
-import { Search } from 'semantic-ui-react';
-import { getUserDict } from '../reducers/eventInfo';
+import { Icon, Message, Search } from 'semantic-ui-react';
 
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+import debounce from 'lodash/debounce';
+import { getUserDict } from '../reducers/eventInfo';
 
 class SearchPerson extends React.Component {
     static get propTypes() {
         return {
+            onResultSelect: PropTypes.func.isRequired,
         };
     };
 
@@ -29,13 +31,15 @@ class SearchPerson extends React.Component {
 
     _handleResultSelect = (e, { result }) => {
         this.setState({
-            value: result.title,
+            value: '',
         });
+        if (this.props.onResultSelect)
+            this.props.onResultSelect(e, result.id);
     };
 
 
     _handleSearchChange = (e, { value }) => {
-        this.setState({ 
+        this.setState({
             isLoading: true,
             value,
         });
@@ -46,11 +50,12 @@ class SearchPerson extends React.Component {
     _performSearch = debounce((value) => {
         let results = [];
         if (value) {
-            const {userDict} = this.props;
-            results = Object.keys(userDict).reduce((acc, cur) => {
-                const curUser = userDict[cur];
+            const { userDict } = this.props;
+            results = Object.keys(userDict).reduce((acc, userId) => {
+                const curUser = userDict[userId];
                 if (curUser.name.indexOf(value) !== -1 || curUser.email.indexOf(value) !== -1)
                     acc.push({
+                        id: userId,
                         title: curUser.name,
                         description: curUser.email,
                     });
@@ -66,20 +71,29 @@ class SearchPerson extends React.Component {
 
 
     render() {
-        const {className} = this.props;
-        const {isLoading, results, value} = this.state;
+        const { className } = this.props;
+        const { isLoading, results, value } = this.state;
 
         return (
-            <Search
-                className={className}
-                loading={isLoading}
-                onResultSelect={this._handleResultSelect}
-                onSearchChange={this._handleSearchChange}
-                results={results}
-                value={value}
-                placeholder="Person suchen..."
-                fluid
-            />
+            <>
+                <Search
+                    className={className}
+                    loading={isLoading}
+                    onResultSelect={this._handleResultSelect}
+                    onSearchChange={this._handleSearchChange}
+                    results={results}
+                    value={value}
+                    placeholder="Person suchen..."
+                    fluid
+                />
+                <Message 
+                    info 
+                    size="tiny"
+                >
+                    <Icon name="info" size="small"/>
+                    Es können nur Personen gesucht werden, die der Veranstaltung bereits beigetreten sind.
+                </Message>
+            </>
         );
     }
 }
@@ -94,7 +108,6 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // TODO
     };
 }
 

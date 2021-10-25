@@ -1,13 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { Header, Button, List, Form, Divider, Segment } from 'semantic-ui-react';
-import { SearchPerson } from './SearchPerson';
-import { RoleLabel } from './RoleLabel';
-import { PermissionLevelEnum } from '../PermissionLevelEnum';
-import { getUserDict, getRoleList } from '../reducers/eventInfo';
+import { Button, Divider, Form, Header, List, Segment } from 'semantic-ui-react';
+import { getRoleList, getUserDict } from '../reducers/eventInfo';
 
+import { ManageUserRoleModal } from './ManageUserRoleModal';
+import { PermissionLevelEnum } from '../PermissionLevelEnum';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { RoleLabel } from './RoleLabel';
+import { SearchPerson } from './SearchPerson';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 const ControlsWrapper = styled.div`
     display: flex;
@@ -56,7 +57,28 @@ class ManageRolesForm extends React.Component {
     }
 
 
-    renderListItems = () => {
+    _handleEditUserClick = userId => e => {
+        this.setState({
+            editId: userId,
+        });
+    };
+
+
+    _handleSearchResultSelect = (e, userId) => {
+        this.setState({
+            editId: userId,
+        });
+    };
+
+
+    _handleModalClose = () => {
+        this.setState({
+            editId: '',
+        });
+    };
+
+
+    _renderListItems = () => {
         // TODO move following part outside of render to improve rerender performance
         const {userDict, roleList} = this.props;
         const roleDict = roleList.reduce((acc, cur) => {
@@ -99,13 +121,13 @@ class ManageRolesForm extends React.Component {
             { users: others, text: "Andere" },
         ]
 
-        return view.map((cur) => {
+        return view.map((cur, i) => {
             return [
-                <Divider horizontal content={cur.text}/>,     
+                <Divider horizontal content={cur.text} key={`divider_${i}`}/>,     
                 ...cur.users.map((userId) => {
                     const user = userDict[userId];
                     return (
-                        <List.Item>
+                        <List.Item key={userId}>
                             <List.Content>
                                 <NameDiv>
                                     {user.name}
@@ -119,6 +141,7 @@ class ManageRolesForm extends React.Component {
                                 <Button
                                     icon="edit"
                                     size="mini"
+                                    onClick={this._handleEditUserClick(userId)}
                                 />
                                 </ControlsWrapper>
                             </List.Content>
@@ -128,6 +151,19 @@ class ManageRolesForm extends React.Component {
             ]
         });
     };
+
+    _renderModal() {
+        const { editId } = this.state;
+        if (!editId)
+            return '';
+
+        return (
+            <ManageUserRoleModal
+                userId={editId}
+                onClose={this._handleModalClose}
+            />
+        );
+    }
 
 
     render() {
@@ -141,13 +177,16 @@ class ManageRolesForm extends React.Component {
                     />
                 </Form.Field>
                 <Form.Field>
-                    <SearchPerson/>
+                    <SearchPerson
+                        onResultSelect={this._handleSearchResultSelect}
+                    />
                 </Form.Field>
                 <Form.Field>
                     <List>
-                        {this.renderListItems()}              
+                        {this._renderListItems()}              
                     </List>
                 </Form.Field>
+                {this._renderModal()}
             </Form>
         );
     }

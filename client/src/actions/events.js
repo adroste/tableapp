@@ -43,6 +43,28 @@ export function changeEventName(eventId, newName) {
 
 
 /**
+ * Creates action for changing an events roleList.
+ * @function
+ * @param {string} eventId id of event
+ * @param {string} userId id of user subject to change
+ * @param {PermissionLevelEnum} permissionLevel new permissionLevel for user
+ * @param {(string|null)} roleId id of new role for user. null or '' removes current rule
+ * @returns {object} action
+ */
+ export function changeUserPermissionLevelAndRole(eventId, userId, permissionLevel, roleId) {
+    return ({
+        type: 'apiCall',
+        apiCall: { 
+            types: [eventsActionTypes.CHANGE_USER_PERMISSION_LEVEL_AND_ROLE_REQUEST,
+                eventsActionTypes.CHANGE_USER_PERMISSION_LEVEL_AND_ROLE_SUCCESS,
+                eventsActionTypes.CHANGE_USER_PERMISSION_LEVEL_AND_ROLE_FAILURE],
+            call: (api) => api.request('events/changeUserPermissionLevelAndRole', { eventId, userId, permissionLevel, roleId })
+        },
+    });
+}
+
+
+/**
  * Creates action for subscribing to full EventDict (containing all events).
  * @function
  * @returns {object} action

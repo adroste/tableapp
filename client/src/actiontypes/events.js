@@ -5,12 +5,19 @@ export const CHANGE_EVENT_NAME_SUCCESS = 'events/CHANGE_EVENT_NAME_SUCCESS';
 /** events actiontype: change an events title */
 export const CHANGE_EVENT_NAME_FAILURE = 'events/CHANGE_EVENT_NAME_FAILURE';
 
-/** events actiontype: change an events RoleList */
+/** events actiontype: change a events RoleList */
 export const CHANGE_EVENT_ROLE_LIST_REQUEST = 'events/CHANGE_EVENT_ROLE_LIST_REQUEST';
-/** events actiontype: change an events RoleList */
+/** events actiontype: change a events RoleList */
 export const CHANGE_EVENT_ROLE_LIST_SUCCESS = 'events/CHANGE_EVENT_ROLE_LIST_SUCCESS';
-/** events actiontype: change an events RoleList */
+/** events actiontype: change a events RoleList */
 export const CHANGE_EVENT_ROLE_LIST_FAILURE = 'events/CHANGE_EVENT_ROLE_LIST_FAILURE';
+
+/** events actiontype: change a users permissions and role */
+export const CHANGE_USER_PERMISSION_LEVEL_AND_ROLE_REQUEST = 'events/CHANGE_USER_PERMISSION_LEVEL_AND_ROLE_REQUEST';
+/** events actiontype: change a users permissions and role */
+export const CHANGE_USER_PERMISSION_LEVEL_AND_ROLE_SUCCESS = 'events/CHANGE_USER_PERMISSION_LEVEL_AND_ROLE_SUCCESS';
+/** events actiontype: change a users permissions and role */
+export const CHANGE_USER_PERMISSION_LEVEL_AND_ROLE_FAILURE = 'events/CHANGE_USER_PERMISSION_LEVEL_AND_ROLE_FAILURE';
 
 /** events actiontype: subscribe to full event-dict */
 export const SUBSCRIBE_FULL_EVENT_DICT_REQUEST = 'events/SUBSCRIBE_FULL_EVENT_DICT_REQUEST';
