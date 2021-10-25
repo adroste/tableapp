@@ -146,6 +146,33 @@ exports.handleEventUpdated = handleEventUpdated;
 
 
 /**
+ * 
+ * Eventhandler for updated role list (of event).
+ * @static
+ * @async
+ * @function
+ * @param {ObjectID} eventId id of event which users have been updated
+ * @returns {Promise} indicates success
+ */
+ async function handleEventRoleListUpdated(eventId) {
+    try {
+        _clients.forEach(async (client) => {
+            try {
+                const isActiveEvent = eventId.equals(client.activeEventId);
+                if (isActiveEvent)
+                    await client.updateRoleList(eventId);
+            } catch (err) {
+                console.error(err);
+            }
+        });
+    } catch (err) {
+        console.error(err);
+    }
+}
+exports.handleEventRoleListUpdated = handleEventRoleListUpdated;
+
+
+/**
  * Eventhandler for updated user data (of event).
  * @static
  * @async

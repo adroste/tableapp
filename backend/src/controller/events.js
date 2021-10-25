@@ -95,6 +95,17 @@ function _onEventUsersUpdated(eventId, userIds) {
 }
 
 
+/**
+ * Internal method that triggers update handlers.
+ * @private
+ * @function
+ * @param {ObjectID} eventId id of updated event
+ */
+ function _onRoleListUpdated(eventId) {
+    broker.handleEventRoleListUpdated(eventId);
+}
+
+
 // --------- Public ---------
 
 /**
@@ -111,8 +122,8 @@ async function changeEventName(eventId, newName) {
         throw utils.createError('all params must be set', statusCodes.BAD_REQUEST);
 
     const res = await db().collection('events').updateOne(
-        { _id: eventId }, 
-        { $set: { name: newName }}
+        { _id: eventId },
+        { $set: { name: newName } }
     );
     if (res.result.ok !== 1)
         throw utils.createError('error changing name of event', statusCodes.INTERNAL_SERVER_ERROR);
@@ -122,6 +133,53 @@ async function changeEventName(eventId, newName) {
         _onEventUpdated(eventId);
 }
 exports.changeEventName = changeEventName;
+
+
+/**
+ * Changes an events RoleList.
+ * @static
+ * @async
+ * @function
+ * @param {ObjectID} eventId id of event 
+ * @param {RoleList} roleList new role list
+ * @returns {Promise} indicates success
+ */
+async function changeEventRoleList(eventId, roleList) {
+    if (!eventId || !roleList)
+        throw utils.createError('all params must be set', statusCodes.BAD_REQUEST);
+
+    if (!Array.isArray(roleList))
+        throw utils.createError('roleList must be of type array', statusCodes.BAD_REQUEST);
+
+    const validStructure = roleList.reduce((valid, cur) => {
+        if (typeof cur === 'object' && cur !== null) {
+            if (
+                Object.keys(cur).every(key =>
+                    ['id', 'color', 'name'].includes(key)
+                    && typeof cur[key] === 'string'
+                )
+            ) {
+                return true
+            }
+        }
+        return false;
+    }, true);
+
+    if (!validStructure)
+        throw utils.createError('roleList structure not valid', statusCodes.BAD_REQUEST);
+
+    const res = await db().collection('events').updateOne(
+        { _id: eventId },
+        { $set: { roles: roleList } }
+    );
+    if (res.result.ok !== 1)
+        throw utils.createError('error changing role list of event', statusCodes.INTERNAL_SERVER_ERROR);
+    if (res.result.n < 1)
+        throw utils.createError('eventId not found', statusCodes.NOT_FOUND);
+    if (res.result.nModified > 0)
+        _onRoleListUpdated(eventId);
+}
+exports.changeEventRoleList = changeEventRoleList;
 
 
 /**
@@ -187,7 +245,7 @@ async function getEventDict(userId, full = false, eventIds = []) {
     }
 
 
-    const projection = {'_id': 1, 'isArchived': 1, 'name': 1};
+    const projection = { '_id': 1, 'isArchived': 1, 'name': 1 };
     projection['users.' + userId + '.permissionLevel'] = 1;
 
     const eventsArr = await db().collection('events')
@@ -269,7 +327,7 @@ async function getUserDict(eventId, withName = true, withPermissionLevelAndEmail
 
         if (eventsArr < 1)
             throw utils.createError('eventId not found', statusCodes.NOT_FOUND);
-        
+
         await ldap.open();
         const users = eventsArr[0].users;
         const promises = Object.keys(users).map(async (userId) => {

@@ -149,6 +149,9 @@ class Client {
         this.on('events/changeEventName',               this._handleChangeEventName, {
             requiresAuthentication: true
         });
+        this.on('events/changeEventRoleList',           this._handleChangeEventRoleList, {
+            requiresAuthentication: true
+        });
         this.on('events/subscribeFullEventDict',        this._handleSubscribeFullEventDict, {
             requiresAuthentication: true
         });
@@ -696,8 +699,29 @@ class Client {
             this.userId, true, [eventId]))[eventId];
         if (event.permissionLevel < PermissionLevelEnum.ADMINISTRATOR)
             throw utils.createError('unsufficient rights to change title of event', statusCodes.FORBIDDEN);
-        eventsController.changeEventName(eventId, newName)
+        eventsController.changeEventName(eventId, newName);
         this._logActivity('events/changeEventName', { eventId, newName });
+    }
+
+
+    /**
+     * Eventhandler for change event RoleList request.
+     * @async
+     * @private
+     * @function
+     * @param {object} data 
+     * @param {string} data.eventId eventId (as string)
+     * @param {RoleList} data.roleList new role list
+     * @returns {Promise}
+     */
+    async _handleChangeEventRoleList({ eventId, roleList }) {
+        eventId = new ObjectID(eventId);
+        const event = (await eventsController.getEventDict(
+            this.userId, true, [eventId]))[eventId];
+        if (event.permissionLevel < PermissionLevelEnum.ADMINISTRATOR)
+            throw utils.createError('unsufficient rights to change title of event', statusCodes.FORBIDDEN);
+        eventsController.changeEventRoleList(eventId, roleList);
+        this._logActivity('events/changeEventRoleList', { eventId, roleList });
     }
 
 
@@ -814,7 +838,7 @@ class Client {
         this.emitUpdateUserDict(await eventsController.getUserDict(
             this.activeEventId, true, withPermissionLevelAndEmail));
 
-        this.emitUpdateRoleList(await eventsController.getRoleList(this.activeEventId));
+        await this.updateRoleList(this.activeEventId);
 
         this.emitUpdateEventScreenshotIds(
             await eventScreenshotsController.getScreenshotIdsForEvent(this.activeEventId));
@@ -1140,6 +1164,18 @@ class Client {
      */
     emitUpdateUserDict(userDict) {
         this._socket.emit('eventInfo/updateUserDict', userDict);
+    }
+
+
+    /**
+     * Retrieves role list for given eventId and sends it to the client.
+     * @async
+     * @function
+     * @param {ObjectID} eventId eventId for event which roles to update
+     * @returns {Promise} indicates success
+     */
+    async updateRoleList(eventId) {
+        this.emitUpdateRoleList(await eventsController.getRoleList(eventId));
     }
 
 
