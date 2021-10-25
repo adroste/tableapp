@@ -5,6 +5,7 @@ const EntryListTypeEnum = require('./EntryListTypeEnum');
 const EntryListSubscription = require('./EntryListSubscription');
 const PermissionLevelEnum = require('./PermissionLevelEnum');
 const activityLogController = require('./controller/activityLog');
+const adminController = require('./controller/admin');
 const commentsController = require('./controller/comments');
 const entriesController = require('./controller/entries');
 const eventsController = require('./controller/events');
@@ -65,6 +66,14 @@ class Client {
 
         // setup listeners
         this.on('disconnect',                           this._handleDisconnect, {
+        });
+
+        // admin
+        this.on('admin/adminLogin',                     this._handleAdminLogin, {
+            requiresAuthentication: true
+        });
+        this.on('admin/createNewEvent',                 this._handleCreateNewEvent, {
+            requiresAuthentication: true
         });
 
         // comments
@@ -226,6 +235,11 @@ class Client {
          */
         this.activeEventId = null;
         /**
+         * Indicates if logged in as (super) admin.
+         * @type {boolean}
+         */
+        this.adminLoggedIn = false;
+        /**
          * Id of entry client subscribed comments of.
          * Null indicates that no comments(-updates/-data) are subscribed.
          * @type {(ObjectID|null)}
@@ -345,6 +359,52 @@ class Client {
 
 
     //#endregion general
+
+    //#region admin
+
+    /**
+     * Eventhandler for admin login.
+     * @async
+     * @private
+     * @function
+     * @param {object} data 
+     * @param {string} data.password password
+     * @returns {Promise}
+     */
+    async _handleAdminLogin({ password }) {
+        const success = await adminController.checkAdminPassword(password);
+        this._logActivity('admin/adminLogin', { success });
+        this.adminLoggedIn = success;
+        if (!success)
+            throw utils.createError('access denied', statusCodes.UNAUTHORIZED);
+        return true;
+    }
+
+
+    /**
+     * Eventhandler for creating a new event.
+     * @async
+     * @private
+     * @function
+     * @param {object} data 
+     * @param {string} data.title title
+     * @param {string} data.customId custom id for new event
+     * @returns {Promise}
+     */
+    async _handleCreateNewEvent({ title, customId }) {
+        try {
+            if (customId)
+                customId = new ObjectID(customId);
+        } catch (err) {
+            throw utils.createError('customId invalid', statusCodes.BAD_REQUEST);
+        }
+        const id = await adminController.createNewEvent(this.userId, title, customId || null);
+        this._logActivity('admin/createNewEvent', { title, id: 3 });
+        return id;
+    }
+
+
+    //#endregion admin
 
     //#region comments
     /**

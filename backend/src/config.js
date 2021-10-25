@@ -13,6 +13,13 @@ const customConfig = Object.keys(process.env)
  */
 const config = {
     /**
+     * Passwort for access of (super) admin functions.
+     * Should be totally secret!
+     * Requires overwrite.
+     * @type {string}
+     */
+    TABLE_ADMIN_PASSWORD: 'debug',
+    /**
      * Logging-Level.
      * Valid values: 'debug', 'info', 'warn', 'error'.
      * Defaults to 'debug'.
