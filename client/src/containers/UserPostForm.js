@@ -376,17 +376,19 @@ class UserPostForm extends React.Component {
                     <Header 
                         content={headerText}
                     />
-                    {isComment && [
-                        <Card.Description>
-                            <Content
-                                authorId={replyAuthorId}
-                                content={replyContent}
-                                timestamp={replyTimeStamp}
-                            />
-                            <Thumbnails imageIds={replyImageIds}/>
-                        </Card.Description>,
-                        <Divider/>,
-                    ]}
+                    {isComment && 
+                        <>
+                            <Card.Description>
+                                <Content
+                                    authorId={replyAuthorId}
+                                    content={replyContent}
+                                    timestamp={replyTimeStamp}
+                                />
+                                <Thumbnails imageIds={replyImageIds}/>
+                            </Card.Description>
+                            <Divider/>
+                        </>
+                    }
                     <Form>
                         <Form.Field>
                             <Checkbox
@@ -402,7 +404,6 @@ class UserPostForm extends React.Component {
                         </Form.Field>
                         <Form.Field>
                             <TextArea
-                                autoHeight
                                 onChange={this._handleTextAreaChange}
                                 placeholder={textAreaPlaceholder}
                                 ref={this.textAreaRef}
