@@ -23,6 +23,8 @@ Usage:
 2. Open the file and edit all the necessary configuration values (e.g. your domain). See: [Configuration](configuration.md). 
 3. Execute `docker-compose up -d`.
 
+Stopping: `docker-compose down`
+
 ### nginx-proxy
 
 The docker-compose uses nginx-proxy and acme-companion for easy SSL and automatic letsencrypt certificates.
