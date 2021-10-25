@@ -9,10 +9,10 @@ stop-dev:
 	docker-compose -f docker-compose.dev.yml down
 
 shell-backend:
-	docker-compose -f docker-compose.dev.yml run table-backend $(CMD)
+	docker-compose -f docker-compose.dev.yml run tableapp-backend $(CMD)
 
 shell-client:
-	docker-compose -f docker-compose.dev.yml run table-client $(CMD)
+	docker-compose -f docker-compose.dev.yml run tableapp-client $(CMD)
 
 shell-mongo:
 	docker-compose -f docker-compose.dev.yml run mongo $(CMD)

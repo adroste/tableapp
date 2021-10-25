@@ -7,9 +7,9 @@ services:
     volumes:
       - ./dev-mongo-data:/data/db
 
-  table-backend:
+  tableapp-backend:
     image: node:16
-    container_name: table-backend
+    container_name: tableapp-backend
     depends_on:
       - mongo
     volumes:
@@ -22,9 +22,9 @@ services:
       - 9229:9229
     command: bash -c "npm install && npm run dev"
 
-  table-client:
+  tableapp-client:
     image: node:16
-    container_name: table-client
+    container_name: tableapp-client
     volumes:
       - ./client:/app
     environment:

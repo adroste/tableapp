@@ -8,10 +8,10 @@ services:
     volumes:
       - ./tableapp-data:/data/db
 
-  table-backend:
+  tableapp-backend:
     restart: always
-    image: adroste/table-backend:latest
-    container_name: table-backend
+    image: adroste/tableapp-backend:latest
+    container_name: tableapp-backend
     depends_on:
       - mongo
     environment:
@@ -29,10 +29,10 @@ services:
       TABLE_MAIL_FROM: no-reply@table.example.com # email address for automatic mails / notifications
       TABLE_SESSION_TOKEN_PRIVATE_KEY: secret-token-for-encryption # set this to a random value
 
-  table-client:
+  tableapp-client:
     restart: always
-    image: adroste/table-client:latest
-    container_name: table-client
+    image: adroste/tableapp-client:latest
+    container_name: tableapp-client
     environment:
       LETSENCRYPT_HOST: table.example.com # used by acme-companion: automatic cert generation
       VIRTUAL_HOST: table.example.com # used by nginx-proxy: your domain to frontend
