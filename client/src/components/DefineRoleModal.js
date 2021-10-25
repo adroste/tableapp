@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { COLORS } from '../colors';
-import { Input, Button, Label, Modal, Form, Icon } from 'semantic-ui-react';
+import { Button, Form, Icon, Input, Label, Modal } from 'semantic-ui-react';
 
+import { COLORS } from '../colors';
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
 
 const FittedIcon = styled(Icon)`
     margin: 0 !important;
@@ -82,6 +82,7 @@ export class DefineRoleModal extends React.Component {
         return (
             <Modal 
                 open
+                size="small"
             >
                 <Modal.Header>Rolle definieren</Modal.Header>
                 <Modal.Content>
