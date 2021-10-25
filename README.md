@@ -9,6 +9,12 @@
 
 ### high priority
 
+- [x] docs: update deployment docs
+- [x] client: remove query-string and replace it with URLSearchParams API
+- [ ] github ci for docker build and publish
+- [x] fix (client): index.js:1517 Warning: Please use `require("history").createBrowserHistory` instead of `require("history/createBrowserHistory")`. Support for the latter will be removed in the next major release.
+- [x] remove https/ssl from backend
+- [x] read custom config from runtime environment instead of compiling it into the build
 - [x] fix navigation bug: when switching to last active event, loader spins endless
 - [x] set default mail notifications for new entries
 - [x] add link to change notification settings to mail templates
@@ -88,6 +94,11 @@
 
 ### normal priority
 
+- [ ] remove desktop-client config and require user to enter url of tableapp instance on first start of the desktop-client
+- [ ] dockerize desktop-client build (multi-platform)
+- [ ] publish prebuilt binaries to github
+- [ ] add static link into client to download desktop app
+- [ ] fix screenshot problem on desktop-client
 - [ ] ?? remove extra-code for surveys
 - [ ] presentation-mode view
 - [x] login with kürzel (30min)
