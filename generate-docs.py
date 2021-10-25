@@ -7,6 +7,9 @@ import re
 import subprocess
 import sys
 
+#requires jsdoc2md version 4.0.1
+#npm install -g jsdoc-to-markdown@^4.0.1
+
 # configure projects
 docsPath = "docs"
 projects = [
