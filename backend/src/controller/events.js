@@ -219,6 +219,41 @@ exports.changeUserPermissionLevelForEvent = changeUserPermissionLevelForEvent;
 
 
 /**
+ * Changes a users role in a specific event.
+ * @static
+ * @async
+ * @function
+ * @param {ObjectID} eventId id of event 
+ * @param {string} userId id of user
+ * @param {(string|null)} roleId id of role to set. null or '' unsets current role
+ * @returns {Promise} indicates success
+ * @throws {Error} with message: 'eventId not found' with code NOT_FOUND if supplied eventId does not exist
+ */
+async function changeUserRoleForEvent(eventId, userId, roleId) {
+    if (!userId || !eventId || !roleId)
+        throw utils.createError('all params must be set', statusCodes.BAD_REQUEST);
+
+    const update = {};
+    if (!roleId) {
+        update.$unset = {};
+        update.$unset['users.' + userId + '.roleId'] = 1;
+    } else {
+        update.$set = {};
+        update.$set['users.' + userId + '.roleId'] = roleId;
+    }
+    const res = await db().collection('events')
+        .updateOne({ _id: eventId }, update);
+    if (res.result.ok !== 1)
+        throw utils.createError('error changing roleId for user', statusCodes.INTERNAL_SERVER_ERROR);
+    if (res.result.n < 1)
+        throw utils.createError('eventId not found', statusCodes.NOT_FOUND);
+    if (res.result.nModified > 0)
+        _onEventUsersUpdated(eventId, [userId]);
+}
+exports.changeUserRoleForEvent = changeUserRoleForEvent;
+
+
+/**
  * Retrives EventDict for a user.
  * @static
  * @async

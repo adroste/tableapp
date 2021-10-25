@@ -152,6 +152,9 @@ class Client {
         this.on('events/changeEventRoleList',           this._handleChangeEventRoleList, {
             requiresAuthentication: true
         });
+        this.on('events/changeUserPermissionLevelAndRole', this._handleChangeUserPermissionLevelAndRole, {
+            requiresAuthentication: true
+        });
         this.on('events/subscribeFullEventDict',        this._handleSubscribeFullEventDict, {
             requiresAuthentication: true
         });
@@ -719,9 +722,33 @@ class Client {
         const event = (await eventsController.getEventDict(
             this.userId, true, [eventId]))[eventId];
         if (event.permissionLevel < PermissionLevelEnum.ADMINISTRATOR)
-            throw utils.createError('unsufficient rights to change title of event', statusCodes.FORBIDDEN);
+            throw utils.createError('unsufficient rights to change role list of event', statusCodes.FORBIDDEN);
         eventsController.changeEventRoleList(eventId, roleList);
         this._logActivity('events/changeEventRoleList', { eventId, roleList });
+    }
+
+
+    /**
+     * Eventhandler for change event RoleList request.
+     * @async
+     * @private
+     * @function
+     * @param {object} data 
+     * @param {string} data.eventId eventId (as string)
+     * @param {string} data.userId id of user subject to change
+     * @param {PermissionLevelEnum} data.permissionLevel new permissionLevel for user
+     * @param {(string|null)} data.roleId id of new role for user. null or '' will remove the current role
+     * @returns {Promise}
+     */
+    async _handleChangeUserPermissionLevelAndRole({ eventId, userId, permissionLevel, roleId }) {
+        eventId = new ObjectID(eventId);
+        const event = (await eventsController.getEventDict(
+            this.userId, true, [eventId]))[eventId];
+        if (event.permissionLevel < PermissionLevelEnum.ADMINISTRATOR)
+            throw utils.createError('unsufficient rights to change user permission level and role of event', statusCodes.FORBIDDEN);
+        eventsController.changeUserPermissionLevelForEvent(eventId, userId, permissionLevel);
+        eventsController.changeUserRoleForEvent(eventId, userId, roleId);
+        this._logActivity('events/changeUserPermissionLevelAndRole', { eventId, userId, permissionLevel, roleId });
     }
 
 
