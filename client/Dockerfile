@@ -4,7 +4,8 @@ RUN mkdir /app
 WORKDIR /app
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 ENV NODE_ENV production
-RUN npm install
+# install dev deps also
+RUN npm install --production=false
 COPY . .
 RUN npm run build
 
