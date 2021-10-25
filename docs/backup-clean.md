@@ -28,6 +28,8 @@ ssh table # ssh into your server
 # make sure all services are running
 docker exec -it mongo bash # open a shell to your mongodb container
 
+# start mongo shell
+> mongo
 # access the database with name "tableapp" (default database name)
 > use tableapp
 > db.dropDatabase() # this will clear everything! (users, events, entries etc.)
