@@ -60,6 +60,7 @@ class EntriesView extends React.Component {
 
     constructor(props) {
         super(props);
+        // window.envi = this;
 
         this.props.dynamicRowsCache.onHeightChanged(this._handleRowHeightChanged);
         this.props.dynamicRowsCache.setIdOrder(props.idList);
@@ -105,7 +106,7 @@ class EntriesView extends React.Component {
             this._checkLoadMoreRows(0);
         }
         if (prevProps.idList !== this.props.idList) {
-            this._resize(0);
+            setTimeout(() => this._resize(0), 0);
         }
     }
 
@@ -152,11 +153,13 @@ class EntriesView extends React.Component {
         };
         if (diff < 0) {
             scrollDiff();
-            this._resize(index);
+            // this._resize(index);
         } else {
-            this._resize(index);
+            // this._resize(index);
             scrollDiff();
         }
+        this._resize(0);
+        setTimeout(() => this._resize(0), 0);
     };
 
 
