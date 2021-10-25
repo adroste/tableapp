@@ -10,7 +10,7 @@ services:
 
   table-backend:
     restart: always
-    image: table-backend:latest
+    image: adroste/table-backend:latest
     container_name: table-backend
     depends_on:
       - mongo
@@ -31,7 +31,7 @@ services:
 
   table-client:
     restart: always
-    image: table-client:dev
+    image: adroste/table-client:latest
     container_name: table-client
     environment:
       LETSENCRYPT_HOST: table.example.com # used by acme-companion: automatic cert generation
