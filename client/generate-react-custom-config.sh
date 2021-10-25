@@ -1,10 +1,7 @@
 #!/bin/sh
 
-beginswith() { case $2 in "$1"*) true ;; *) false ;; esac }
-
 printf 'window.customConfig = {};\n'
-env | while IFS='=' read -r name value; do
-    if beginswith TABLE_ "$name"; then
-        printf 'window.customConfig.%s=`%s`;\n' "$name" "$value"
-    fi
+env | awk -F= '/^TABLE/ {print $1}' | while read line; do
+    eval c="\"\$$line\""
+    printf 'window.customConfig.%s=`%s`;\n' "$line" "$c"
 done
