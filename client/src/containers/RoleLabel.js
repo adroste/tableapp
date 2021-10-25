@@ -1,10 +1,9 @@
-import React from 'react';
+import { Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React from 'react';
 import { connect } from 'react-redux';
 import { getRole } from '../reducers/eventInfo';
-import { Label } from 'semantic-ui-react';
-
+import styled from 'styled-components';
 
 const CustomLabel = styled(Label).attrs({
     size: 'mini'
@@ -15,13 +14,13 @@ const CustomLabel = styled(Label).attrs({
 
 class RoleLabel extends React.Component {
     /**
-     * @property {String} roleId id of corresponding role
-     * @property {String} roleInfo roleInfo object (injected by redux via roleId)
+     * @property {String} [roleId] id of corresponding role
+     * @property {String} [roleInfo] roleInfo object (injected by redux via roleId)
      */
     static get propTypes() {
         return {
-            roleId: PropTypes.string.isRequired,
-            roleInfo: PropTypes.object.isRequired,
+            roleId: PropTypes.string,
+            roleInfo: PropTypes.object,
         };
     };
 

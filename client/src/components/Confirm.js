@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { Button, Modal, TransitionablePortal } from 'semantic-ui-react';
 
+import PropTypes from 'prop-types';
+import React from 'react';
 
 export class Confirm extends React.PureComponent {
     static get propTypes() {
         return {
             cancelText: PropTypes.string,
             confirmText: PropTypes.string.isRequired,
-            content: PropTypes.string.isRequired,
+            content: PropTypes.any.isRequired,
             hasCancel: PropTypes.bool,
             headerText: PropTypes.string,
             isNegative: PropTypes.bool,
