@@ -16,5 +16,5 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY docker-entrypoint.sh generate-react-custom-config.sh /
 RUN chmod +x /docker-entrypoint.sh /generate-react-custom-config.sh
 EXPOSE 80
-ENTRYPOINT [ "/docket-entrypoint.sh" ]
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
 CMD ["nginx", "-g", "daemon off;"]
