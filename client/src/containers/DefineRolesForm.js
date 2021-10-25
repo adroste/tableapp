@@ -1,13 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { COLORS } from '../colors';
+import * as eventsActions from '../actions/events';
 import * as utils from '../utils';
-import { Header, Button, Label, List, Segment } from 'semantic-ui-react';
-import { DefineRoleModal } from '../components/DefineRoleModal';
-import { getRoleList } from '../reducers/eventInfo';
 
+import { Button, Header, Label, List, Segment } from 'semantic-ui-react';
+
+import { COLORS } from '../colors';
+import { Confirm } from '../components/Confirm';
+import { DefineRoleModal } from '../components/DefineRoleModal';
+import { FormFieldAction } from '../components/FormFieldAction';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import cloneDeep from 'lodash/cloneDeep';
+import { connect } from 'react-redux';
+import { getActiveEventId } from '../reducers/events';
+import { getRoleList } from '../reducers/eventInfo';
+import isEqual from 'lodash/isEqual';
+import styled from 'styled-components';
 
 const ListItemContentFlex = styled(List.Content)`
     display: flex;
@@ -39,14 +47,25 @@ class DefineRolesForm extends React.Component {
         super(props);
 
         this.state = {
+            isChangeConfirmOpen: false,
             // editId defines, if edit-modal is shown (empty editId => no modal)
             editId: '',
+            roleList: cloneDeep(props.roleList) || [],
         };
     }
 
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.roleList !== this.props.roleList) {
+            this.setState({
+                roleList: cloneDeep(this.props.roleList) || [],
+            });
+        }
+    }
+
+
     getUnusedColor = () => {
-        const {roleList} = this.props;
+        const { roleList } = this.state;
 
         for (let color of COLORS) {
             let isInUse = false;
@@ -63,7 +82,7 @@ class DefineRolesForm extends React.Component {
         // if every color is used, take red
         return 'red';
     };
-    
+
 
     handleAddRoleClick = e => {
         this.setState({
@@ -79,13 +98,46 @@ class DefineRolesForm extends React.Component {
     };
 
 
+    handleItemDeleteClick = id => e => {
+        const newRoleList = cloneDeep(this.state.roleList);
+        const foundRoleIndex = newRoleList.findIndex((cur) => cur.id === id);
+        if (foundRoleIndex === -1)
+            return;
+        newRoleList.splice(foundRoleIndex, 1);
+
+        this.setState({
+            roleList: newRoleList,
+        });
+    };
+
+
     handleItemDecreasePriorityClick = id => e => {
-        alert("action: decrease priority " + id);
+        const newRoleList = cloneDeep(this.state.roleList);
+        const foundRoleIndex = newRoleList.findIndex((cur) => cur.id === id);
+        if (foundRoleIndex === -1 || foundRoleIndex === newRoleList.length - 1)
+            return;
+        const item = newRoleList[foundRoleIndex];
+        newRoleList.splice(foundRoleIndex, 1);
+        newRoleList.splice(foundRoleIndex + 1, 0, item);
+
+        this.setState({
+            roleList: newRoleList,
+        });
     };
 
 
     handleItemIncreasePriorityClick = id => e => {
-        alert("action: increase priority " + id);
+        const newRoleList = cloneDeep(this.state.roleList);
+        const foundRoleIndex = newRoleList.findIndex((cur) => cur.id === id);
+        if (foundRoleIndex === -1 || foundRoleIndex === 0)
+            return;
+        const item = newRoleList[foundRoleIndex];
+        newRoleList.splice(foundRoleIndex, 1);
+        newRoleList.splice(foundRoleIndex - 1, 0, item);
+
+        this.setState({
+            roleList: newRoleList,
+        });
     };
 
 
@@ -97,58 +149,109 @@ class DefineRolesForm extends React.Component {
 
 
     handleModalSaveClick = (e, data) => {
-        alert("action: save role > " + data.color + ' ' + data.name);
+        const { editId, roleList } = this.state;
+        if (!editId)
+            return '';
+
+        const newRoleList = cloneDeep(roleList);
+        const { name, color } = data;
+        const foundRole = newRoleList.find((cur) => cur.id === editId);
+        if (foundRole) {
+            foundRole.name = name;
+            foundRole.color = color;
+        } else {
+            newRoleList.push({
+                id: editId,
+                name,
+                color,
+            });
+        }
+
         this.setState({
             editId: '',
+            roleList: newRoleList,
         });
     };
 
 
+    handleResetClick = () => {
+        this.setState({
+            roleList: cloneDeep(this.props.roleList) || [],
+        });
+    };
+
+
+    handleSaveClick = () => {
+        this.setState({
+            isChangeConfirmOpen: true,
+        });
+    };
+
+
+    handleChangeConfirmCancelClick = () => {
+        this.setState({
+            isChangeConfirmOpen: false,
+        });
+    };
+
+
+    handleChangeConfirmAcceptClick = () => {
+        this.setState({
+            isChangeConfirmOpen: false,
+        });
+        this.props.eventsActions.changeEventRoleList(this.props.activeEventId, this.state.roleList);
+    };
+
+
     renderListItems = () => {
-        const {roleList} = this.props;
+        const { roleList } = this.state;
 
         return roleList.map((cur, i) => {
-            const {id, name, color} = cur;
+            const { id, name, color } = cur;
 
             return (
-                <List.Item>
+                <List.Item key={id}>
                     <ListItemContentFlex>
                         <Label
                             content={name}
                             color={color}
                         />
-                        <Stretch/>
+                        <Stretch />
                         <Button.Group size="mini">
-                            <Button 
+                            <Button
+                                data-id={id}
                                 disabled={i === 0}
                                 icon="arrow up"
                                 onClick={this.handleItemIncreasePriorityClick(id)}
                             />
-                            <Button 
+                            <Button
                                 disabled={i === roleList.length - 1}
                                 icon="arrow down"
-                                onClick={this.handleItemDecreasePriorityClick(id)}                                
+                                onClick={this.handleItemDecreasePriorityClick(id)}
                             />
-                            <Button 
+                            <Button
                                 icon="edit"
                                 onClick={this.handleItemEditClick(id)}
                             />
+                            <Button
+                                icon="delete"
+                                onClick={this.handleItemDeleteClick(id)}
+                            />
                         </Button.Group>
                     </ListItemContentFlex>
-                </List.Item>      
+                </List.Item>
             );
         });
     };
 
 
     renderModal = () => {
-        const {editId} = this.state;
-        
+        const { editId, roleList } = this.state;
+
         // if no edit id is set dont show modal
         if (!editId)
             return '';
 
-        const {roleList} = this.props;
         let name, color;
         const foundRole = roleList.find((cur) => cur.id === editId);
         // check if role with editId exists
@@ -174,13 +277,16 @@ class DefineRolesForm extends React.Component {
 
 
     render() {
+        const { isChangeConfirmOpen, roleList } = this.state;
+        const isUnchanged = isEqual(roleList, this.props.roleList);
+
         return (
             <Segment>
-                <Header 
+                <Header
                     content="Rollen definieren"
                 />
                 <List ordered>
-                    {this.renderListItems()}              
+                    {this.renderListItems()}
                 </List>
                 <Button
                     content="Rolle hinzufügen"
@@ -188,6 +294,32 @@ class DefineRolesForm extends React.Component {
                     onClick={this.handleAddRoleClick}
                 />
                 {this.renderModal()}
+                <FormFieldAction>
+                    <Button
+                        content="Zurücksetzen"
+                        disabled={isUnchanged}
+                        onClick={this.handleResetClick}
+                    />
+                    <Button
+                        content="Speichern"
+                        disabled={isUnchanged}
+                        primary
+                        onClick={this.handleSaveClick}
+                    />
+                </FormFieldAction>
+                <Confirm
+                    confirmText='Rollen speichern'
+                    content={
+                        <div>
+                            <p>Willst du die Änderung der Rollen wirklich speichern?</p>
+                        </div>
+                    }
+                    hasCancel
+                    headerText='Rollen neu definieren'
+                    isOpen={isChangeConfirmOpen}
+                    onCancel={this.handleChangeConfirmCancelClick}
+                    onConfirm={this.handleChangeConfirmAcceptClick}
+                />
             </Segment>
         );
     }
@@ -196,6 +328,7 @@ class DefineRolesForm extends React.Component {
 
 const mapStateToProps = (state, props) => {
     return {
+        activeEventId: getActiveEventId(state.events),
         roleList: getRoleList(state.eventInfo),
     }
 };
@@ -203,7 +336,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // TODO
+        eventsActions: bindActionCreators(eventsActions, dispatch),
     };
 }
 

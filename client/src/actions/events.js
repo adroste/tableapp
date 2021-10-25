@@ -1,6 +1,6 @@
 import * as eventsActionTypes from '../actiontypes/events';
-import { getActiveEventId } from '../reducers/events';
 
+import { getActiveEventId } from '../reducers/events';
 
 /**
  * Creates action for changing an events name/title.
@@ -17,6 +17,26 @@ export function changeEventName(eventId, newName) {
                 eventsActionTypes.CHANGE_EVENT_NAME_SUCCESS,
                 eventsActionTypes.CHANGE_EVENT_NAME_FAILURE],
             call: (api) => api.request('events/changeEventName', { eventId, newName })
+        },
+    });
+}
+
+
+/**
+ * Creates action for changing an events roleList.
+ * @function
+ * @param {string} eventId id of event
+ * @param {RoleList} roleList RoleList to change to
+ * @returns {object} action
+ */
+ export function changeEventRoleList(eventId, roleList) {
+    return ({
+        type: 'apiCall',
+        apiCall: { 
+            types: [eventsActionTypes.CHANGE_EVENT_ROLE_LIST_REQUEST,
+                eventsActionTypes.CHANGE_EVENT_ROLE_LIST_SUCCESS,
+                eventsActionTypes.CHANGE_EVENT_ROLE_LIST_FAILURE],
+            call: (api) => api.request('events/changeEventRoleList', { eventId, roleList })
         },
     });
 }
