@@ -6,6 +6,7 @@ import { LoginStateEnum, getLastActiveEventId, getLoginState, hasAcceptedTos } f
 import { isDesktopApp, isMiniControlViewActive } from '../reducers/desktopApp';
 
 import { AcceptTosView } from './AcceptTosView';
+import { AdminView } from './AdminView';
 import { AllEventsView } from './AllEventsView';
 import { ApiConnectionStateEnum } from '../api/ApiConnectionStateEnum';
 import { ApiDisconnectedView } from '../components/ApiDisconnectedView';
@@ -143,6 +144,7 @@ class App extends React.Component {
                 <Route path='/searchevents' component={AllEventsView}/>
                 <Route path='/switchevent' component={SwitchEventView}/>
                 <Route path='/settings' component={SettingsView}/>
+                <Route path='/admin' component={AdminView}/>
                 <Route path='/:eventId' component={EventWrapper}/>
             </Switch>
         );

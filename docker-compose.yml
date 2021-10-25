@@ -18,6 +18,7 @@ services:
       LETSENCRYPT_HOST: table-api.example.com # used by acme-companion: automatic cert generation
       VIRTUAL_HOST: table-api.example.com # used by nginx-proxy: your domain to backend
       VIRTUAL_PORT: 4898 # used by nginx-proxy: exposed backend port
+      TABLE_ADMIN_PASSWORD: YOU_MUST_CHANGE_THIS_VALUE # change this to a long secret phrase
       TABLE_BASE_URL: https://table.example.com # url to client
       TABLE_DB_URL: mongodb://mongo:27017 # url to mongo instance
       TABLE_LDAP_URL: ldaps://ldap.example.com:636 # url to ldap server
