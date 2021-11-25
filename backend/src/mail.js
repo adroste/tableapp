@@ -34,15 +34,16 @@ const transporter = nodemailer.createTransport({
  * @returns {Promise} never rejects, errors will be catched and printed
  */
 async function sendMail(to, subject, html) {
-    console.debug("Sending mail to " + to);
+    console.debug(`MAIL\t${"send".padEnd(20)}\t${to}\t${subject}`);
     // ignore return value
     try {
-        await transporter.sendMail({
+        const res = await transporter.sendMail({
             from: config.TABLE_MAIL_FROM,
             to,
             subject,
             html
         });
+        console.debug(`MAIL\t${"sendResult".padEnd(20)}\t${JSON.stringify(res)}`);
     } catch (e) {
         console.error(e);
     }
