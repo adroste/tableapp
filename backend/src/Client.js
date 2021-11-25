@@ -150,8 +150,8 @@ class Client {
             requiresAuthentication: true
         });
         this.on('entries/unsubscribeEntryList',         this._handleUnsubscribeEntryList, {
-            requiresActiveEvent: true,
-            requiresAuthentication: true
+            // requiresActiveEvent: true, // prevent error log from ui transition
+            // requiresAuthentication: true
         });
         
         // events
