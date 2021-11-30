@@ -1,10 +1,11 @@
 "use strict";
 
 const config = require('./config');
+const utils = require('./utils');
 
 
 function commentOnEntry(name, sender, eventName, data, notificationId) {
-    const link = `${config.TABLE_BASE_URL}${data.eventId}/${data.entryId}?nId=${notificationId}#${data.commentId}`;
+    const link = utils.pathJoin(config.TABLE_BASE_URL, data.eventId, data.entryId + `?nId=${notificationId}#${data.commentId}`);
     return {
         subject: `[table] Neuer Kommentar auf Eintrag - ${eventName}`,
         html: 
@@ -26,7 +27,7 @@ exports.commentOnEntry = commentOnEntry;
 
 
 function replyOnComment(name, sender, eventName, data, notificationId) {
-    const link = `${config.TABLE_BASE_URL}${data.eventId}/${data.entryId}?nId=${notificationId}#${data.commentId}`;
+    const link = utils.pathJoin(config.TABLE_BASE_URL, data.eventId, data.entryId + `?nId=${notificationId}#${data.commentId}`);
     return {
         subject: `[table] Neue Antwort auf deinen Kommentar - ${eventName}`,
         html: 
@@ -48,7 +49,7 @@ exports.replyOnComment = replyOnComment;
 
 
 function newEntry(name, sender, eventName, data, notificationId) {
-    const link = `${config.TABLE_BASE_URL}${data.eventId}/${data.entryId}?nId=${notificationId}`;
+    const link = utils.pathJoin(config.TABLE_BASE_URL, data.eventId, data.entryId + `?nId=${notificationId}`);
     return {
         subject: `[table] Neuer Eintrag - ${eventName}`,
         html: 

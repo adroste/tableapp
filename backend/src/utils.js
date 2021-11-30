@@ -164,3 +164,16 @@ function getAppVersion() {
 }
 module.exports.getAppVersion = getAppVersion;
 
+/**
+ * Joins paths. Also works with urls.
+ * @param {string} base base
+ * @param  {...string} parts parts to join
+ * @returns 
+ */
+function pathJoin(base, ...parts) {
+    const trimSepRight = /\/+$/g;
+    const trimSepLeftRight = /^\/+|\/+$/g;
+    const partsTrimmed = parts.map(p => p.replace(trimSepLeftRight, ''));
+    return [base.replace(trimSepRight, '')].concat(partsTrimmed).join('/');
+}
+module.exports.pathJoin = pathJoin;
