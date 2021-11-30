@@ -153,3 +153,14 @@ function getAppVersion() {
     return process.env.npm_package_version + suffix;
 }
 module.exports.getAppVersion = getAppVersion;
+
+/**
+ * Returns app version read from environment
+ * @returns {string} app version
+ */
+function getAppVersion() {
+    const suffix = process.env.VERSION_NAME_SUFFIX || "";
+    return process.env.npm_package_version + suffix;
+}
+module.exports.getAppVersion = getAppVersion;
+
