@@ -16,7 +16,7 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
     host: config.TABLE_MAIL_HOST,
     port: 25,
-    pool: true,
+    // pool: true,
     tls: { 
         rejectUnauthorized: false 
     },
