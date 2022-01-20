@@ -3,6 +3,7 @@ import * as adminActions from '../actions/admin';
 import { Button, Form, Header, Segment } from 'semantic-ui-react';
 
 import { AdminCreateNewEventForm } from './AdminCreateNewEventForm';
+import { AdminSendTestEmailForm } from './AdminSendTestEmailForm';
 import { NavBar } from './NavBar';
 import React from 'react';
 import { bindActionCreators } from 'redux';
@@ -60,6 +61,8 @@ class AdminView extends React.Component {
                 />
                 <Header content="TABLE Administration"/>
                 <AdminCreateNewEventForm />
+                <br/>
+                <AdminSendTestEmailForm />
             </div>
         );
     }

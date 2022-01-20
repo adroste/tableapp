@@ -12,3 +12,10 @@ export const CREATE_NEW_EVENT_REQUEST = 'admin/CREATE_NEW_EVENT_REQUEST';
 export const CREATE_NEW_EVENT_SUCCESS = 'admin/CREATE_NEW_EVENT_SUCCESS';
 /** admin actiontype: create new event */
 export const CREATE_NEW_EVENT_FAILURE = 'admin/CREATE_NEW_EVENT_FAILURE';
+
+/** admin actiontype: send test email */
+export const ADMIN_SEND_TEST_EMAIL_REQUEST = 'admin/ADMIN_SEND_TEST_EMAIL_REQUEST';
+/** admin actiontype: send test email */
+export const ADMIN_SEND_TEST_EMAIL_SUCCESS = 'admin/ADMIN_SEND_TEST_EMAIL_SUCCESS';
+/** admin actiontype: send test email */
+export const ADMIN_SEND_TEST_EMAIL_FAILURE = 'admin/ADMIN_SEND_TEST_EMAIL_FAILURE';

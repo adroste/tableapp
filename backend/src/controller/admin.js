@@ -4,6 +4,7 @@ const db = require('../db').db;
 const utils = require('../utils');
 const broker = require('../broker');
 const config = require('../config');
+const mail = require('../mail');
 const PermissionLevelEnum = require('../PermissionLevelEnum');
 
 
@@ -76,3 +77,17 @@ async function createNewEvent(userId, title, customId) {
     return res.insertedId;
 }
 exports.createNewEvent = createNewEvent;
+
+
+/**
+ * Send a test email
+ * @static
+ * @async
+ * @function
+ * @param {string} email email to send to
+ * @returns {Promise<boolean>} resolves to true or false
+ */
+async function sendTestEmail(email) {
+    return mail.sendMail(email, 'Table Test Mail', '<p>This is a Test</p>');
+}
+exports.sendTestEmail = sendTestEmail;

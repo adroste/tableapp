@@ -75,6 +75,9 @@ class Client {
         this.on('admin/createNewEvent',                 this._handleCreateNewEvent, {
             requiresAuthentication: true
         });
+        this.on('admin/sendTestEmail',                 this._handleSendTestEmail, {
+            requiresAuthentication: true
+        });
 
         // comments
         this.on('comments/changeVote',                  this._handleChangeVoteForComment, {
@@ -401,6 +404,21 @@ class Client {
         const id = await adminController.createNewEvent(this.userId, title, customId || null);
         this._logActivity('admin/createNewEvent', { title, id: 3 });
         return id;
+    }
+
+
+    /**
+     * Eventhandler for sending a test email.
+     * @async
+     * @private
+     * @function
+     * @param {object} data 
+     * @param {string} data.email email to send to
+     * @returns {Promise}
+     */
+    async _handleSendTestEmail({ email }) {
+        adminController.sendTestEmail(email);
+        this._logActivity('admin/sendTestEmail', { email });
     }
 
 

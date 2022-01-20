@@ -37,3 +37,22 @@ export function createNewEvent(title, customId) {
         }
     });
 }
+
+
+/**
+ * Creates action for sending a test email.
+ * @function
+ * @param {string} email email to send to 
+ * @returns {object} action
+ */
+export function sendTestEmail(email) {
+    return ({
+        type: 'apiCall',
+        apiCall: {
+            types: [adminActionTypes.ADMIN_SEND_TEST_EMAIL_REQUEST,
+                adminActionTypes.ADMIN_SEND_TEST_EMAIL_SUCCESS,
+                adminActionTypes.ADMIN_SEND_TEST_EMAIL_FAILURE],
+            call: (api) => api.request('admin/sendTestEmail', { email })
+        }
+    });
+}
